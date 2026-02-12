@@ -15,30 +15,34 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 
-  <!-- Main Global Styles -->
+  <!-- Styles -->
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Calendly Script (Load Once) -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
 <body>
 
 <!-- =========================
      NAVBAR
 ========================== -->
-<nav class="navbar" data-state="visible">
+<nav class="navbar" data-state="visible" aria-label="Primary Navigation">
   <div class="container nav-wrapper">
 
-    <div class="logo">
-      <a href="index.html">Metabolic Freedom</a>
-    </div>
+    <a href="../Home Page/index.html" class="logo">
+      <img src="../Assets/logo.png" alt="Metabolic Freedom Logo">
+    </a>
 
     <ul class="nav-links">
-      <li><a href="../Home Page/index.html" class="nav-home">Home</a></li>
-      <li><a href="../About Page/index.html" class="nav-about">About</a></li>
-      <li><a href="../Payments Page/Plans/plans.html" class="nav-plans">Plans & Pricing</a></li>
-      <li><a href="../Home Page/index.html#faq" class="nav-faq">FAQ</a></li>
+      <li><a href="../Home Page/index.html">Home</a></li>
+      <li><a href="../About Page/index.html">About</a></li>
+      <li><a href="../Payments Page/Plans/plans.html">Plans & Pricing</a></li>
+      <li><a href="../Home Page/index.html#faq">FAQ</a></li>
     </ul>
 
-    <a href="bookings.html" class="btn btn-primary btn-sm">
+    <!-- On bookings page, button is inactive -->
+    <a href="#" class="btn btn-primary btn-sm">
       Free Call
     </a>
 
@@ -65,7 +69,7 @@
 </section>
 
 <!-- =========================
-     BOOKING CTA CARD
+     BOOKING CARD
 ========================== -->
 <section class="section center">
   <div class="container">
@@ -80,18 +84,22 @@
         and explore whether this approach fits your life.
       </p>
 
-      <!-- Calendly inline widget begin -->
+      <!-- Optional trust line (conversion improvement) -->
+      <p class="booking-note">
+        30 minutes • Private • No sales pressure
+      </p>
+
+      <!-- Calendly Inline Widget -->
       <div
         class="calendly-inline-widget"
         data-url="https://calendly.com/lakshitsinghpersonal/30min?hide_event_type_details=1&hide_gdpr_banner=1">
       </div>
-      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-      <!-- Calendly inline widget end -->
 
     </div>
 
   </div>
 </section>
+
 <!-- =========================
      FOOTER
 ========================== -->
@@ -106,9 +114,9 @@
     <div>
       <h4>Explore</h4>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="index.html#method">Method</a></li>
+        <li><a href="../Home Page/index.html">Home</a></li>
+        <li><a href="../About Page/index.html">About</a></li>
+        <li><a href="../Home Page/index.html#method">Method</a></li>
       </ul>
     </div>
 
@@ -127,8 +135,8 @@
   </div>
 </footer>
 
-<!-- Main Global Script -->
-<script src="js/script.js"></script>
+<!-- Script -->
+<script src="js/script.js" defer></script>
 
 </body>
 </html>
