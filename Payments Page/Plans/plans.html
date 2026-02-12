@@ -15,6 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 
+  <!-- Styles -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
@@ -23,21 +24,24 @@
 <!-- =========================
      NAVBAR
 ========================== -->
-<nav class="navbar" data-state="visible">
+<nav class="navbar" data-state="visible" aria-label="Primary Navigation">
   <div class="container nav-wrapper">
 
-    <div class="logo">
-      <a href="index.html">Metabolic Freedom</a>
-    </div>
+    <!-- Logo -->
+    <a href="../../index.html" class="logo">
+      <img src="../../Assets/logo.png" alt="Metabolic Freedom Logo">
+    </a>
 
+    <!-- Links -->
     <ul class="nav-links">
-      <li><a href="../../index.html" class="nav-home">Home</a></li>
-      <li><a href="../../About%20Page/index.html" class="nav-about">About</a></li>
-      <li><a href="plans.html" class="nav-plans active">Plans & Pricing</a></li>
-      <li><a href="../../index.html#faq" class="nav-faq">FAQ</a></li>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../About Page/index.html">About</a></li>
+      <li><a href="plans.html" class="active">Plans & Pricing</a></li>
+      <li><a href="../../index.html#faq">FAQ</a></li>
     </ul>
 
-    <a href="bookings.html" class="btn btn-primary btn-sm">
+    <!-- CTA -->
+    <a href="../../Bookings Page/index.html" class="btn btn-primary btn-sm">
       Free Call
     </a>
 
@@ -82,7 +86,8 @@
         <li>Access to Private Community</li>
       </ul>
 
-      <a href="subscribe.html?plan=standard" class="btn btn-primary btn-lg">
+      <a href="../../Bookings Page/index.html?plan=standard"
+         class="btn btn-primary btn-lg">
         Get Started
       </a>
     </div>
@@ -104,7 +109,8 @@
         <li>Smartwatch Integration</li>
       </ul>
 
-      <a href="subscribe.html?plan=premium" class="btn btn-primary btn-lg">
+      <a href="../../Bookings Page/index.html?plan=premium"
+         class="btn btn-primary btn-lg">
         Get Premium
       </a>
     </div>
@@ -122,7 +128,8 @@
         <li>Lifetime Access</li>
       </ul>
 
-      <a href="subscribe.html?plan=basic" class="btn btn-primary btn-lg">
+      <a href="../../Bookings Page/index.html?plan=basic"
+         class="btn btn-primary btn-lg">
         Start Basic
       </a>
     </div>
@@ -209,8 +216,9 @@
     <div>
       <h4>Explore</h4>
       <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="bookings.html">Book</a></li>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../About Page/index.html">About</a></li>
+        <li><a href="../../Bookings Page/index.html">Book a Call</a></li>
       </ul>
     </div>
 
@@ -229,6 +237,8 @@
   </div>
 </footer>
 
-<script src="js/script.js"></script>
+<!-- Script -->
+<script src="js/script.js" defer></script>
+
 </body>
 </html>

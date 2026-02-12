@@ -1,28 +1,29 @@
 /* =====================================================
-   DESIGN TOKENS
+   DESIGN TOKENS (MATCH HOME)
 ===================================================== */
 :root {
-  --bg-page: #edeada;
-  --bg-section: #e1e6d2;
-  --bg-card: #f6f5ec;
 
-  --ink-strong: #18261d;
-  --ink-main: #2c3d31;
-  --ink-muted: #5a6b60;
+  --bg-page: #0f2b1e;
+  --bg-section: #123424;
+  --bg-card: #173d2b;
 
-  --green-dark: #1f3326;
-  --green-hover: #16271d;
-  --green-soft: #d4dcc6;
-  --green-accent: #9fb38a;
+  --ink-strong: #ffffff;
+  --ink-main: #eaf5ee;
+  --ink-muted: #c7dfd3;
+
+  --green-dark: #0f2b1e;
+  --green-hover: #0c2318;
+  --green-soft: #173d2b;
+  --green-accent: #bae63e;
 
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
 
-  --fs-h1: clamp(2.2rem, 6vw, 4.2rem);
-  --fs-h2: clamp(1.8rem, 4vw, 2.6rem);
-  --fs-h3: clamp(1.2rem, 2.6vw, 1.5rem);
+  --fs-h1: clamp(2.4rem, 6vw, 4.2rem);
+  --fs-h2: clamp(1.9rem, 4vw, 2.6rem);
+  --fs-h3: clamp(1.2rem, 2.5vw, 1.5rem);
   --fs-body: clamp(1rem, 2vw, 1.05rem);
-  --fs-small: clamp(0.88rem, 2vw, 0.95rem);
+  --fs-small: 0.9rem;
 
   --lh-body: 1.65;
   --lh-heading: 1.15;
@@ -61,12 +62,10 @@ body {
   background: var(--bg-page);
   color: var(--ink-main);
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  padding-top: 100px;
 }
 
 img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
+a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
 /* =====================================================
@@ -99,8 +98,7 @@ ul { list-style: none; }
 }
 
 .center p {
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
 }
 
 /* =====================================================
@@ -109,25 +107,23 @@ ul { list-style: none; }
 h1, h2, h3 {
   font-family: var(--font-heading);
   font-weight: 500;
-  line-height: var(--lh-heading);
   color: var(--ink-strong);
+  line-height: var(--lh-heading);
 }
 
-h1 { font-size: var(--fs-h1); margin-bottom: .4em; }
+h1 { font-size: var(--fs-h1); margin-bottom: .45em; }
 h2 { font-size: var(--fs-h2); margin-bottom: .5em; }
-h3 { font-size: var(--fs-h3); margin-bottom: .5em; }
+h3 { font-size: var(--fs-h3); margin-bottom: .4em; }
 
 p {
   color: var(--ink-muted);
   max-width: 64ch;
 }
 
-p + p {
-  margin-top: 1.2em;
-}
+p + p { margin-top: 1.2em; }
 
 /* =====================================================
-   BUTTONS
+   BUTTONS (MATCH HOME)
 ===================================================== */
 .btn {
   display: inline-flex;
@@ -135,43 +131,44 @@ p + p {
   justify-content: center;
   border-radius: var(--radius-pill);
   font-weight: 500;
-  transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+  transition: transform .2s ease, background .2s ease, color .2s ease;
 }
 
 .btn:active { transform: scale(.97); }
 
 .btn-primary {
-  background: var(--green-dark);
-  color: #f3f4ec;
-  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  background: var(--green-accent);
+  color: var(--green-dark);
+  box-shadow: 0 8px 22px rgba(0,0,0,.25);
 }
 
 .btn-primary:hover {
-  background: var(--green-hover);
-  box-shadow: 0 10px 26px rgba(0,0,0,.2);
+  background: #a9d934;
 }
 
 .btn-sm { padding: 10px 18px; font-size: var(--fs-small); }
 .btn-lg { padding: 14px 34px; }
 
 /* =====================================================
-   NAVBAR
+   NAVBAR (MATCH HOME)
 ===================================================== */
 .navbar {
   position: fixed;
   top: clamp(10px, 2vh, 18px);
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 0);
   width: calc(100% - 32px);
   max-width: var(--container);
   height: clamp(56px, 8vh, 72px);
   z-index: 100;
 
-  background: rgba(31, 51, 38, 0.85);
+  background: rgba(31, 51, 38, 0.88);
   backdrop-filter: blur(12px);
-
   border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,.06);
   box-shadow: 0 12px 28px rgba(0,0,0,.15);
+
+  transition: background .3s ease, box-shadow .3s ease;
 }
 
 .nav-wrapper {
@@ -179,21 +176,14 @@ p + p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 24px;
+  padding-inline: clamp(16px, 3vw, 24px);
 }
 
-.logo {
-  font-family: var(--font-heading);
-  color: #fff;
-}
-
-.logo a {
-  color: #fff;
-}
+.logo img { height: 34px; }
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  gap: clamp(20px, 4vw, 32px);
 }
 
 .nav-links a {
@@ -201,41 +191,13 @@ p + p {
   color: rgba(255,255,255,.75);
 }
 
-.nav-links a:hover { opacity: .9; }
+.nav-links a:hover { color: var(--ink-main); }
 
 /* =====================================================
-   FOOTER
+   BOOKING INTRO (HERO SPACING)
 ===================================================== */
-.footer {
-  background: #1b2b20;
-  color: #dde3d8;
-  padding-block: 80px 50px;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: var(--gap-md);
-}
-
-.footer h3,
-.footer h4 {
-  font-family: var(--font-heading);
-  margin-bottom: 0.6em;
-  color: #fff;
-}
-
-.footer a {
-  color: rgba(221,227,216,.7);
-}
-
-.footer a:hover { opacity: .9; }
-
-/* =====================================================
-   BOOKINGS PAGE
-===================================================== */
-
 .booking-intro {
+  padding-top: clamp(130px, 18vh, 190px);
   padding-bottom: clamp(40px, 6vh, 60px);
 }
 
@@ -253,13 +215,16 @@ p + p {
   line-height: 1.6;
 }
 
+/* =====================================================
+   BOOKING CARD
+===================================================== */
 .booking-card {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: clamp(40px, 6vw, 80px);
   box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.05),
-    0 24px 48px rgba(0,0,0,.15);
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    0 24px 48px rgba(0,0,0,.25);
 
   max-width: 900px;
   margin: 0 auto;
@@ -277,10 +242,39 @@ p + p {
   .booking-card:hover {
     transform: translateY(-4px);
     box-shadow:
-      inset 0 0 0 1px rgba(0,0,0,.05),
-      0 32px 60px rgba(0,0,0,.18);
+      inset 0 0 0 1px rgba(255,255,255,.04),
+      0 32px 60px rgba(0,0,0,.3);
   }
 }
+
+/* =====================================================
+   CALENDAR
+===================================================== */
+.calendly-inline-widget {
+  width: 100% !important;
+  height: clamp(650px, 85vh, 900px) !important;
+}
+
+/* =====================================================
+   FOOTER (MATCH HOME)
+===================================================== */
+.footer {
+  background: #1b2b20;
+  color: #dde3d8;
+  padding-block: clamp(60px, 8vh, 90px) 40px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--gap-md);
+}
+
+.footer a {
+  color: rgba(221,227,216,.7);
+}
+
+.footer a:hover { opacity: .9; }
 
 /* =====================================================
    MOBILE
@@ -295,42 +289,26 @@ p + p {
     grid-template-columns: 1fr;
   }
 
-}
-/* =====================================================
-   INLINE CALENDAR (Responsive)
-===================================================== */
-
-.booking-calendar {
-  margin-top: clamp(40px, 6vw, 80px);
-
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.05),
-    0 24px 48px rgba(0,0,0,.15);
-
-  overflow: hidden;
-}
-
-/* Make it scale with screen height */
-.calendly-inline-widget {
-  width: 100% !important;
-  height: clamp(650px, 85vh, 900px) !important;
-}
-/* =====================================================
-   MOBILE CALENDAR OPTIMISATION
-===================================================== */
-
-@media (max-width: 768px) {
-
   .booking-card {
     padding: 28px 18px;
-    border-radius: 18px;
   }
 
-  .booking-card .calendly-inline-widget {
+  .calendly-inline-widget {
     height: 75vh !important;
     min-height: 600px;
+  }
+
+  /* Mobile navbar animation */
+  .navbar {
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .navbar[data-state="visible"] {
+    transform: translate(-50%, 0);
+  }
+
+  .navbar[data-state="hidden"] {
+    transform: translate(-50%, -140%);
   }
 
 }
