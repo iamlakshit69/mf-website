@@ -16,245 +16,263 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 
+  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
-<!-- ========================= NAVBAR ========================== -->
-<nav class="navbar" data-state="visible">
-  <div class="container nav-wrapper">
+  <!-- ========================= NAVBAR ========================== -->
+  <nav class="navbar" data-state="visible" aria-label="Primary Navigation">
+    <div class="container nav-wrapper">
 
-    <div class="logo">
-      <img src="Assets/logo.png" alt="Metabolic Freedom Logo">
+      <a href="index.html" class="logo" aria-label="Metabolic Freedom Home">
+        <img src="Assets/logo.png" alt="Metabolic Freedom Logo">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-home active">Home</a></li>
+        <li><a href="About Page/index.html" class="nav-about">About</a></li>
+        <li><a href="Payments Page/Plans/plans.html" class="nav-plans">Plans & Pricing</a></li>
+        <li><a href="#faq" class="nav-faq">FAQ</a></li>
+      </ul>
+
+      <a href="Bookings Page/index.html" class="btn btn-primary btn-sm">
+        Free Call
+      </a>
+
     </div>
+  </nav>
 
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-home active">Home</a></li>
-      <li><a href="About%20Page/index.html" class="nav-about">About</a></li>
-      <li><a href="Payments%20Page/Plans/plans.html" class="nav-plans">Plans & Pricing</a></li>
-      <li><a href="#faq" class="nav-faq">FAQ</a></li>
-    </ul>
+  <!-- ========================= MAIN CONTENT ========================== -->
+  <main>
 
-    <a href="#cta" class="btn btn-primary btn-sm">
-      Free Call
-    </a>
+    <!-- ========================= HERO ========================== -->
+    <header class="hero section section--loose">
+      <div class="container hero-grid">
 
-  </div>
-</nav>
+        <div class="hero-text">
+          <h1>
+            Understand<br>
+            <em class="hero-emphasis">your health.</em>
+          </h1>
 
-<!-- ========================= HERO ========================== -->
-<header class="hero section section--loose">
-  <div class="container hero-grid">
+          <p class="hero-lead text-wide">
+            Structured data, calm interpretation, and realistic execution —
+            without trends, hacks, or overwhelm.
+          </p>
 
-    <div class="hero-text">
-      <h1>
-        Understand<br>
-        <em class="hero-emphasis">your health.</em>
-      </h1>
+          <div class="hero-actions">
+            <a href="Bookings Page/index.html" class="btn btn-primary btn-lg">
+              Book a Free Call
+            </a>
+            <a href="#method" class="btn btn-outline btn-lg">
+              How It Works
+            </a>
+          </div>
+        </div>
 
-      <p class="hero-lead text-wide">
-        Structured data, calm interpretation, and realistic execution —
-        without trends, hacks, or overwhelm.
-      </p>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-box"></div>
+        </div>
 
-      <div class="hero-actions">
-        <a href="Bookings%20Page/index.html" class="btn btn-primary btn-lg">Book a Free Call</a>
-        <a href="#method" class="btn btn-outline btn-lg">How It Works</a>
       </div>
-    </div>
+    </header>
 
-    <div class="hero-visual">
-      <div class="visual-box" aria-hidden="true"></div>
-    </div>
 
-  </div>
-</header>
+    <!-- ========================= PROBLEM ========================== -->
+    <section class="section section--tight problem" id="problem">
+      <div class="container center">
 
-<!-- ========================= PROBLEM ========================== -->
-<section class="section section--tight problem">
-  <div class="container center">
-
-    <h2>The problem isn’t effort.</h2>
-    <p class="section-subtitle">
-      It’s the absence of a clear system.
-    </p>
-
-    <div class="problem-grid">
-
-      <article class="problem-card">
-        <h3>Too much information</h3>
-        <p class="text-narrow">
-          Conflicting advice with no framework
-          to decide what applies to you.
+        <h2>The problem isn’t effort.</h2>
+        <p class="section-subtitle">
+          It’s the absence of a clear system.
         </p>
-      </article>
 
-      <article class="problem-card">
-        <h3>Invisible issues</h3>
-        <p class="text-narrow">
-          You feel off — energy, focus, recovery —
-          but surface tests don’t explain why.
+        <div class="problem-grid">
+
+          <article class="problem-card">
+            <h3>Too much information</h3>
+            <p class="text-narrow">
+              Conflicting advice with no framework
+              to decide what applies to you.
+            </p>
+          </article>
+
+          <article class="problem-card">
+            <h3>Invisible issues</h3>
+            <p class="text-narrow">
+              You feel off — energy, focus, recovery —
+              but surface tests don’t explain why.
+            </p>
+          </article>
+
+          <article class="problem-card">
+            <h3>Guesswork decisions</h3>
+            <p class="text-narrow">
+              Changes based on trends instead of
+              objective feedback.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================= PHILOSOPHY ========================== -->
+    <section id="philosophy" class="section guide">
+      <div class="container grid-2-cols">
+
+        <div class="guide-text">
+          <h2>Your guide to clarity</h2>
+
+          <p class="text-wide">
+            This work isn’t about motivation or extremes.
+            It’s about understanding physiology and acting
+            without disrupting your life.
+          </p>
+
+          <ul class="check-list">
+            <li>Evidence-based interpretation</li>
+            <li>Clear decision frameworks</li>
+            <li>Sustainable execution</li>
+          </ul>
+        </div>
+
+        <div class="guide-visual" aria-hidden="true">
+          <div class="visual-box"></div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================= METHOD ========================== -->
+    <section id="method" class="section plan">
+      <div class="container center">
+
+        <h2>A simple, structured method</h2>
+        <p class="section-subtitle">
+          Designed to remove confusion, not add complexity.
         </p>
-      </article>
 
-      <article class="problem-card">
-        <h3>Guesswork decisions</h3>
-        <p class="text-narrow">
-          Changes based on trends instead of
-          objective feedback.
+        <div class="plan-grid">
+
+          <article class="plan-card">
+            <span class="step-number">01</span>
+            <h3>Assess</h3>
+            <p>
+              Establish baselines using metabolic data
+              and lifestyle context.
+            </p>
+          </article>
+
+          <article class="plan-card">
+            <span class="step-number">02</span>
+            <h3>Interpret</h3>
+            <p>
+              Translate raw numbers into
+              actionable priorities.
+            </p>
+          </article>
+
+          <article class="plan-card">
+            <span class="step-number">03</span>
+            <h3>Execute</h3>
+            <p>
+              Apply changes gradually with
+              feedback loops.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================= CTA ========================== -->
+    <section id="cta" class="section section--loose cta">
+      <div class="container center">
+
+        <h2>Take the first step</h2>
+        <p class="cta-subtitle text-wide">
+          Book a free call to see whether this
+          approach fits your physiology.
         </p>
-      </article>
+
+        <a href="Bookings Page/index.html" class="btn btn-primary btn-lg">
+          Book a Free Call
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- ========================= FAQ ========================== -->
+    <section id="faq" class="section faq">
+      <div class="container">
+
+        <h2 class="center">Common questions</h2>
+
+        <details>
+          <summary><span>Who is this for?</span></summary>
+          <p>People who want clarity and structure, not quick fixes.</p>
+        </details>
+
+        <details>
+          <summary><span>Is this weight loss focused?</span></summary>
+          <p>No. Body composition often improves, but health comes first.</p>
+        </details>
+
+        <details>
+          <summary><span>How fast does it work?</span></summary>
+          <p>Most people gain meaningful clarity within weeks.</p>
+        </details>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========================= FOOTER ========================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+
+      <div>
+        <h3>Metabolic Freedom</h3>
+        <p>Precision health, without the noise.</p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#method">Method</a></li>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
 
     </div>
 
-  </div>
-</section>
-
-<!-- ========================= PHILOSOPHY ========================== -->
-<section id="philosophy" class="section guide">
-  <div class="container grid-2-cols">
-
-    <div class="guide-text">
-      <h2>Your guide to clarity</h2>
-
-      <p class="text-wide">
-        This work isn’t about motivation or extremes.
-        It’s about understanding physiology and acting
-        without disrupting your life.
-      </p>
-
-      <ul class="check-list">
-        <li>Evidence-based interpretation</li>
-        <li>Clear decision frameworks</li>
-        <li>Sustainable execution</li>
-      </ul>
+    <div class="container center copyright">
+      <p>&copy; 2026 Metabolic Freedom</p>
     </div>
+  </footer>
 
-    <div class="guide-visual">
-      <div class="visual-box" aria-hidden="true"></div>
-    </div>
+  <!-- Scripts -->
+  <script src="js/main.js" defer></script>
 
-  </div>
-</section>
-
-<!-- ========================= METHOD ========================== -->
-<section id="method" class="section plan">
-  <div class="container center">
-
-    <h2>A simple, structured method</h2>
-    <p class="section-subtitle">
-      Designed to remove confusion, not add complexity.
-    </p>
-
-    <div class="plan-grid">
-
-      <article class="plan-card">
-        <span class="step-number">01</span>
-        <h3>Assess</h3>
-        <p>
-          Establish baselines using metabolic data
-          and lifestyle context.
-        </p>
-      </article>
-
-      <article class="plan-card">
-        <span class="step-number">02</span>
-        <h3>Interpret</h3>
-        <p>
-          Translate raw numbers into
-          actionable priorities.
-        </p>
-      </article>
-
-      <article class="plan-card">
-        <span class="step-number">03</span>
-        <h3>Execute</h3>
-        <p>
-          Apply changes gradually with
-          feedback loops.
-        </p>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- ========================= CTA ========================== -->
-<section id="cta" class="section section--loose cta">
-  <div class="container center">
-
-    <h2>Take the first step</h2>
-    <p class="cta-subtitle text-wide">
-      Book a free call to see whether this
-      approach fits your physiology.
-    </p>
-
-    <a href="Bookings%20Page/index.html" class="btn btn-primary btn-lg">
-      Book a Free Call
-    </a>
-
-  </div>
-</section>
-
-<!-- ========================= FAQ ========================== -->
-<section id="faq" class="section faq">
-  <div class="container">
-
-    <h2 class="center">Common questions</h2>
-
-    <details>
-      <summary><span>Who is this for?</span></summary>
-      <p>People who want clarity and structure, not quick fixes.</p>
-    </details>
-
-    <details>
-      <summary><span>Is this weight loss focused?</span></summary>
-      <p>No. Body composition often improves, but health comes first.</p>
-    </details>
-
-    <details>
-      <summary><span>How fast does it work?</span></summary>
-      <p>Most people gain meaningful clarity within weeks.</p>
-    </details>
-
-  </div>
-</section>
-
-<!-- ========================= FOOTER ========================== -->
-<footer class="footer">
-  <div class="container footer-grid">
-
-    <div>
-      <h3>Metabolic Freedom</h3>
-      <p>Precision health, without the noise.</p>
-    </div>
-
-    <div>
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="#method">Method</a></li>
-        <li><a href="#philosophy">Philosophy</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Terms</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="container center copyright">
-    <p>&copy; 2026 Metabolic Freedom</p>
-  </div>
-</footer>
-
-<script src="js/main.js"></script>
 </body>
 </html>

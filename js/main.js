@@ -1,164 +1,154 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =====================================================
-     1. ENVIRONMENT & PREFERENCES
-     ===================================================== */
+  const navbar = document.querySelector(".navbar");
+  if (!navbar) return;
+
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
-  const navbar = document.querySelector(".navbar");
-
-  if (!navbar) return;
 
   /* =====================================================
-     2. DESKTOP NAVBAR — SCROLLED STATE ONLY
-     ===================================================== */
-  if (!isMobile) {
+     INIT
+  ===================================================== */
+  initNavbar();
+  initFAQ();
+  initSectionObserver();
+
+  /* =====================================================
+     NAVBAR CONTROLLER
+  ===================================================== */
+  function initNavbar() {
+    if (isMobile) {
+      if (!prefersReducedMotion) initMobileNavbar();
+    } else {
+      initDesktopNavbar();
+    }
+  }
+
+  /* ---------------- DESKTOP NAVBAR ---------------- */
+  function initDesktopNavbar() {
     let lastState = "top";
+    const threshold = () => Math.round(window.innerHeight * 0.06);
 
-    const getThreshold = () => Math.round(window.innerHeight * 0.06);
-    let threshold = getThreshold();
+    function update() {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      const next = y > threshold() ? "scrolled" : "top";
 
-    function updateDesktopNavbar() {
-      const y =
-        window.scrollY ||
-        document.documentElement.scrollTop;
-
-      const nextState = y > threshold ? "scrolled" : "top";
-
-      if (nextState !== lastState) {
-        navbar.classList.toggle("scrolled", nextState === "scrolled");
-        lastState = nextState;
+      if (next !== lastState) {
+        navbar.classList.toggle("scrolled", next === "scrolled");
+        lastState = next;
       }
     }
 
-    window.addEventListener("scroll", updateDesktopNavbar, { passive: true });
-    window.addEventListener("resize", () => {
-      threshold = getThreshold();
-      updateDesktopNavbar();
-    });
-
-    updateDesktopNavbar();
-    return;
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
   }
 
-  /* =====================================================
-     3. MOBILE SAFARI-STYLE NAVBAR (VELOCITY BASED)
-     ===================================================== */
-  if (prefersReducedMotion) return;
+  /* ---------------- MOBILE NAVBAR (Velocity Based) ---------------- */
+  function initMobileNavbar() {
 
-  let lastY = window.scrollY;
-  let lastTime = performance.now();
-  let navState = "visible";
-  let rafId = null;
+    let lastY = window.scrollY;
+    let lastTime = performance.now();
+    let state = "visible";
+    let raf = null;
 
-  const TOP_LOCK = 80;          // always visible near top
-  const HIDE_VELOCITY = 0.35;   // px/ms downward
-  const SHOW_VELOCITY = -0.15;  // px/ms upward
+    const TOP_LOCK = 80;
+    const HIDE_VELOCITY = 0.35;
+    const SHOW_VELOCITY = -0.15;
 
-  function setNav(state) {
-    if (navState === state) return;
-    navbar.dataset.state = state;
-    navState = state;
-  }
+    function setState(next) {
+      if (state === next) return;
+      navbar.dataset.state = next;
+      state = next;
+    }
 
-  setNav("visible");
+    function onScroll() {
+      if (raf) return;
 
-  function onScroll() {
-    if (rafId) return;
+      raf = requestAnimationFrame(() => {
 
-    rafId = requestAnimationFrame(() => {
-      const currentY = window.scrollY;
-      const now = performance.now();
+        const currentY = window.scrollY;
+        const now = performance.now();
 
-      const dy = currentY - lastY;
-      const dt = now - lastTime || 16;
-      const velocity = dy / dt;
+        const dy = currentY - lastY;
+        const dt = now - lastTime || 16;
+        const velocity = dy / dt;
 
-      lastY = currentY;
-      lastTime = now;
-      rafId = null;
+        lastY = currentY;
+        lastTime = now;
+        raf = null;
 
-      /* Always visible near top */
-      if (currentY < TOP_LOCK) {
-        setNav("visible");
-        return;
-      }
+        if (currentY < TOP_LOCK) {
+          setState("visible");
+          return;
+        }
 
-      /* Scroll down → hide */
-      if (velocity > HIDE_VELOCITY && navState === "visible") {
-        setNav("hidden");
-        return;
-      }
+        if (velocity > HIDE_VELOCITY && state === "visible") {
+          setState("hidden");
+          return;
+        }
 
-      /* Scroll up → show */
-      if (velocity < SHOW_VELOCITY && navState === "hidden") {
-        setNav("visible");
-      }
-    });
-  }
+        if (velocity < SHOW_VELOCITY && state === "hidden") {
+          setState("visible");
+        }
 
-  window.addEventListener("scroll", onScroll, { passive: true });
+      });
+    }
 
-  /* Accessibility: reveal on focus */
-  navbar.addEventListener("focusin", () => {
-    setNav("visible");
-  });
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-  /* =====================================================
-     4. DESKTOP HOVER LIFT (UNCHANGED)
-     ===================================================== */
-  const isTouch =
-    window.matchMedia("(pointer: coarse)").matches ||
-    navigator.maxTouchPoints > 0;
-
-  if (!isTouch && !prefersReducedMotion) {
-    document.querySelectorAll(
-      ".problem-card, .plan-card, .visual-box"
-    ).forEach(el => {
-      el.addEventListener("mouseenter", () => el.classList.add("lift"));
-      el.addEventListener("mouseleave", () => el.classList.remove("lift"));
+    navbar.addEventListener("focusin", () => {
+      setState("visible");
     });
   }
 
   /* =====================================================
-     5. FAQ — EXCLUSIVE ACCORDION
-     ===================================================== */
-  const faqItems = document.querySelectorAll(".faq details");
+     FAQ — EXCLUSIVE ACCORDION
+  ===================================================== */
+  function initFAQ() {
+    const faqItems = document.querySelectorAll(".faq details");
 
-  faqItems.forEach(item => {
-    item.addEventListener("toggle", () => {
-      if (!item.open) return;
-      faqItems.forEach(other => {
-        if (other !== item) other.removeAttribute("open");
+    faqItems.forEach(item => {
+      item.addEventListener("toggle", () => {
+        if (!item.open) return;
+
+        faqItems.forEach(other => {
+          if (other !== item) other.removeAttribute("open");
+        });
       });
     });
-  });
+  }
 
   /* =====================================================
-     6. NAV SECTION AWARENESS (DESKTOP ONLY)
-     ===================================================== */
-  const navLinks = document.querySelectorAll(".nav-links a");
-  const sections = document.querySelectorAll("section[id]");
+     NAV SECTION AWARENESS
+  ===================================================== */
+  function initSectionObserver() {
 
-  if ("IntersectionObserver" in window && navLinks.length) {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const id = entry.target.id;
-          navLinks.forEach(link => {
-            link.classList.toggle(
-              "active",
-              link.getAttribute("href") === `#${id}`
-            );
-          });
+    const navLinks = document.querySelectorAll(".nav-links a");
+    const sections = document.querySelectorAll("section[id]");
+
+    if (!("IntersectionObserver" in window)) return;
+    if (!navLinks.length || !sections.length) return;
+
+    const observer = new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const id = entry.target.id;
+
+        navLinks.forEach(link => {
+          const href = link.getAttribute("href");
+          link.classList.toggle("active", href === `#${id}`);
         });
-      },
-      { rootMargin: "-30% 0px -50% 0px" }
-    );
+      });
+
+    }, {
+      threshold: 0.5
+    });
 
     sections.forEach(section => observer.observe(section));
   }
