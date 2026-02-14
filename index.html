@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f2b1e" />
 
-  <title>Metabolic Freedom | Understand Your Health</title>
+  <title>Metabolic Freedom</title>
 
   <meta name="description"
-    content="Metabolic Freedom helps you understand your health using structured data, clear interpretation, and realistic execution — without trends or overwhelm." />
+    content="Metabolic Freedom hilft dir, dein Essverhalten und deine Gesundheit klar zu verstehen – mit verständlicher Analyse und alltagstauglichen Schritten, ohne Druck oder Trends." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="Assets/favicon.ico" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,63 +20,65 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+
   <!-- ========================= NAVBAR ========================== -->
-  <nav class="navbar" data-state="visible" aria-label="Primary Navigation">
+  <nav class="navbar" data-state="visible">
     <div class="container nav-wrapper">
 
-      <a href="index.html" class="logo" aria-label="Metabolic Freedom Home">
-        <img src="Assets/logo.png" alt="Metabolic Freedom Logo">
+      <a href="index.html" class="logo">
+        <img src="Assets/logo.png" alt="Metabolic Freedom Logo" loading="lazy">
       </a>
 
       <ul class="nav-links">
-        <li><a href="index.html" class="nav-home active">Home</a></li>
-        <li><a href="About Page/index.html" class="nav-about">About</a></li>
-        <li><a href="Payments Page/Plans/plans.html" class="nav-plans">Plans & Pricing</a></li>
-        <li><a href="#faq" class="nav-faq">FAQ</a></li>
+        <li><a href="index.html" class="active" aria-current="page">Startseite</a></li>
+        <li><a href="About Page/index.html">Über mich</a></li>
+        <li><a href="Payments Page/Plans/plans.html">Leistungen</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
 
       <a href="Bookings Page/index.html" class="btn btn-primary btn-sm">
-        Free Call
+        Deine Ernährungsfreiheit starten
       </a>
 
     </div>
   </nav>
 
-  <!-- ========================= MAIN CONTENT ========================== -->
-  <main>
+  <main id="main-content">
 
     <!-- ========================= HERO ========================== -->
-    <header class="hero section section--loose">
+    <header class="hero section section--hero">
       <div class="container hero-grid">
 
         <div class="hero-text">
           <h1>
-            Understand<br>
-            <em class="hero-emphasis">your health.</em>
+            Denkst du ständig<br>
+            <em class="hero-emphasis">über Essen nach?</em>
           </h1>
 
           <p class="hero-lead text-wide">
-            Structured data, calm interpretation, and realistic execution —
-            without trends, hacks, or overwhelm.
+            Ich helfe Menschen, die ständig an Essen denken und sich schuldig fühlen,
+            durch klare Analyse und Struktur zu metabolischer Freiheit –
+            damit Essen wieder normal wird und du dich im Körper und Kopf frei fühlst.
           </p>
 
           <div class="hero-actions">
             <a href="Bookings Page/index.html" class="btn btn-primary btn-lg">
-              Book a Free Call
+              Deine Ernährungsfreiheit starten
             </a>
             <a href="#method" class="btn btn-outline btn-lg">
-              How It Works
+              Dein Weg zur Freiheit
             </a>
           </div>
         </div>
 
-        <div class="hero-visual" aria-hidden="true">
+        <div class="hero-visual">
           <div class="visual-box"></div>
         </div>
 
@@ -81,138 +87,298 @@
 
 
     <!-- ========================= PROBLEM ========================== -->
-    <section class="section section--tight problem" id="problem">
-      <div class="container center">
+<section class="section section--problem" id="problem">
+  <div class="container problem-layout">
 
-        <h2>The problem isn’t effort.</h2>
-        <p class="section-subtitle">
-          It’s the absence of a clear system.
+    <!-- LEFT SIDE -->
+    <div class="problem-intro">
+
+      <span class="problem-label">Die Wahrheit</span>
+
+      <h2>Du bist nicht das Problem.</h2>
+
+      <p class="problem-subline">
+        Du brauchst nicht die nächste 7-Tage-Lösung,
+        sondern ein System, das für immer funktioniert.
+      </p>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="problem-content">
+
+      <div class="problem-block">
+        <h3>Du weißt nicht mehr, wem du glauben sollst.</h3>
+        <p>
+          Du hörst jeden Tag etwas anderes: LowCarb, Keto, Fasten, Detox, Superfoods.
+          Alle versprechen Ergebnisse – aber keiner erklärt,
+          was für deinen Körper wirklich stimmt.
+          Du springst von Tipp zu Tipp und wirst nur verwirrter.
         </p>
-
-        <div class="problem-grid">
-
-          <article class="problem-card">
-            <h3>Too much information</h3>
-            <p class="text-narrow">
-              Conflicting advice with no framework
-              to decide what applies to you.
-            </p>
-          </article>
-
-          <article class="problem-card">
-            <h3>Invisible issues</h3>
-            <p class="text-narrow">
-              You feel off — energy, focus, recovery —
-              but surface tests don’t explain why.
-            </p>
-          </article>
-
-          <article class="problem-card">
-            <h3>Guesswork decisions</h3>
-            <p class="text-narrow">
-              Changes based on trends instead of
-              objective feedback.
-            </p>
-          </article>
-
-        </div>
-
       </div>
-    </section>
 
+      <div class="problem-block">
+        <h3>Du fühlst dich schlecht und niemand versteht warum.</h3>
+        <p>
+          Du bist müde, gereizt, hungrig, erschöpft aber deine Blutwerte sagen „alles normal“.
+          Du spürst, dass etwas nicht stimmt,
+          doch niemand kann dir erklären, was los ist.
+          Du fühlst dich allein mit einem Problem,
+          das niemand ernst nimmt.
+        </p>
+      </div>
+
+      <div class="problem-block">
+        <h3>Essen sollte nicht so kompliziert sein.</h3>
+        <p>
+          Du willst einfach wissen, was deinem Körper guttut –
+          ohne Regeln, Verbote oder Chaos.
+          Du willst Klarheit statt ständig neue Trends.
+          Essen sollte leicht sein, nicht ein täglicher Kampf.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
     <!-- ========================= PHILOSOPHY ========================== -->
-    <section id="philosophy" class="section guide">
-      <div class="container grid-2-cols">
+<section id="philosophy" class="section section--founder">
+  <div class="container founder-grid">
 
-        <div class="guide-text">
-          <h2>Your guide to clarity</h2>
+    <!-- IMAGE SIDE -->
+    <div class="founder-image">
+      <div class="founder-portrait"></div>
+    </div>
 
-          <p class="text-wide">
-            This work isn’t about motivation or extremes.
-            It’s about understanding physiology and acting
-            without disrupting your life.
-          </p>
+    <!-- TEXT SIDE -->
+    <div class="founder-content">
 
-          <ul class="check-list">
-            <li>Evidence-based interpretation</li>
-            <li>Clear decision frameworks</li>
-            <li>Sustainable execution</li>
-          </ul>
-        </div>
+      <span class="founder-label">Über mich</span>
 
-        <div class="guide-visual" aria-hidden="true">
-          <div class="visual-box"></div>
-        </div>
+      <h2>Ich bin Amir</h2>
 
-      </div>
-    </section>
+      <div class="founder-text">
 
-
-    <!-- ========================= METHOD ========================== -->
-    <section id="method" class="section plan">
-      <div class="container center">
-
-        <h2>A simple, structured method</h2>
-        <p class="section-subtitle">
-          Designed to remove confusion, not add complexity.
+        <p>
+          Ich weiß, wie frustrierend es ist, alles zu versuchen und trotzdem nicht weiterzukommen.
+          Viele meiner Klienten standen genau da, wo du heute stehst:
+          verwirrt von widersprüchlichen Tipps,
+          erschöpft von Diäten, die nur 7 Tage halten,
+          und frustriert, weil ihr Körper nicht reagiert, wie er sollte.
         </p>
 
-        <div class="plan-grid">
+        <p>
+          Als staatlich geprüfter Ernährungsberater kenne ich die Mechanismen,
+          die entscheiden, ob dein Körper mit dir arbeitet oder gegen dich:
+          Stoffwechsel, Hormone, Energiehaushalt, Nährstoffe, Essverhalten.
+          Nicht theoretisch sondern praktisch, real, auf dich zugeschnitten.
+        </p>
 
-          <article class="plan-card">
-            <span class="step-number">01</span>
-            <h3>Assess</h3>
-            <p>
-              Establish baselines using metabolic data
-              and lifestyle context.
-            </p>
-          </article>
-
-          <article class="plan-card">
-            <span class="step-number">02</span>
-            <h3>Interpret</h3>
-            <p>
-              Translate raw numbers into
-              actionable priorities.
-            </p>
-          </article>
-
-          <article class="plan-card">
-            <span class="step-number">03</span>
-            <h3>Execute</h3>
-            <p>
-              Apply changes gradually with
-              feedback loops.
-            </p>
-          </article>
-
-        </div>
+        <p>
+          Deshalb arbeite ich nicht mit Trends, Regeln oder Verboten.
+          Ich arbeite mit Systemen, die sich an dich anpassen,
+          an deinen Alltag, deinen Körper, deine Biologie.
+          Echte Veränderung entsteht nicht durch Disziplin,
+          sondern durch Klarheit, Struktur und metabolische Freiheit.
+        </p>
 
       </div>
-    </section>
+
+      <div class="founder-footer">
+        <p class="founder-signature">
+          Mein Job: Dir einen Weg zu zeigen,
+          den du alleine nie bekommen hast.
+        </p>
+
+        <div class="founder-pillars">
+          <span>Verständlich</span>
+          <span>Praktisch</span>
+          <span>Stabil</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ========================= METHOD ========================== -->
+<section id="method" class="section section--method">
+  <div class="container method-layout">
+
+    <div class="method-header center">
+      <span class="method-label">Der Weg</span>
+      <h2>Du musst das nicht alleine herausfinden.</h2>
+      <p class="section-subtitle">
+        Dein einfacher, klarer Weg, der dich sicher zu echter Freiheit führt.
+      </p>
+    </div>
+
+    <div class="method-steps">
+
+      <div class="method-step">
+        <div class="step-marker">01</div>
+        <div class="step-content">
+          <h3>Klarheit über dich</h3>
+          <p>
+            Du erkennst endlich, warum du feststeckst – ohne Schuld, ohne Scham.
+            Wir analysieren deine Essmuster, Trigger und Diätgeschichte
+            und löschen alte Regeln, Verbote und Schwarz-Weiß-Denken.
+            Dein Kopf wird frei.
+            Du verstehst dich selbst zum ersten Mal wirklich.
+          </p>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="step-marker">02</div>
+        <div class="step-content">
+          <h3>Klarheit über deinen Körper</h3>
+          <p>
+            Wir machen sichtbar, was deinen Körper bremst:
+            Stressbelastung, Zellgesundheit, Blutwerte, Nährstoffstatus,
+            Stoffwechselmarker, Gewicht und Körperfettindex.
+            Auf Basis deiner Analyse bekommst du einen klaren,
+            alltagstauglichen Rahmen – ohne Verbote, ohne Extreme,
+            der dich stärkt, statt dich einzuschränken.
+          </p>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="step-marker">03</div>
+        <div class="step-content">
+          <h3>Klarheit für dein Leben</h3>
+          <p>
+            Wir schaffen ein System, das dich trägt – auch an stressigen Tagen.
+            Du lernst, wie dein Körper wirklich funktioniert,
+            wie Nährstoffe, Kalorien und Energie zusammenhängen –
+            für langfristige Sicherheit und Freiheit.
+            Kein Neustart am Montag.
+            Keine Kompensation.
+            Keine Diätspirale.
+            Essen wird wieder normal, dein Kopf ruhig,
+            dein Körper stabil – du lebst frei und entspannt.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
 
     <!-- ========================= CTA ========================== -->
-    <section id="cta" class="section section--loose cta">
+    <section class="section section--emphasis cta">
       <div class="container center">
 
-        <h2>Take the first step</h2>
-        <p class="cta-subtitle text-wide">
-          Book a free call to see whether this
-          approach fits your physiology.
+        <h2>Mach den Schritt, der alles verändert.</h2>
+
+        <p class="text-wide">
+          Buche ein kostenloses Gespräch und finde heraus,
+          ob dieses System deinem Körper endlich Ruhe,
+          Klarheit und Stabilität geben kann.
         </p>
 
         <a href="Bookings Page/index.html" class="btn btn-primary btn-lg">
-          Book a Free Call
+          Gespräch sichern
         </a>
 
       </div>
     </section>
 
 
+<!-- ========================= DECISION SECTION ========================== -->
+<section class="section--decision">
+
+  <div class="decision-split">
+
+    <!-- NEGATIVE SIDE -->
+    <div class="decision-side decision-negative">
+
+      <div class="decision-overlay"></div>
+
+      <div class="decision-content">
+        <h2>Wenn du nichts änderst,<br>bleibt alles beim Alten.</h2>
+        <p>
+          Du bleibst im Diät-Hamsterrad gefangen.
+          Schuldgefühle werden stärker.
+          Essen bleibt ein täglicher Kampf.
+          Dein Körper bleibt erschöpft, dein Kopf überfordert.
+          Und du verlierst weitere Monate, vielleicht Jahre
+          in einem System, das nie für dich funktioniert hat.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- POSITIVE SIDE -->
+    <div class="decision-side decision-positive">
+
+      <div class="decision-overlay"></div>
+
+      <div class="decision-content">
+        <h2>Wie dein Leben aussehen kann,<br>wenn du diesen Weg gehst.</h2>
+        <p>
+          Essen wird wieder einfach.
+          Dein Körper fühlt sich ruhig, stabil und verlässlich an.
+          Du triffst Entscheidungen ohne Schuld, ohne Druck, ohne Chaos.
+          Du hast Energie für deinen Alltag ohne ständige Kämpfe mit dir selbst.
+          Und du erlebst eine Freiheit, die bleibt:
+          Klarheit im Kopf, Leichtigkeit im Körper
+          und ein System, das dich trägt.
+        </p>
+
+        <a href="Bookings Page/index.html" class="btn btn-primary btn-lg">
+          Gespräch sichern
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+    <!-- ========================= TESTIMONIALS ========================== -->
+    <section class="section section--testimonial" id="testimonials">
+      <div class="container">
+
+        <h2 class="center">Menschen. Echte Veränderung.</h2>
+
+        <div class="testimonial-grid">
+
+          <div class="testimonial-block">
+            <h3>Haris</h3>
+            <div class="visual-box"></div>
+          </div>
+
+          <div class="testimonial-block">
+            <h3>Amer</h3>
+            <div class="visual-box"></div>
+          </div>
+
+          <div class="testimonial-block">
+            <h3>Emre</h3>
+            <div class="visual-box"></div>
+          </div>
+
+          <div class="testimonial-block">
+            <h3>Güven</h3>
+            <div class="visual-box"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
     <!-- ========================= FAQ ========================== -->
-    <section id="faq" class="section faq">
+    <section id="faq" class="section section--base faq">
       <div class="container">
 
         <h2 class="center">Common questions</h2>
@@ -248,7 +414,6 @@
       </div>
 
       <div>
-        <h4>Explore</h4>
         <ul>
           <li><a href="#method">Method</a></li>
           <li><a href="#philosophy">Philosophy</a></li>
@@ -257,7 +422,6 @@
       </div>
 
       <div>
-        <h4>Legal</h4>
         <ul>
           <li><a href="#">Privacy</a></li>
           <li><a href="#">Terms</a></li>
@@ -271,7 +435,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="js/main.js" defer></script>
 
 </body>
