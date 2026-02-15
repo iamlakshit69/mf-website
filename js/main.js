@@ -302,7 +302,7 @@ videos.forEach(video => {
     index = (index + 1) % images.length;
     images[index].classList.add("active");
 
-  }, 3000);
+  }, 4000);
 
 })();
 
