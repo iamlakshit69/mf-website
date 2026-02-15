@@ -53,7 +53,7 @@
   <main id="main-content">
 
     <!-- ========================= HERO ========================== -->
-    <header class="hero section section--hero">
+    <header class="hero section section--hero" id="hero">
       <div class="container hero-grid">
 
         <div class="hero-text">
@@ -148,8 +148,15 @@
   <div class="container founder-grid">
 
     <!-- IMAGE SIDE -->
+    <!-- IMAGE SIDE -->
     <div class="founder-image">
-      <div class="founder-portrait"></div>
+      <div class="founder-portrait">
+
+        <img src="Assets/amir-1.jpg" class="active" alt="Amir Bild 1">
+        <img src="Assets/amir-2.jpg" alt="Amir Bild 2">
+        <img src="Assets/amir-3.jpg" alt="Amir Bild 3">
+
+      </div>
     </div>
 
     <!-- TEXT SIDE -->
@@ -378,11 +385,11 @@
           </div>
 
           <div class="media-box">
-            <img src="Assets/amer-before.jpg" alt="Amer Vorher">
+            <img src="Assets/amer_before.jpg" alt="Amer Vorher">
           </div>
 
           <div class="media-box">
-            <img src="Assets/amer-after.jpg" alt="Amer Nachher">
+            <img src="Assets/amer_after.jpg" alt="Amer Nachher">
           </div>
 
         </div>
@@ -409,11 +416,11 @@
           </div>
 
           <div class="media-box">
-            <img src="Assets/emre-before.jpg" alt="Emre Vorher">
+            <img src="Assets/emre_before.jpg" alt="Emre Vorher">
           </div>
 
           <div class="media-box">
-            <img src="Assets/emre-after.jpg" alt="Emre Nachher">
+            <img src="Assets/emre_after.jpg" alt="Emre Nachher">
           </div>
 
         </div>
@@ -440,11 +447,11 @@
           </div>
 
           <div class="media-box">
-            <img src="Assets/haris-before.jpg" alt="Haris Vorher">
+            <img src="Assets/harris_before.png" alt="Haris Vorher">
           </div>
 
           <div class="media-box">
-            <img src="Assets/haris-after.jpg" alt="Haris Nachher">
+            <img src="Assets/harris_after.jpg" alt="Haris Nachher">
           </div>
 
         </div>
@@ -488,96 +495,238 @@
 
 </section>
 
-    <!-- ========================= FAQ ========================== -->
+<!-- ========================= FAQ ========================== -->
 <section class="section section--faq" id="faq">
+  <div class="container faq-header center">
+    <span class="method-label">FAQ</span>
+    <h2>Häufig gestellte Fragen</h2>
+    <p class="section-subtitle text-wide">
+      Klarheit beginnt mit den richtigen Antworten.
+    </p>
+  </div>
 
-  <div class="container faq-container">
+  <div class="container faq-layout">
 
-    <div class="faq-header center">
-      <h2>Häufige Fragen</h2>
-      <p class="text-wide">
-        Klarheit beginnt mit den richtigen Antworten.
-      </p>
+    <!-- LEFT SIDE – CATEGORY SWITCH -->
+    <div class="faq-categories">
+
+      <button class="faq-cat active" data-cat="all">Allgemeine Fragen</button>
+      <button class="faq-cat" data-cat="process">Ablauf & Zusammenarbeit</button>
+      <button class="faq-cat" data-cat="mindset">Mindset & Alltag</button>
+
     </div>
 
-    <div class="faq-list">
 
-      <div class="faq-item">
-        <button class="faq-question">
-          Für wen ist das geeignet?
-          <span class="faq-icon"></span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Für Menschen, die genug von Diäten, Verboten und Neustarts haben
-            und endlich ein System wollen, das langfristig funktioniert.
-          </p>
+    <!-- RIGHT SIDE – QUESTIONS -->
+    <div class="faq-panel">
+
+      <!-- ================= CATEGORY: ALLGEMEIN ================= -->
+      <div class="faq-group active" data-group="all">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Für wen ist dieses System gedacht?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Für alle, die das Diät-Chaos satt haben und eine wissenschaftliche Struktur suchen.
+              Wenn du bereit für echte Klarheit statt für den nächsten „Quick Fix“ bist,
+              ist das hier dein Weg.
+            </p>
+          </div>
         </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Geht es primär um Gewichtsverlust?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Es geht um das, wobei du Unterstützung brauchst.
+              Ob Gewicht oder Energie – jeder Mensch ist einzigartig.
+              Wir lösen dein Problem über die Gesundheit deines Stoffwechsels,
+              nicht über sinnloses Hungern.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Brauche ich teure Supplements?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Mein Fokus liegt auf echter Nahrung.
+              Supplements nutzen wir nur gezielt dort,
+              wo Daten einen echten Mangel belegen.
+              Du brauchst kein Arsenal an Pillen,
+              um metabolisch frei zu sein.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Werde ich hungern oder verzichten müssen?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Nein. Hunger ist ein Warnsignal deines Körpers für Energiemangel.
+              Mein Ziel ist es, dich so zu versorgen,
+              dass Heißhunger verschwindet.
+              Wir arbeiten mit Upgrades deiner Ernährung,
+              nicht mit Entzug.
+            </p>
+          </div>
+        </div>
+
       </div>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          Geht es nur ums Abnehmen?
-          <span class="faq-icon"></span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Nein. Gewicht kann sich verändern, aber der Fokus liegt auf
-            metabolischer Stabilität, Energie und mentaler Klarheit.
-          </p>
+
+
+      <!-- ================= CATEGORY: PROZESS ================= -->
+      <div class="faq-group" data-group="process">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Wie läuft die Zusammenarbeit ab?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Alles beginnt mit dem kostenlosen Erstgespräch.
+              Wir analysieren deine Situation und schauen,
+              ob die Chemie stimmt.
+              Danach erstellen wir deinen individuellen Fahrplan
+              für echte, dauerhafte Freiheit.
+            </p>
+          </div>
         </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Wie läuft das kostenlose Erstgespräch konkret ab?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Ein entspanntes Gespräch über deine Situation.
+              Wir analysieren gemeinsam,
+              was bisher für dich funktioniert hat
+              und wo du gerade feststeckst.
+              Ganz ohne Druck.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Muss ich im Gespräch direkt etwas kaufen?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Nein, absolut nicht.
+              Wir schauen gemeinsam,
+              ob und wie ich dich unterstützen kann.
+              Unabhängig davon bekommst du
+              bereits erste wertvolle Impulse.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Warum sollte es diesmal funktionieren?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Weil wir aufhören zu raten.
+              Wir nutzen Daten wie Stoffwechselmarker
+              und Essmuster,
+              um die Ursache zu lösen
+              statt nur Symptome zu bekämpfen.
+            </p>
+          </div>
+        </div>
+
       </div>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          Wie schnell sehe ich Ergebnisse?
-          <span class="faq-icon"></span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Viele gewinnen bereits innerhalb weniger Wochen Klarheit.
-            Nachhaltige Veränderungen entstehen Schritt für Schritt.
-          </p>
-        </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          Muss ich bestimmte Lebensmittel streichen?
-          <span class="faq-icon"></span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Nein. Es geht nicht um Verbote, sondern um Verständnis.
-            Wir schaffen Struktur, keine Einschränkung.
-          </p>
-        </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          Wie läuft die Zusammenarbeit ab?
-          <span class="faq-icon"></span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Nach dem kostenlosen Gespräch analysieren wir deine Situation
-            und entwickeln einen klaren, alltagstauglichen Plan.
-          </p>
-        </div>
-      </div>
+      <!-- ================= CATEGORY: MINDSET ================= -->
+      <div class="faq-group" data-group="mindset">
 
-      <div class="faq-item">
-        <button class="faq-question">
-          Was unterscheidet diesen Ansatz von klassischen Diäten?
-          <span class="faq-icon"></span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Hier geht es nicht um Disziplin oder kurzfristige Regeln,
-            sondern um Struktur, Verständnis und metabolische Freiheit.
-          </p>
+        <div class="faq-item">
+          <button class="faq-question">
+            Was passiert bei einem „schlechten Tag“?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              In meinem System gibt es kein Scheitern.
+              Ein schlechter Tag ist kein Rückfall,
+              sondern ein wertvoller Datenpunkt.
+              Wir nutzen ihn,
+              um dein System noch robuster zu machen.
+            </p>
+          </div>
         </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Passt dieses System in einen stressigen Alltag?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Definitiv.
+              Ein System, das nur bei 100% Freizeit funktioniert,
+              ist wertlos.
+              Wir bauen die Struktur so,
+              dass sie dich stützt –
+              nicht belastet.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Was ist im Urlaub oder im Restaurant?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Echte Freiheit bedeutet,
+              überall essen zu können.
+              Du lernst Strategien,
+              soziale Events und Reisen zu genießen,
+              ohne dein System zu sabotieren.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Was passiert nach der Zusammenarbeit?
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Wir bauen keine Diät-Blase.
+              Du verstehst die Prinzipien deines Körpers
+              so tief,
+              dass sie dein neuer Standard werden.
+              Kein Jo-Jo.
+            </p>
+          </div>
+        </div>
+
       </div>
 
     </div>

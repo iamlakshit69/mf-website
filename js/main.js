@@ -81,103 +81,90 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+/* =====================================================
+   MOBILE NAVBAR (Distance Based – Smooth)
+===================================================== */
 
+function initMobileNavbar() {
 
-  /* =====================================================
-     MOBILE NAVBAR (Velocity Based)
-  ===================================================== */
+  let lastScrollY = window.scrollY;
+  let scrollStartY = window.scrollY;
+  let direction = null;
+  let navState = "visible";
+  let cooldown = false;
 
-  function initMobileNavbar() {
+  const TOP_LOCK = 80;        // always visible near top
+  const DISTANCE = 60;        // px required before toggle
+  const COOLDOWN_TIME = 300;  // ms after toggle
 
-    let lastY = window.scrollY;
-    let lastTime = performance.now();
-    let navState = "visible";
-    let rafId = null;
+  function setNav(state) {
+    if (navState === state || cooldown) return;
 
-    const TOP_LOCK = 80;
-    const HIDE_VELOCITY = 0.35;
-    const SHOW_VELOCITY = -0.15;
+    navbar.dataset.state = state;
+    navState = state;
 
-    function setNav(state) {
-      if (navState === state) return;
-      navbar.dataset.state = state;
-      navState = state;
-    }
-
-    function onScroll() {
-
-      if (rafId) return;
-
-      rafId = requestAnimationFrame(() => {
-
-        const currentY = window.scrollY;
-        const now = performance.now();
-
-        const dy = currentY - lastY;
-        const dt = now - lastTime || 16;
-        const velocity = dy / dt;
-
-        lastY = currentY;
-        lastTime = now;
-        rafId = null;
-
-        if (currentY < TOP_LOCK) {
-          setNav("visible");
-          return;
-        }
-
-        if (velocity > HIDE_VELOCITY && navState === "visible") {
-          setNav("hidden");
-          return;
-        }
-
-        if (velocity < SHOW_VELOCITY && navState === "hidden") {
-          setNav("visible");
-        }
-
-      });
-    }
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    navbar.addEventListener("focusin", () => {
-      setNav("visible");
-    });
-
-    return function cleanup() {
-      window.removeEventListener("scroll", onScroll);
-      navbar.dataset.state = "visible";
-    };
+    cooldown = true;
+    setTimeout(() => cooldown = false, COOLDOWN_TIME);
   }
 
+  function onScroll() {
+
+    const currentY = window.scrollY;
+
+    // Always show near top
+    if (currentY < TOP_LOCK) {
+      setNav("visible");
+      lastScrollY = currentY;
+      scrollStartY = currentY;
+      return;
+    }
+
+    const delta = currentY - lastScrollY;
+
+    // Determine direction
+    if (delta > 0) {
+      if (direction !== "down") {
+        direction = "down";
+        scrollStartY = currentY;
+      }
+    } else if (delta < 0) {
+      if (direction !== "up") {
+        direction = "up";
+        scrollStartY = currentY;
+      }
+    }
+
+    const distanceScrolled = Math.abs(currentY - scrollStartY);
+
+    if (distanceScrolled > DISTANCE) {
+
+      if (direction === "down") {
+        setNav("hidden");
+      }
+
+      if (direction === "up") {
+        setNav("visible");
+      }
+
+      scrollStartY = currentY;
+    }
+
+    lastScrollY = currentY;
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  navbar.addEventListener("focusin", () => {
+    setNav("visible");
+  });
+
+  return function cleanup() {
+    window.removeEventListener("scroll", onScroll);
+    navbar.dataset.state = "visible";
+  };
+}
 
 
-  /* =====================================================
-     FAQ – EXCLUSIVE ACCORDION
-  ===================================================== */
-
-  (function initFAQ() {
-
-    const faqItems = document.querySelectorAll(".faq details");
-    if (!faqItems.length) return;
-
-    faqItems.forEach(item => {
-
-      item.addEventListener("toggle", () => {
-
-        if (!item.open) return;
-
-        faqItems.forEach(other => {
-          if (other !== item) {
-            other.removeAttribute("open");
-          }
-        });
-
-      });
-
-    });
-
-  })();
 
 
 
@@ -395,25 +382,6 @@ document.querySelectorAll(".media-carousel").forEach(carousel => {
 
 });
 
-/* =====================================================
-   FAQ ACCORDION
-===================================================== */
-
-document.querySelectorAll(".faq-question").forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    const item = button.parentElement;
-
-    document.querySelectorAll(".faq-item").forEach(i => {
-      if (i !== item) i.classList.remove("active");
-    });
-
-    item.classList.toggle("active");
-
-  });
-
-});
 
 const videos = document.querySelectorAll('.video-box video');
 
@@ -434,3 +402,85 @@ const observer = new IntersectionObserver((entries) => {
 videos.forEach(video => {
   observer.observe(video);
 });
+
+
+/* =====================================================
+   FOUNDER IMAGE FADE CAROUSEL
+===================================================== */
+
+(function initFounderCarousel() {
+
+  const portrait = document.querySelector(".founder-portrait");
+  if (!portrait) return;
+
+  const images = portrait.querySelectorAll("img");
+  if (images.length < 2) return;
+
+  let index = 0;
+
+  setInterval(() => {
+
+    images[index].classList.remove("active");
+    index = (index + 1) % images.length;
+    images[index].classList.add("active");
+
+  }, 3000);
+
+})();
+
+/* =====================================================
+   FAQ – PREMIUM SPLIT LOGIC
+===================================================== */
+
+(function initPremiumFAQ() {
+
+  const categories = document.querySelectorAll(".faq-cat");
+  const groups = document.querySelectorAll(".faq-group");
+
+  if (!categories.length || !groups.length) return;
+
+  /* ----------------------------
+     CATEGORY SWITCH
+  ---------------------------- */
+
+  categories.forEach(button => {
+    button.addEventListener("click", () => {
+
+      const target = button.dataset.cat;
+
+      // Activate category button
+      categories.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Show correct group
+      groups.forEach(group => {
+        group.classList.toggle("active", group.dataset.group === target);
+      });
+
+    });
+  });
+
+
+  /* ----------------------------
+     ACCORDION (Exclusive)
+  ---------------------------- */
+
+  document.querySelectorAll(".faq-question").forEach(question => {
+
+    question.addEventListener("click", () => {
+
+      const item = question.closest(".faq-item");
+      const group = question.closest(".faq-group");
+
+      // Close others inside same group
+      group.querySelectorAll(".faq-item").forEach(i => {
+        if (i !== item) i.classList.remove("active");
+      });
+
+      item.classList.toggle("active");
+
+    });
+
+  });
+
+})();
