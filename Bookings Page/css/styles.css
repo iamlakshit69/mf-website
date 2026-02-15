@@ -150,25 +150,30 @@ p + p { margin-top: 1.2em; }
 .btn-lg { padding: 14px 34px; }
 
 /* =====================================================
-   NAVBAR (MATCH HOME)
+   NAVBAR (HOME VERSION)
 ===================================================== */
 .navbar {
   position: fixed;
-  top: clamp(10px, 2vh, 18px);
+  top: 18px;
   left: 50%;
-  transform: translate(-50%, 0);
-  width: calc(100% - 32px);
-  max-width: var(--container);
-  height: clamp(56px, 8vh, 72px);
+  transform: translateX(-50%);
+  width: calc(var(--container) + clamp(40px, 8vw, 64px));
+  max-width: calc(100% - 40px);
+  height: 64px;
   z-index: 100;
 
-  background: rgba(31, 51, 38, 0.88);
-  backdrop-filter: blur(12px);
+  background: rgba(20, 48, 35, 0.9);
+  backdrop-filter: blur(14px);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255,255,255,.06);
-  box-shadow: 0 12px 28px rgba(0,0,0,.15);
+  box-shadow: 0 14px 32px rgba(0,0,0,.2);
 
-  transition: background .3s ease, box-shadow .3s ease;
+  transition: all .3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(15, 35, 25, 0.95);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
 }
 
 .nav-wrapper {
@@ -176,22 +181,42 @@ p + p { margin-top: 1.2em; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: clamp(16px, 3vw, 24px);
+  padding-inline: clamp(20px, 4vw, 32px);
 }
 
 .logo img { height: 34px; }
 
 .nav-links {
   display: flex;
-  gap: clamp(20px, 4vw, 32px);
+  gap: clamp(24px, 4vw, 36px);
 }
 
 .nav-links a {
   font-size: var(--fs-small);
+  letter-spacing: .5px;
   color: rgba(255,255,255,.75);
+  transition: color .2s ease;
 }
 
 .nav-links a:hover { color: var(--ink-main); }
+
+.nav-links a.active { color: var(--green-accent); }
+
+@media (max-width: 768px) {
+
+  .nav-links { display: none; }
+
+  .navbar[data-state="hidden"] {
+    transform: translate(-50%, -140%);
+    transition: transform 220ms ease;
+  }
+
+  .navbar[data-state="visible"] {
+    transform: translate(-50%, 0);
+    transition: transform 260ms ease;
+  }
+
+}
 
 /* =====================================================
    BOOKING INTRO (HERO SPACING)
@@ -256,59 +281,82 @@ p + p { margin-top: 1.2em; }
 }
 
 /* =====================================================
-   FOOTER (MATCH HOME)
+   FOOTER – PREMIUM REDESIGN
 ===================================================== */
+
 .footer {
-  background: #1b2b20;
-  color: #dde3d8;
-  padding-block: clamp(60px, 8vh, 90px) 40px;
+  background: linear-gradient(
+    180deg,
+    #0d2318,
+    #08150f
+  );
+  padding-top: 100px;
+  border-top: 1px solid rgba(255,255,255,.06);
 }
 
-.footer-grid {
+.footer-inner {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: var(--gap-md);
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 80px;
+  padding-bottom: 80px;
 }
 
-.footer a {
-  color: rgba(221,227,216,.7);
+.footer-brand h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: var(--ink-strong);
 }
 
-.footer a:hover { opacity: .9; }
+.footer-brand p {
+  color: var(--ink-muted);
+  max-width: 420px;
+  line-height: 1.7;
+}
 
-/* =====================================================
-   MOBILE
-===================================================== */
-@media (max-width: 768px) {
+.footer-column h4 {
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: var(--green-accent);
+}
 
-  .nav-links {
-    display: none;
-  }
+.footer-column ul {
+  display: grid;
+  gap: 12px;
+}
 
-  .footer-grid {
+.footer-column a {
+  color: rgba(255,255,255,.7);
+  transition: color .25s ease;
+}
+
+.footer-column a:hover {
+  color: var(--ink-strong);
+}
+
+/* Bottom Strip */
+
+.footer-bottom {
+  text-align: center;
+  padding: 25px 0;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,.5);
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+  .footer-inner {
     grid-template-columns: 1fr;
+    gap: 50px;
   }
 
-  .booking-card {
-    padding: 28px 18px;
-  }
-
-  .calendly-inline-widget {
-    height: 75vh !important;
-    min-height: 600px;
-  }
-
-  /* Mobile navbar animation */
-  .navbar {
-    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .navbar[data-state="visible"] {
-    transform: translate(-50%, 0);
-  }
-
-  .navbar[data-state="hidden"] {
-    transform: translate(-50%, -140%);
+  .footer-brand p {
+    max-width: 100%;
   }
 
 }

@@ -24,72 +24,79 @@
 
 <body>
 
-<!-- =========================
-     NAVBAR
-========================== -->
-<nav class="navbar" data-state="visible" aria-label="Primary Navigation">
+<!-- ========================= NAVBAR ========================== -->
+<nav class="navbar" data-state="visible">
   <div class="container nav-wrapper">
 
     <a href="../Home Page/index.html" class="logo">
-      <img src="../Assets/logo.png" alt="Metabolic Freedom Logo">
+      <img src="../Assets/logo.png" alt="Metabolic Freedom Logo" loading="lazy">
     </a>
 
     <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../About Page/index.html">About</a></li>
-      <li><a href="../Payments Page/Plans/plans.html">Plans & Pricing</a></li>
-      <li><a href="../Home Page/index.html#faq">FAQ</a></li>
+      <li><a href="../index.html#hero">Start</a></li>
+      <li><a href="../index.html#problem">Problem</a></li>
+      <li><a href="../index.html#method">Dein Weg</a></li>
+      <li><a href="../index.html#faq">FAQ</a></li>
     </ul>
 
-    <!-- On bookings page, button is inactive -->
     <a href="#" class="btn btn-primary btn-sm">
-      Free Call
+      Jetzt Starten
     </a>
 
   </div>
 </nav>
 
-<!-- =========================
-     INTRO
-========================== -->
-<section class="section section--loose center booking-intro">
-  <div class="container">
 
-    <p class="booking-eyebrow">Your journey begins here</p>
+<main>
 
-    <h1>Book Your Free Call</h1>
+<!-- ========================= HERO SECTION ========================== -->
+<header class="section section--hero section--booking-hero">
+  <div class="container booking-hero-grid">
 
-    <p class="text-wide booking-subtitle">
-      A focused conversation designed to bring clarity.
-      No pressure. No commitment.
-      Just understanding.
-    </p>
+    <div class="booking-hero-text">
+      <span class="booking-label">Der nächste Schritt</span>
+
+      <h1>
+        Ein Gespräch.<br>
+        <em class="hero-emphasis">Volle Klarheit.</em>
+      </h1>
+
+      <p class="hero-lead text-wide">
+        Dieses Gespräch ist kein Verkaufsgespräch.
+        Es ist ein klarer, strukturierter Raum,
+        um deine Situation zu verstehen
+        und zu prüfen, ob dieser Weg für dich passt.
+      </p>
+
+      <div class="booking-hero-points">
+        <span>30 Minuten</span>
+        <span>Privat & vertraulich</span>
+        <span>Ohne Druck</span>
+      </div>
+    </div>
+
+    <div class="booking-hero-visual">
+      <div class="visual-box"></div>
+    </div>
 
   </div>
-</section>
+</header>
 
-<!-- =========================
-     BOOKING CARD
-========================== -->
-<section class="section center">
-  <div class="container">
+
+<!-- ========================= BOOKING SECTION ========================== -->
+<section class="section section--emphasis section--booking">
+  <div class="container booking-wrapper">
 
     <div class="booking-card">
 
-      <h2>Choose a time that works for you</h2>
+      <div class="booking-card-header center">
+        <h2>Wähle deinen Termin</h2>
+        <p class="text-wide">
+          Such dir eine Zeit aus, die für dich passt.
+          Du erhältst automatisch eine Bestätigung per E-Mail.
+        </p>
+      </div>
 
-      <p class="text-wide">
-        This is a private clarity call.
-        A space to understand your current situation
-        and explore whether this approach fits your life.
-      </p>
-
-      <!-- Optional trust line (conversion improvement) -->
-      <p class="booking-note">
-        30 minutes • Private • No sales pressure
-      </p>
-
-      <!-- Calendly Inline Widget -->
       <div
         class="calendly-inline-widget"
         data-url="https://calendly.com/lakshitsinghpersonal/30min?hide_event_type_details=1&hide_gdpr_banner=1">
@@ -100,42 +107,91 @@
   </div>
 </section>
 
-<!-- =========================
-     FOOTER
-========================== -->
-<footer class="footer">
-  <div class="container footer-grid">
 
-    <div>
-      <h3>Metabolic Freedom</h3>
-      <p>Precision health, without the noise.</p>
-    </div>
-
-    <div>
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="../Home Page/index.html">Home</a></li>
-        <li><a href="../About Page/index.html">About</a></li>
-        <li><a href="../Home Page/index.html#method">Method</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Terms</a></li>
-      </ul>
-    </div>
-
-  </div>
-
+<!-- ========================= TRUST SECTION ========================== -->
+<section class="section section--base section--booking-trust">
   <div class="container center">
-    <p>&copy; 2026 Metabolic Freedom</p>
+
+    <h2>Was du aus diesem Gespräch mitnimmst</h2>
+
+    <div class="trust-grid">
+
+      <div class="trust-card">
+        <h3>Klarheit</h3>
+        <p>
+          Du verstehst, warum du aktuell feststeckst
+          und was dich wirklich blockiert.
+        </p>
+      </div>
+
+      <div class="trust-card">
+        <h3>Struktur</h3>
+        <p>
+          Du erkennst, welcher nächste Schritt
+          für deinen Körper sinnvoll ist.
+        </p>
+      </div>
+
+      <div class="trust-card">
+        <h3>Sicherheit</h3>
+        <p>
+          Du weißt danach,
+          ob dieser Weg wirklich zu dir passt.
+        </p>
+      </div>
+
+    </div>
+
   </div>
+</section>
+
+
+<!-- ========================= FOOTER ========================== -->
+<footer class="footer">
+
+  <div class="container footer-inner">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <h3>Metabolic Freedom</h3>
+      <p>
+        Struktur statt Diäten. Klarheit statt Verzicht.
+        Ein System für nachhaltige metabolische Freiheit.
+      </p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="footer-column">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#about">Über mich</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#method">Methode</a></li>
+        <li><a href="#testimonials">Erfahrungen</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <!-- Legal -->
+    <div class="footer-column">
+      <h4>Rechtliches</h4>
+      <ul>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+        <li><a href="#">AGB</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Metabolic Freedom. Alle Rechte vorbehalten.
+  </div>
+
 </footer>
 
-<!-- Script -->
+</main>
+
 <script src="js/script.js" defer></script>
 
 </body>
