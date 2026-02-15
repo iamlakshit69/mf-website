@@ -523,3 +523,20 @@ p {
     transparent
   );
 }
+.booking-calendar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendly-inline-widget {
+  width: 100% !important;
+  max-width: 720px;
+  margin: 0 auto;
+}
+@media (max-width: 480px) {
+  .booking-calendar-card {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
