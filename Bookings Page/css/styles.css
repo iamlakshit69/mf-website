@@ -425,3 +425,101 @@ p {
   }
 
 }
+* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+  background: linear-gradient(
+    180deg,
+    #0d2318,
+    #08150f
+  );
+  padding-top: 100px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 80px;
+  padding-bottom: 80px;
+}
+
+.footer-brand h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: var(--ink-strong);
+}
+
+.footer-brand p {
+  color: var(--ink-muted);
+  max-width: 420px;
+  line-height: 1.7;
+}
+
+.footer-column h4 {
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: var(--green-accent);
+}
+
+.footer-column ul {
+  display: grid;
+  gap: 12px;
+}
+
+.footer-column a {
+  color: rgba(255,255,255,.7);
+  transition: color .25s ease;
+}
+
+.footer-column a:hover {
+  color: var(--ink-strong);
+}
+
+/* Bottom Strip */
+
+.footer-bottom {
+  text-align: center;
+  padding: 25px 0;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,.5);
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+  }
+
+}
+
+/* =====================================================
+   CALENDAR → FOOTER DIVIDER
+===================================================== */
+
+.section--booking-calendar::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 1px;
+  margin: 120px auto 0 auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(186,230,62,.5),
+    transparent
+  );
+}

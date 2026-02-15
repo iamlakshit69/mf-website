@@ -114,7 +114,14 @@ section[id] {
 .section--base { background: var(--bg-base); }
 .section--alt { background: var(--bg-alt); }
 .section--emphasis { background: var(--bg-emphasis); }
-.section--testimonial { background: var(--bg-base); }
+.section--testimonial {
+  background: linear-gradient(
+    180deg,
+    #07150f 0%,
+    #06110c 100%
+  );
+  padding-top: clamp(140px, 18vh, 200px);
+}
 
 .center { text-align: center; }
 .center p { margin-inline: auto; }
@@ -347,15 +354,33 @@ p + p {
 }
 
 /* =====================================================
-   CTA
+   CTA – STRONG EMPHASIS REDESIGN
 ===================================================== */
+
 .cta {
-  border-top: 1px solid rgba(255,255,255,.06);
+  position: relative;
+  padding-block: clamp(140px, 18vh, 200px);
+  background: linear-gradient(
+    180deg,
+    #0c2318 0%,
+    #07150f 100%
+  );
+  border-top: 1px solid rgba(255,255,255,.05);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  text-align: center;
 }
 
-.cta p {
-  margin: 1.6em auto 2.6em;
-  opacity: .95;
+.cta h2 {
+  font-size: clamp(2.6rem, 5vw, 3.4rem);
+  margin-bottom: 2.2rem;
+  max-width: 16ch;
+  margin-inline: auto;
+}
+
+.cta .btn {
+  padding: 18px 46px;
+  font-size: 1.05rem;
+  box-shadow: 0 25px 60px rgba(0,0,0,.5);
 }
 
 /* =====================================================
@@ -851,6 +876,7 @@ p + p {
 
 .section--decision {
   width: 100%;
+  padding-block: clamp(120px, 14vh, 180px);
 }
 
 .decision-split {
@@ -875,11 +901,11 @@ p + p {
 
 /* Background images */
 .decision-negative {
-  background: url("../Assets/negative.png") center/cover no-repeat;
+  background: url("../Assets/negative.webp") center/cover no-repeat;
 }
 
 .decision-positive {
-  background: url("../Assets/positive.png") center/cover no-repeat;
+  background: url("../Assets/positive.webp") center/cover no-repeat;
 }
 
 /* Overlay for readability */
@@ -1069,13 +1095,27 @@ p + p {
 ===================================================== */
 
 .section--testimonial {
-  background: var(--bg-base);
+  background: linear-gradient(
+    180deg,
+    #07150f 0%,
+    #06110c 100%
+  );
+  padding-top: clamp(140px, 18vh, 200px);
 }
+
+/* =====================================================
+   TESTIMONIAL HEADER FIX
+===================================================== */
 
 .testimonial-header {
-  margin-bottom: var(--gap-xl);
+  text-align: center;
+  margin-bottom: 120px;
 }
 
+.testimonial-header h2 {
+  font-size: clamp(2.6rem, 5vw, 3.2rem);
+  letter-spacing: 1px;
+}
 /* Card Container */
 
 .testimonial-card {
@@ -1120,7 +1160,13 @@ p + p {
 ===================================================== */
 
 .section--testimonial {
-  background: var(--bg-base);
+  background: linear-gradient(
+    180deg,
+    var(--bg-base) 0%,
+    #0b2218 100%
+  );
+  padding-top: clamp(140px, 18vh, 200px);
+  border-top: 1px solid rgba(255,255,255,.05);
 }
 
 .testimonial-header {
@@ -1369,6 +1415,7 @@ p + p {
 
 
 
+
 /* Progress ring */
 /* =============================
    CLEAN DOTS – NO JUMP
@@ -1403,6 +1450,7 @@ p + p {
   flex-direction: column;
   align-items: center;
 }
+
 
 .testimonial-card {
   width: clamp(320px, 92vw, 950px);
@@ -1717,4 +1765,216 @@ p + p {
 
 .media-track:active {
   cursor: grabbing;
+}
+/* =====================================================
+   DECISION – PREMIUM REDESIGN
+===================================================== */
+
+.section--decision-premium {
+  background: linear-gradient(
+    180deg,
+    #0c2318,
+    #08150f
+  );
+  padding-block: clamp(120px, 15vh, 180px);
+}
+
+/* =====================================================
+   DECISION HEADER FIX
+===================================================== */
+
+.decision-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.decision-header h2 {
+  font-size: clamp(2.6rem, 5vw, 3.2rem);
+  margin-bottom: 0;
+}
+
+/* Wrapper */
+
+.decision-premium-wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 2px 1fr;
+  min-height: 640px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+/* Divider */
+
+.decision-divider {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(186,230,62,.4),
+    transparent
+  );
+  opacity: .6;
+}
+
+/* Panels */
+
+.decision-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 6vw, 100px);
+  overflow: hidden;
+  transition: transform .6s ease, filter .6s ease;
+}
+
+/* Background images */
+
+.decision-negative {
+  background: url("../Assets/negative.webp") center/cover no-repeat;
+}
+
+.decision-positive {
+  background: url("../Assets/positive.webp") center/cover no-repeat;
+}
+
+/* Overlay */
+
+.decision-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  transition: background .6s ease;
+}
+
+.decision-positive .decision-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0,40,25,.65),
+    rgba(0,60,35,.75)
+  );
+}
+
+/* Content */
+
+.decision-content {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+}
+
+.decision-label {
+  font-size: var(--fs-small);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green-accent);
+  opacity: .9;
+}
+
+.decision-title {
+  margin: 1rem 0 2rem 0;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+/* Lists */
+
+.decision-list {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 2.5rem;
+}
+
+.decision-list li {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.85);
+  position: relative;
+  padding-left: 22px;
+}
+
+.decision-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  box-shadow: 0 0 0 4px rgba(186,230,62,.1);
+}
+
+/* Subtle hover bias */
+
+.decision-panel:hover {
+  transform: scale(1.02);
+  filter: brightness(1.05);
+}
+
+.decision-panel:hover .decision-overlay {
+  background: rgba(0,0,0,.65);
+}
+
+/* CTA */
+
+.decision-cta {
+  margin-top: 1.5rem;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .decision-premium-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .decision-divider {
+    display: none;
+  }
+
+  .decision-panel {
+    min-height: 520px;
+  }
+
+}
+
+.decision-cta {
+  margin-top: 100px;
+  padding-bottom: 0;
+}
+
+.decision-cta .btn {
+  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+}
+.section--testimonial {
+  background: var(--bg-base);
+  padding-block: clamp(100px, 12vh, 140px);
+  border-top: none;
+}
+
+.testimonial-header {
+  text-align: center;
+  margin-bottom: 80px; /* was too large */
+}
+
+.testimonial-header h2 {
+  font-size: clamp(2.6rem, 5vw, 3.2rem);
+  letter-spacing: 1px;
+  margin-bottom: 0;
+}
+.section--decision::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 1px;
+  margin: 100px auto 0 auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(186,230,62,.5),
+    transparent
+  );
 }
