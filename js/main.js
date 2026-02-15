@@ -397,3 +397,42 @@ document.querySelectorAll(".media-track").forEach(track => {
   });
 
 });
+
+/* =====================================================
+   DECISION – PREMIUM INTERACTION
+===================================================== */
+
+(function initDecisionPremium() {
+
+  const panels = document.querySelectorAll(".decision-panel");
+  if (!panels.length) return;
+
+  panels.forEach(panel => {
+
+    panel.addEventListener("mouseenter", () => {
+
+      panels.forEach(p => {
+        if (p !== panel) {
+          p.style.transform = "scale(0.97)";
+          p.style.filter = "brightness(0.7)";
+        }
+      });
+
+      panel.style.transform = "scale(1.05)";
+      panel.style.zIndex = "3";
+
+    });
+
+    panel.addEventListener("mouseleave", () => {
+
+      panels.forEach(p => {
+        p.style.transform = "";
+        p.style.filter = "";
+        p.style.zIndex = "";
+      });
+
+    });
+
+  });
+
+})();
