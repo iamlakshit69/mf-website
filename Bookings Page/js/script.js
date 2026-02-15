@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* =====================================================
+     ENVIRONMENT SETUP
+  ===================================================== */
+
   const navbar = document.querySelector(".navbar");
   if (!navbar) return;
 
@@ -7,6 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileQuery = window.matchMedia("(max-width: 768px)");
 
   let cleanupCurrentMode = null;
+
+
+
+  /* =====================================================
+     INITIALIZER
+  ===================================================== */
 
   function init() {
 
@@ -22,22 +32,31 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (!prefersReducedMotion.matches) {
       cleanupCurrentMode = initMobileNavbar();
     }
+
   }
 
   init();
 
-  mobileQuery.addEventListener("change", init);
-  window.addEventListener("resize", init);
+  mobileQuery.addEventListener("change", debounce(init, 120));
+  window.addEventListener("resize", debounce(init, 120));
 
 
-  /* ================= DESKTOP ================= */
+
+  /* =====================================================
+     DESKTOP NAVBAR (THRESHOLD BASED)
+  ===================================================== */
 
   function initDesktopNavbar() {
 
     let lastState = null;
-    let threshold = Math.round(window.innerHeight * 0.06);
+    let threshold = getThreshold();
+
+    function getThreshold() {
+      return Math.round(window.innerHeight * 0.06);
+    }
 
     function update() {
+
       const y = window.scrollY || document.documentElement.scrollTop;
       const nextState = y > threshold ? "scrolled" : "top";
 
@@ -47,17 +66,28 @@ document.addEventListener("DOMContentLoaded", () => {
       lastState = nextState;
     }
 
+    function handleResize() {
+      threshold = getThreshold();
+      update();
+    }
+
     window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", handleResize);
+
     update();
 
     return function cleanup() {
       window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", handleResize);
       navbar.classList.remove("scrolled");
     };
   }
 
 
-  /* ================= MOBILE ================= */
+
+  /* =====================================================
+     MOBILE NAVBAR (VELOCITY BASED)
+  ===================================================== */
 
   function initMobileNavbar() {
 
@@ -119,6 +149,57 @@ document.addEventListener("DOMContentLoaded", () => {
     return function cleanup() {
       window.removeEventListener("scroll", onScroll);
       navbar.dataset.state = "visible";
+    };
+  }
+
+
+
+  /* =====================================================
+     SMOOTH ANCHOR SCROLL
+  ===================================================== */
+
+  (function enhanceAnchorScroll() {
+
+    const anchorLinks = document.querySelectorAll("a[href^='#']");
+    if (!anchorLinks.length) return;
+
+    anchorLinks.forEach(link => {
+
+      link.addEventListener("click", e => {
+
+        const targetId = link.getAttribute("href");
+        if (!targetId || targetId.length <= 1) return;
+
+        const target = document.querySelector(targetId);
+        if (!target) return;
+
+        e.preventDefault();
+
+        const offset = 110;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+        window.scrollTo({
+          top,
+          behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+        });
+
+      });
+
+    });
+
+  })();
+
+
+
+  /* =====================================================
+     UTILITIES
+  ===================================================== */
+
+  function debounce(fn, delay) {
+    let timer;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(fn, delay);
     };
   }
 

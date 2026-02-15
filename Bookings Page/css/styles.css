@@ -1,46 +1,47 @@
 /* =====================================================
-   DESIGN TOKENS (MATCH HOME)
+   DESIGN TOKENS (ALIGNED WITH HOME SYSTEM)
 ===================================================== */
 :root {
 
   --bg-page: #0f2b1e;
-  --bg-section: #123424;
-  --bg-card: #173d2b;
+  --bg-base: #0f2b1e;
+  --bg-alt: #123424;
+  --bg-emphasis: #0c2318;
+  --bg-elevated: #173d2b;
 
   --ink-strong: #ffffff;
   --ink-main: #eaf5ee;
-  --ink-muted: #c7dfd3;
+  --ink-muted: #cfe5da;
 
-  --green-dark: #0f2b1e;
-  --green-hover: #0c2318;
-  --green-soft: #173d2b;
   --green-accent: #bae63e;
+  --green-accent-hover: #a9d934;
 
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
 
-  --fs-h1: clamp(2.4rem, 6vw, 4.2rem);
+  --fs-h1: clamp(2.6rem, 6vw, 4.2rem);
   --fs-h2: clamp(1.9rem, 4vw, 2.6rem);
-  --fs-h3: clamp(1.2rem, 2.5vw, 1.5rem);
-  --fs-body: clamp(1rem, 2vw, 1.05rem);
+  --fs-body: clamp(1.05rem, 2vw, 1.1rem);
   --fs-small: 0.9rem;
 
-  --lh-body: 1.65;
+  --lh-body: 1.75;
   --lh-heading: 1.15;
 
-  --section-pad: clamp(72px, 9vh, 110px);
+  --section-pad: clamp(100px, 12vh, 150px);
 
-  --gap-lg: clamp(56px, 8vw, 96px);
-  --gap-md: clamp(32px, 5vw, 48px);
-  --gap-sm: clamp(16px, 3vw, 24px);
+  --gap-xl: clamp(80px, 8vw, 120px);
+  --gap-lg: clamp(60px, 6vw, 90px);
+  --gap-md: clamp(36px, 4vw, 56px);
+  --gap-sm: clamp(20px, 3vw, 28px);
 
   --radius-sm: 10px;
   --radius-md: 18px;
-  --radius-lg: 26px;
+  --radius-lg: 28px;
   --radius-pill: 999px;
 
   --container: 1180px;
 }
+
 
 /* =====================================================
    RESET
@@ -68,6 +69,7 @@ img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
+
 /* =====================================================
    ACCESSIBILITY
 ===================================================== */
@@ -75,6 +77,7 @@ ul { list-style: none; }
   outline: 2px solid var(--green-accent);
   outline-offset: 3px;
 }
+
 
 /* =====================================================
    LAYOUT
@@ -89,41 +92,45 @@ ul { list-style: none; }
   padding-block: var(--section-pad);
 }
 
-.section--loose {
-  padding-block: clamp(100px, 12vh, 150px);
+.section--hero {
+  padding-top: clamp(160px, 20vh, 220px);
 }
 
-.center {
-  text-align: center;
+.section--emphasis {
+  background: var(--bg-emphasis);
 }
 
-.center p {
-  margin-inline: auto;
+.section--base {
+  background: var(--bg-base);
 }
+
+.center { text-align: center; }
+.center p { margin-inline: auto; }
+
 
 /* =====================================================
    TYPOGRAPHY
 ===================================================== */
-h1, h2, h3 {
+h1, h2 {
   font-family: var(--font-heading);
   font-weight: 500;
   color: var(--ink-strong);
   line-height: var(--lh-heading);
 }
 
-h1 { font-size: var(--fs-h1); margin-bottom: .45em; }
-h2 { font-size: var(--fs-h2); margin-bottom: .5em; }
-h3 { font-size: var(--fs-h3); margin-bottom: .4em; }
+h1 { font-size: var(--fs-h1); margin-bottom: 0.6em; }
+h2 { font-size: var(--fs-h2); margin-bottom: 1em; }
 
 p {
   color: var(--ink-muted);
-  max-width: 64ch;
+  max-width: 70ch;
 }
 
-p + p { margin-top: 1.2em; }
+.text-wide { max-width: 70ch; }
+
 
 /* =====================================================
-   BUTTONS (MATCH HOME)
+   BUTTONS
 ===================================================== */
 .btn {
   display: inline-flex;
@@ -131,26 +138,30 @@ p + p { margin-top: 1.2em; }
   justify-content: center;
   border-radius: var(--radius-pill);
   font-weight: 500;
-  transition: transform .2s ease, background .2s ease, color .2s ease;
+  transition: all .25s ease;
+  cursor: pointer;
 }
 
 .btn:active { transform: scale(.97); }
 
 .btn-primary {
   background: var(--green-accent);
-  color: var(--green-dark);
-  box-shadow: 0 8px 22px rgba(0,0,0,.25);
+  color: #0f2b1e;
+  box-shadow: 0 14px 32px rgba(0,0,0,.3);
 }
 
 .btn-primary:hover {
-  background: #a9d934;
+  background: var(--green-accent-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 22px 40px rgba(0,0,0,.35);
 }
 
 .btn-sm { padding: 10px 18px; font-size: var(--fs-small); }
-.btn-lg { padding: 14px 34px; }
+.btn-lg { padding: 16px 38px; }
+
 
 /* =====================================================
-   NAVBAR (HOME VERSION)
+   NAVBAR (MATCH HOME)
 ===================================================== */
 .navbar {
   position: fixed;
@@ -200,96 +211,133 @@ p + p { margin-top: 1.2em; }
 
 .nav-links a:hover { color: var(--ink-main); }
 
-.nav-links a.active { color: var(--green-accent); }
-
-@media (max-width: 768px) {
-
-  .nav-links { display: none; }
-
-  .navbar[data-state="hidden"] {
-    transform: translate(-50%, -140%);
-    transition: transform 220ms ease;
-  }
-
-  .navbar[data-state="visible"] {
-    transform: translate(-50%, 0);
-    transition: transform 260ms ease;
-  }
-
-}
 
 /* =====================================================
-   BOOKING INTRO (HERO SPACING)
+   HERO – BOOKING
 ===================================================== */
-.booking-intro {
-  padding-top: clamp(130px, 18vh, 190px);
-  padding-bottom: clamp(40px, 6vh, 60px);
+
+.booking-hero-layout {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .booking-eyebrow {
   font-size: var(--fs-small);
-  letter-spacing: 0.12em;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: 1.2em;
+  color: var(--green-accent);
+  opacity: .9;
+  display: inline-block;
+  margin-bottom: 1.5em;
 }
 
-.booking-subtitle {
-  margin-top: 0.8em;
-  font-size: clamp(1.05rem, 2vw, 1.15rem);
-  line-height: 1.6;
+.booking-hero-text {
+  margin-top: 1.4em;
+  font-size: clamp(1.1rem, 2vw, 1.2rem);
+  line-height: 1.8;
 }
+
+.booking-hero-actions {
+  margin-top: 3em;
+}
+
 
 /* =====================================================
-   BOOKING CARD
+   TRUST BADGES
 ===================================================== */
-.booking-card {
-  background: var(--bg-card);
+
+.booking-trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+
+.booking-trust-badges span {
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  font-size: var(--fs-small);
+  color: var(--green-accent);
+  letter-spacing: .5px;
+}
+
+
+/* =====================================================
+   CALENDAR SECTION
+===================================================== */
+
+.section--booking-calendar {
+  position: relative;
+}
+
+.booking-calendar-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.booking-calendar-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.03),
+    rgba(0,0,0,.18)
+  );
   border-radius: var(--radius-lg);
   padding: clamp(40px, 6vw, 80px);
+  border: 1px solid rgba(255,255,255,.06);
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.04),
-    0 24px 48px rgba(0,0,0,.25);
+    inset 0 0 0 1px rgba(255,255,255,.03),
+    0 30px 60px rgba(0,0,0,.35);
 
-  max-width: 900px;
-  margin: 0 auto;
-
-  display: flex;
-  flex-direction: column;
-  gap: clamp(20px, 4vw, 40px);
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
-@media (hover: hover) {
-  .booking-card {
-    transition: transform .2s ease, box-shadow .25s ease;
-  }
-
-  .booking-card:hover {
-    transform: translateY(-4px);
-    box-shadow:
-      inset 0 0 0 1px rgba(255,255,255,.04),
-      0 32px 60px rgba(0,0,0,.3);
-  }
+.booking-calendar-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.03),
+    0 40px 80px rgba(0,0,0,.4);
 }
+
+.booking-calendar-header {
+  margin-bottom: var(--gap-md);
+}
+
 
 /* =====================================================
-   CALENDAR
+   CALENDLY WIDGET
 ===================================================== */
+
 .calendly-inline-widget {
   width: 100% !important;
   height: clamp(650px, 85vh, 900px) !important;
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
+
 /* =====================================================
-   FOOTER – PREMIUM REDESIGN
+   FINAL SECTION
+===================================================== */
+
+.section--booking-final h2 {
+  margin-bottom: 1.2em;
+}
+
+.section--booking-final p {
+  margin-bottom: 2.6em;
+}
+
+
+/* =====================================================
+   FOOTER (MATCH HOME)
 ===================================================== */
 
 .footer {
-  background: linear-gradient(
-    180deg,
-    #0d2318,
-    #08150f
-  );
+  background: linear-gradient(180deg, #0d2318, #08150f);
   padding-top: 100px;
   border-top: 1px solid rgba(255,255,255,.06);
 }
@@ -336,8 +384,6 @@ p + p { margin-top: 1.2em; }
   color: var(--ink-strong);
 }
 
-/* Bottom Strip */
-
 .footer-bottom {
   text-align: center;
   padding: 25px 0;
@@ -346,7 +392,10 @@ p + p { margin-top: 1.2em; }
   border-top: 1px solid rgba(255,255,255,.05);
 }
 
-/* Mobile */
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media (max-width: 900px) {
 
@@ -355,8 +404,24 @@ p + p { margin-top: 1.2em; }
     gap: 50px;
   }
 
-  .footer-brand p {
-    max-width: 100%;
+  .nav-links { display: none; }
+
+  .navbar[data-state="hidden"] {
+    transform: translate(-50%, -140%);
+    transition: transform 220ms ease;
+  }
+
+  .navbar[data-state="visible"] {
+    transform: translate(-50%, 0);
+    transition: transform 260ms ease;
+  }
+
+  .booking-trust-badges {
+    gap: 12px;
+  }
+
+  .booking-calendar-card {
+    padding: 40px 28px;
   }
 
 }
