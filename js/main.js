@@ -258,129 +258,7 @@ function initMobileNavbar() {
 
 });
 
-/* =====================================================
-   TESTIMONIAL AUTO SCROLL
-===================================================== */
 
-document.querySelectorAll(".testimonial-media").forEach(carousel => {
-
-  let isPaused = false;
-
-  function autoScroll() {
-    if (isPaused) return;
-
-    carousel.scrollLeft += 0.5;
-
-    if (carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth) {
-      carousel.scrollLeft = 0;
-    }
-  }
-
-  const interval = setInterval(autoScroll, 20);
-
-  carousel.addEventListener("mouseenter", () => isPaused = true);
-  carousel.addEventListener("mouseleave", () => isPaused = false);
-  carousel.addEventListener("touchstart", () => isPaused = true);
-  carousel.addEventListener("touchend", () => isPaused = false);
-
-});
-
-/* =====================================================
-   STACKED MEDIA CAROUSEL – TRUE SEAMLESS LOOP
-===================================================== */
-
-document.querySelectorAll(".media-carousel").forEach(carousel => {
-
-  const track = carousel.querySelector(".media-track");
-  const slides = Array.from(track.children);
-  const dotsContainer = carousel.querySelector(".carousel-dots");
-
-  let index = 1;
-  let autoplay;
-
-  // Clone first & last
-  const firstClone = slides[0].cloneNode(true);
-  const lastClone = slides[slides.length - 1].cloneNode(true);
-
-  track.appendChild(firstClone);
-  track.insertBefore(lastClone, slides[0]);
-
-  const allSlides = Array.from(track.children);
-
-  function slideWidth() {
-    return allSlides[0].offsetWidth + 30;
-  }
-
-  function setPosition(animate = true) {
-    track.style.transition = animate
-      ? "transform .6s cubic-bezier(.22,1,.36,1)"
-      : "none";
-
-    track.style.transform = `translateX(-${index * slideWidth()}px)`;
-
-    updateDots();
-  }
-
-  function updateDots() {
-    dotsContainer.querySelectorAll("button").forEach((dot, i) => {
-      dot.classList.toggle("active", i === index - 1);
-    });
-  }
-
-  function nextSlide() {
-    index++;
-    setPosition(true);
-  }
-
-  // When slide finishes moving
-  track.addEventListener("transitionend", () => {
-
-    // If we are on fake last slide
-    if (index === allSlides.length - 1) {
-      index = 1;
-      setPosition(false);
-    }
-
-    // If we are on fake first slide
-    if (index === 0) {
-      index = slides.length;
-      setPosition(false);
-    }
-
-  });
-
-  function startAutoplay() {
-    autoplay = setInterval(nextSlide, 4000);
-  }
-
-  function stopAutoplay() {
-    clearInterval(autoplay);
-  }
-
-  // Dots
-  slides.forEach((_, i) => {
-    const dot = document.createElement("button");
-    dot.addEventListener("click", () => {
-      index = i + 1;
-      setPosition(true);
-    });
-    dotsContainer.appendChild(dot);
-  });
-
-  // Autoplay only in viewport
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) startAutoplay();
-      else stopAutoplay();
-    });
-  }, { threshold: 0.4 });
-
-  observer.observe(carousel);
-
-  // Initial position (immediately at real first slide)
-  setPosition(false);
-
-});
 
 
 const videos = document.querySelectorAll('.video-box video');
@@ -484,3 +362,38 @@ videos.forEach(video => {
   });
 
 })();
+
+/* =====================================================
+   DRAG SCROLL – MEDIA CAROUSEL
+===================================================== */
+
+document.querySelectorAll(".media-track").forEach(track => {
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  track.addEventListener("mousedown", (e) => {
+    isDown = true;
+    track.classList.add("dragging");
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+
+  track.addEventListener("mouseleave", () => {
+    isDown = false;
+  });
+
+  track.addEventListener("mouseup", () => {
+    isDown = false;
+  });
+
+  track.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.2;
+    track.scrollLeft = scrollLeft - walk;
+  });
+
+});
