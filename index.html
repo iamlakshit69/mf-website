@@ -54,33 +54,59 @@
 
     <!-- ========================= HERO ========================== -->
     <header class="hero section section--hero" id="hero">
-      <div class="container hero-grid">
+
+      <!-- Background Video Layer -->
+      <div class="hero-bg">
+
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="Assets/hero-poster.webp"
+        >
+          <source src="Assets/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Overlay for readability -->
+        <div class="hero-overlay"></div>
+
+      </div>
+
+      <!-- Foreground Content -->
+      <div class="container hero-content">
 
         <div class="hero-text">
+
           <h1>
             Hör auf zu hoffen<br>
             <em class="hero-emphasis">und fang an zu wissen.</em>
           </h1>
 
           <p class="hero-lead text-wide">
-            Wenn du alle Trends durch hast, aber dein Gewicht und deine Hoffnung am selben Punkt stehen: Beende das Experimentieren alle 7 Tage. Lerne endlich, wie dein Körper wirklich funktioniert, um durch Struktur die Freiheit zu erreichen, die du mit Diäten niemals finden wirst.
+            Wenn du alle Trends durch hast, aber dein Gewicht und deine Hoffnung am selben Punkt stehen:
+            Beende das Experimentieren alle 7 Tage.
+            Lerne endlich, wie dein Körper wirklich funktioniert,
+            um durch Struktur die Freiheit zu erreichen,
+            die du mit Diäten niemals finden wirst.
           </p>
 
           <div class="hero-actions">
             <a href="Bookings Page/index.html" class="btn btn-primary btn-lg">
-              Wie es funktioniert
+              Jetzt starten
             </a>
             <a href="#method" class="btn btn-outline btn-lg">
               Wie es funktioniert
             </a>
           </div>
-        </div>
 
-        <div class="hero-visual">
-          <div class="visual-box"></div>
         </div>
 
       </div>
+
     </header>
 
 
@@ -347,15 +373,16 @@
      TESTIMONIALS
 ===================================================== -->
 
+<!-- =====================================================
+     TESTIMONIALS
+===================================================== -->
+
 <section class="section section--testimonial" id="testimonials">
 
   <div class="container">
 
     <div class="testimonial-header center">
       <h2>Ergebnisse</h2>
-      <!-- <p class="text-wide">
-        Keine Diäten. Kein Neustart. Sondern echte Transformation.
-      </p> -->
     </div>
 
     <!-- ================= AMER ================= -->
@@ -375,10 +402,12 @@
         <div class="media-track">
 
           <div class="media-box video-box">
-            <video controls playsinline preload="metadata" width="100%">
-              <source src="https://drive.google.com/uc?export=download&id=1gkhxPnPisI0oinEfTiLi9IQmZOOtk611" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+            <div class="video-wrapper">
+              <video class="testimonial-video" autoplay muted playsinline preload="metadata">
+                <source src="Assets/amer.mp4" type="video/mp4">
+              </video>
+              <div class="video-overlay"></div>
+            </div>
           </div>
 
           <div class="media-box">
@@ -390,10 +419,12 @@
           </div>
 
         </div>
+
         <div class="carousel-dots"></div>
       </div>
 
     </div>
+
 
     <!-- ================= EMRE ================= -->
     <div class="testimonial-card">
@@ -413,9 +444,12 @@
         <div class="media-track">
 
           <div class="media-box video-box">
-            <video muted loop playsinline preload="metadata">
-              <source src="Assets/emre-video.mp4" type="video/mp4">
-            </video>
+            <div class="video-wrapper">
+              <video class="testimonial-video" autoplay muted playsinline preload="metadata">
+                <source src="Assets/emre.mp4" type="video/mp4">
+              </video>
+              <div class="video-overlay"></div>
+            </div>
           </div>
 
           <div class="media-box">
@@ -427,10 +461,12 @@
           </div>
 
         </div>
+
         <div class="carousel-dots"></div>
       </div>
 
     </div>
+
 
     <!-- ================= HARIS ================= -->
     <div class="testimonial-card">
@@ -450,9 +486,12 @@
         <div class="media-track">
 
           <div class="media-box video-box">
-            <video muted loop playsinline preload="metadata">
-              <source src="Assets/haris-video.mp4" type="video/mp4">
-            </video>
+            <div class="video-wrapper">
+              <video class="testimonial-video" autoplay muted playsinline preload="metadata">
+                <source src="Assets/haris.mp4" type="video/mp4">
+              </video>
+              <div class="video-overlay"></div>
+            </div>
           </div>
 
           <div class="media-box">
@@ -464,15 +503,15 @@
           </div>
 
         </div>
+
         <div class="carousel-dots"></div>
       </div>
 
     </div>
-  
+
   </div>
 
 </section>
-
 <!-- ========================= FAQ ========================== -->
 <section class="section section--faq" id="faq">
   <div class="container faq-header center">
