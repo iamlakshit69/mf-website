@@ -2125,3 +2125,121 @@ p + p {
     width: 100%;
   }
 }
+/* =========================================
+   MEDIA CAROUSEL STRUCTURE
+========================================= */
+
+.media-carousel {
+  position: relative;
+  overflow: visible; /* allow arrows outside */
+}
+
+.media-track {
+  position: relative; /* anchor arrows */
+}
+
+/* =========================================
+   ARROWS – BASE
+========================================= */
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
+
+  transition: all 0.25s ease;
+}
+
+.carousel-arrow:hover {
+  background: var(--green-accent);
+  color: #0f2b1e;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* =========================================
+   DESKTOP POSITIONING
+========================================= */
+
+.carousel-arrow.prev {
+  left: -60px;   /* outside content */
+}
+
+.carousel-arrow.next {
+  right: -60px;
+}
+
+/* =========================================
+   TABLET ADJUSTMENT
+========================================= */
+
+@media (max-width: 1100px) {
+  .carousel-arrow.prev {
+    left: -30px;
+  }
+
+  .carousel-arrow.next {
+    right: -30px;
+  }
+}
+
+/* =========================================
+   MOBILE POSITIONING
+========================================= */
+
+@media (max-width: 768px) {
+
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    opacity: 0.9;
+  }
+
+  .carousel-arrow.prev {
+    left: 8px;   /* move inside */
+  }
+
+  .carousel-arrow.next {
+    right: 8px;
+  }
+}
+
+.testimonial-video {
+  display: block;     /* CRITICAL */
+}
+.video-wrapper {
+  line-height: 0;     /* removes text baseline space */
+}
+
+.testimonial-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.video-wrapper {
+  overflow: hidden;
+  background: #000;
+}
