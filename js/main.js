@@ -261,26 +261,6 @@ function initMobileNavbar() {
 
 
 
-const videos = document.querySelectorAll('.video-box video');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const video = entry.target;
-
-    if (entry.isIntersecting) {
-      video.play();
-    } else {
-      video.pause();
-    }
-  });
-}, {
-  threshold: 0.6
-});
-
-videos.forEach(video => {
-  observer.observe(video);
-});
-
 
 /* =====================================================
    FOUNDER IMAGE FADE CAROUSEL
@@ -436,3 +416,51 @@ document.querySelectorAll(".media-track").forEach(track => {
   });
 
 })();
+
+
+
+/* =====================================================
+   HERO VIDEO CONTROLLER (Refined)
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const video = document.querySelector(".hero-video");
+  if (!video) return;
+
+  // Enforce autoplay-safe attributes
+  video.muted = true;
+  video.playsInline = true;
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+
+  function tryPlay() {
+    const promise = video.play();
+    if (promise !== undefined) {
+      promise.catch(() => {});
+    }
+  }
+
+  // Play when ready
+  if (video.readyState >= 2) {
+    tryPlay();
+  } else {
+    video.addEventListener("loadeddata", tryPlay, { once: true });
+  }
+
+  /* Pause when tab hidden */
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      video.pause();
+    } else {
+      tryPlay();
+    }
+  });
+
+  /* Respect reduced motion */
+  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (motionQuery.matches) {
+    video.pause();
+  }
+
+});

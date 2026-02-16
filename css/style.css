@@ -1978,3 +1978,150 @@ p + p {
     transparent
   );
 }
+
+
+/* =====================================================
+   TESTIMONIAL VIDEO – TRUE 9:16 VERSION
+===================================================== */
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;   /* FIXED */
+  max-width: 380px;       /* prevents it becoming huge */
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+}
+
+.testimonial-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+/* =====================================================
+   HERO – VIDEO BACKGROUND
+===================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: clamp(160px, 20vh, 220px); /* keep navbar spacing */
+}
+
+/* ================= Background Layer ================= */
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+/* Subtle cinematic zoom */
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* ================= Overlay ================= */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.85) 0%,
+      rgba(0,0,0,.7) 40%,
+      rgba(0,0,0,.35) 70%,
+      rgba(0,0,0,.55) 100%
+    );
+}
+
+/* ================= Content Layer ================= */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text {
+  max-width: 700px;
+}
+
+/* Improve readability on video */
+
+.hero-text h1 {
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  line-height: 1.1;
+  text-shadow: 0 8px 30px rgba(0,0,0,.6);
+}
+
+.hero-lead {
+  margin-top: 1.8em;
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  line-height: 1.8;
+  text-shadow: 0 4px 20px rgba(0,0,0,.6);
+}
+
+/* Buttons spacing */
+
+.hero-actions {
+  margin-top: 2.8em;
+  display: flex;
+  gap: var(--gap-sm);
+  flex-wrap: wrap;
+}
+
+/* ================= Mobile Optimization ================= */
+
+@media (max-width: 768px) {
+
+  .hero {
+    min-height: 90vh;
+    padding-top: 140px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,.8) 0%,
+        rgba(0,0,0,.6) 50%,
+        rgba(0,0,0,.85) 100%
+      );
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
