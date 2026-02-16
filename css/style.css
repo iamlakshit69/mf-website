@@ -90,9 +90,9 @@ ul { list-style: none; }
 }
 .skip-link:focus { top: 20px; }
 
-section[id] {
+/*section[id] {
   scroll-margin-top: 120px;
-}
+}*/
 
 /* =====================================================
    LAYOUT
@@ -2242,4 +2242,15 @@ p + p {
 .video-wrapper {
   overflow: hidden;
   background: #000;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;   /* prevents accidental focus */
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
 }
