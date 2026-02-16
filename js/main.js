@@ -213,7 +213,7 @@ function initMobileNavbar() {
 
   (function enhanceAnchorScroll() {
 
-    const anchorLinks = document.querySelectorAll("a[href^='#']");
+    const anchorLinks = document.querySelectorAll(".nav-links a[href^='#']");
     if (!anchorLinks.length) return;
 
     anchorLinks.forEach(link => {
