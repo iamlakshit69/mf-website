@@ -378,6 +378,38 @@ document.querySelectorAll(".media-track").forEach(track => {
 
 });
 
+document.querySelectorAll(".media-carousel").forEach(carousel => {
+
+  const track = carousel.querySelector(".media-track");
+  const prevBtn = carousel.querySelector(".prev");
+  const nextBtn = carousel.querySelector(".next");
+
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const scrollAmount = () => {
+    const box = track.querySelector(".media-box");
+    return box ? box.offsetWidth + 30 : 300; // 30 = gap
+  };
+
+  function updateButtons() {
+    prevBtn.disabled = track.scrollLeft <= 5;
+    nextBtn.disabled =
+      track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+  });
+
+  nextBtn.addEventListener("click", () => {
+    track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+  });
+
+  track.addEventListener("scroll", updateButtons);
+
+  updateButtons();
+});
+
 /* =====================================================
    DECISION – PREMIUM INTERACTION
 ===================================================== */
@@ -462,5 +494,82 @@ document.addEventListener("DOMContentLoaded", () => {
   if (motionQuery.matches) {
     video.pause();
   }
+
+});
+
+/* =====================================================
+   TESTIMONIAL CAROUSEL + VIDEO CONTROLLER
+===================================================== */
+
+document.querySelectorAll(".media-carousel").forEach(carousel => {
+
+  const track = carousel.querySelector(".media-track");
+
+  /* ---------- Subtle Scroll Hint (per carousel) ---------- */
+
+  if (track) {
+    setTimeout(() => {
+      track.scrollBy({ left: 24, behavior: "smooth" });
+
+      setTimeout(() => {
+        track.scrollBy({ left: -24, behavior: "smooth" });
+      }, 400);
+
+    }, 800);
+  }
+
+});
+
+
+/* =====================================================
+   TESTIMONIAL VIDEO – CLEAN STATE CONTROL
+===================================================== */
+
+document.querySelectorAll(".testimonial-video").forEach(video => {
+
+  const wrapper = video.closest(".video-wrapper");
+  const soundBtn = wrapper.querySelector(".video-sound-btn");
+
+  if (!wrapper || !soundBtn) return;
+
+  /* ---------- VIDEO CLICK (play / pause / first unmute) ---------- */
+
+  wrapper.addEventListener("click", (e) => {
+
+    if (e.target === soundBtn) return;
+
+    // Pause other videos ONLY when starting this one
+    if (video.paused) {
+      document.querySelectorAll(".testimonial-video").forEach(v => {
+        if (v !== video) {
+          v.pause();
+          v.closest(".video-wrapper")?.classList.remove("active");
+        }
+      });
+    }
+
+    wrapper.classList.add("active");
+
+    // First interaction → unmute but don't pause others
+    if (video.muted) {
+      video.muted = false;
+      soundBtn.textContent = "🔊";
+      video.play();
+      return;
+    }
+
+    video.paused ? video.play() : video.pause();
+  });
+
+  /* ---------- SOUND BUTTON (ONLY MUTE TOGGLE) ---------- */
+
+  soundBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    video.muted = !video.muted;
+    soundBtn.textContent = video.muted ? "🔇" : "🔊";
+
+    // IMPORTANT: do NOT pause anything here
+  });
 
 });
