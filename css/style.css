@@ -2254,3 +2254,38 @@ p + p {
   position: absolute;
   inset: 0;
 }
+
+.footer-social .social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.social-links a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+
+  transition: all .25s ease;
+}
+
+.social-links a svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--ink-main);
+  transition: fill .25s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-3px);
+  border-color: var(--green-accent);
+}
+
+.social-links a:hover svg {
+  fill: var(--green-accent);
+}
