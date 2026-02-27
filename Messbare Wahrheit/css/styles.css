@@ -1,0 +1,843 @@
+/* =====================================================
+   DESIGN TOKENS (IDENTICAL TO HOMEPAGE)
+===================================================== */
+:root {
+
+    --bg-page: #0f2b1e;
+    --bg-base: #0f2b1e;
+    --bg-alt: #123424;
+    --bg-emphasis: #0c2318;
+  
+    --ink-strong: #ffffff;
+    --ink-main: #eaf5ee;
+    --ink-muted: #cfe5da;
+  
+    --green-accent: #bae63e;
+    --green-accent-hover: #a9d934;
+  
+    --font-heading: "Playfair Display", serif;
+    --font-body: "Inter", sans-serif;
+  
+    --fs-h1: clamp(2.6rem, 6vw, 4.4rem);
+    --fs-h2: clamp(2rem, 4vw, 2.8rem);
+    --fs-h3: clamp(1.2rem, 2.5vw, 1.5rem);
+    --fs-body: clamp(1.05rem, 2vw, 1.1rem);
+    --fs-small: 0.9rem;
+  
+    --lh-body: 1.75;
+    --lh-heading: 1.15;
+  
+    --section-pad: clamp(100px, 12vh, 150px);
+    --gap-xl: clamp(80px, 8vw, 120px);
+    --gap-lg: clamp(60px, 6vw, 90px);
+    --gap-md: clamp(36px, 4vw, 56px);
+    --gap-sm: clamp(20px, 3vw, 28px);
+  
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+    --radius-pill: 999px;
+  
+    --container: 1180px;
+  }
+  
+  
+  /* =====================================================
+     RESET
+  ===================================================== */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    background: var(--bg-page);
+    color: var(--ink-main);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  
+  
+  /* =====================================================
+     LAYOUT SYSTEM
+  ===================================================== */
+  .container {
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: clamp(20px, 4vw, 32px);
+  }
+  
+  .section {
+    padding-block: var(--section-pad);
+  }
+  
+  .center {
+    text-align: center;
+  }
+  
+  .text-wide {
+    max-width: 70ch;
+    margin-inline: auto;
+  }
+  
+  
+  /* =====================================================
+     TYPOGRAPHY
+  ===================================================== */
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--ink-strong);
+    line-height: var(--lh-heading);
+  }
+  
+  h1 { font-size: var(--fs-h1); margin-bottom: .7em; }
+  h2 { font-size: var(--fs-h2); margin-bottom: 1em; }
+  h3 { font-size: var(--fs-h3); margin-bottom: .7em; }
+  
+  p {
+    color: var(--ink-muted);
+    max-width: 70ch;
+  }
+  
+  p + p {
+    margin-top: 1.6em;
+  }
+  
+  .section-label {
+    font-size: var(--fs-small);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green-accent);
+    opacity: .9;
+  }
+  
+  
+  /* =====================================================
+     BUTTON SYSTEM (IDENTICAL)
+  ===================================================== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-pill);
+    font-weight: 500;
+    transition: all .25s ease;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background: var(--green-accent);
+    color: #0f2b1e;
+    padding: 15px 36px;
+    box-shadow: 0 14px 32px rgba(0,0,0,.3);
+  }
+  
+  .btn-primary:hover {
+    background: var(--green-accent-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 22px 40px rgba(0,0,0,.35);
+  }
+  
+ /* =====================================================
+   NAVBAR – EXACT MATCH (NO SCALING)
+===================================================== */
+
+.navbar {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(var(--container) + clamp(40px, 8vw, 64px));
+    max-width: calc(100% - 40px);
+    height: 64px;
+    z-index: 100;
+  
+    background: rgba(20, 48, 35, 0.9);
+    backdrop-filter: blur(14px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255,255,255,.06);
+    box-shadow: 0 14px 32px rgba(0,0,0,.2);
+  
+    transition: all .3s ease;
+  }
+  
+  .navbar.scrolled {
+    background: rgba(15, 35, 25, 0.95);
+    box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  }
+  
+  /* =========================================
+     INNER WRAPPER
+  ========================================= */
+  
+  .nav-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: clamp(20px, 4vw, 32px);
+  }
+  
+  /* =========================================
+     LOGO
+  ========================================= */
+  
+  .logo img {
+    height: 34px;
+  }
+  
+  /* =========================================
+     NAV LINKS
+  ========================================= */
+  
+  .nav-links {
+    display: flex;
+    gap: clamp(24px, 4vw, 36px);
+  }
+  
+  .nav-links a {
+    font-size: var(--fs-small);
+    letter-spacing: .5px;
+    color: rgba(255,255,255,.75);
+    transition: color .2s ease;
+  }
+  
+  .nav-links a:hover {
+    color: var(--ink-main);
+  }
+  
+  /* =========================================
+     BUTTON
+  ========================================= */
+  
+  .btn-sm {
+    padding: 10px 18px;
+    font-size: var(--fs-small);
+  }
+  
+  .btn {
+    flex-shrink: 0;
+  }
+  
+  /* =========================================
+     MOBILE
+  ========================================= */
+  
+  @media (max-width: 768px) {
+  
+    .nav-links {
+      display: none;
+    }
+  
+    .navbar[data-state="hidden"] {
+      transform: translate(-50%, -140%);
+      transition: transform 220ms ease;
+    }
+  
+    .navbar[data-state="visible"] {
+      transform: translate(-50%, 0);
+      transition: transform 260ms ease;
+    }
+  
+  }
+/* =====================================================
+   AUTHORITY INTRO – CLEAN PROFESSIONAL VERSION
+   Exact Client Copy | Mobile First
+===================================================== */
+
+.section--authority-intro {
+  background: linear-gradient(
+    180deg,
+    var(--bg-base),
+    #0d261a
+  );
+  padding-top: clamp(160px, 18vh, 220px);
+}
+
+/* =========================================
+   WRAPPER
+========================================= */
+
+.authority {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(60px, 8vw, 100px);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.authority-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.authority-eyebrow {
+  font-size: var(--fs-small);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green-accent);
+  opacity: .9;
+}
+
+.authority-title {
+  font-size: clamp(2.4rem, 8vw, 4.2rem);
+  line-height: 1.08;
+  max-width: 22ch;
+}
+
+/* =========================================
+   BODY COPY
+========================================= */
+
+.authority-body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.authority-argument {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.authority-argument p {
+  max-width: 65ch;
+  line-height: 1.9;
+  color: var(--ink-muted);
+  font-size: clamp(1.05rem, 2.6vw, 1.12rem);
+}
+
+/* Stronger first paragraph */
+
+.authority-argument p:first-child {
+  color: var(--ink-main);
+  font-size: clamp(1.1rem, 3vw, 1.2rem);
+}
+
+/* =========================================
+   TRANSITION TO 4 SÄULEN
+========================================= */
+
+.authority-transition {
+  margin-top: clamp(40px, 6vw, 80px);
+  padding-top: clamp(40px, 6vw, 70px);
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.authority-transition h2 {
+  max-width: 26ch;
+}
+
+.authority-transition p {
+  max-width: 65ch;
+  line-height: 1.9;
+  color: var(--ink-muted);
+}
+
+/* =========================================
+   DESKTOP ENHANCEMENT
+========================================= */
+
+@media (min-width: 900px) {
+
+  .authority {
+    max-width: 900px;
+  }
+
+  .authority-title {
+    max-width: 18ch;
+  }
+
+  .authority-transition {
+    margin-top: 100px;
+  }
+
+}
+  /* =====================================================
+     VISUAL BOX MODULE
+  ===================================================== */
+  .mw-visual-box {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: linear-gradient(
+      145deg,
+      rgba(255,255,255,.03),
+      rgba(0,0,0,.2)
+    );
+    box-shadow:
+      0 25px 60px rgba(0,0,0,.4),
+      inset 0 0 0 1px rgba(255,255,255,.05);
+    padding: 20px;
+  }
+  
+ /* =====================================================
+   4 SÄULEN – DOSSIER LAYOUT
+   Mobile First
+===================================================== */
+
+.section--pillars {
+  background: var(--bg-base);
+  padding-top: clamp(100px, 12vh, 140px);
+}
+
+/* Wrapper */
+
+.pillars {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(90px, 10vw, 140px);
+}
+
+/* =====================================================
+   EACH DOSSIER BLOCK
+===================================================== */
+
+.pillar-dossier {
+  padding-bottom: clamp(70px, 8vw, 100px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.pillar-dossier:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Header */
+
+.pillar-header {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pillar-index {
+  font-size: var(--fs-small);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green-accent);
+  opacity: .9;
+}
+
+.pillar-title {
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.1;
+  max-width: 22ch;
+}
+
+.pillar-sub {
+  display: block;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-family: var(--font-body);
+  color: var(--ink-muted);
+  margin-top: 8px;
+}
+
+/* =====================================================
+   CONTENT BODY
+===================================================== */
+
+.pillar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 70ch;
+}
+
+.pillar-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
+  color: var(--ink-strong);
+  margin-top: 10px;
+}
+
+.pillar-content p {
+  line-height: 1.9;
+  font-size: clamp(1.05rem, 2.6vw, 1.12rem);
+  color: var(--ink-muted);
+}
+
+/* Stronger first paragraph in each block */
+
+.pillar-content p:first-of-type {
+  color: var(--ink-main);
+}
+
+/* =====================================================
+   LIST STYLE (Clinical Clean)
+===================================================== */
+
+.pillar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 0;
+}
+
+.pillar-list li {
+  list-style: none;
+  position: relative;
+  padding-left: 22px;
+  line-height: 1.8;
+  color: var(--ink-muted);
+}
+
+.pillar-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  box-shadow: 0 0 0 4px rgba(186,230,62,.1);
+}
+
+/* =====================================================
+   OPTIONAL CLINICAL QUOTE
+===================================================== */
+
+.pillar-content blockquote {
+  padding: 24px 30px;
+  border-left: 3px solid var(--green-accent);
+  background: rgba(255,255,255,.03);
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--ink-main);
+}
+
+/* =====================================================
+   DESKTOP ENHANCEMENT
+===================================================== */
+
+@media (min-width: 1000px) {
+
+  .pillar-dossier {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 80px;
+  }
+
+  .pillar-header {
+    position: sticky;
+    top: 140px;
+    align-self: start;
+  }
+
+  .pillar-content {
+    max-width: 65ch;
+  }
+
+}
+  
+  /* =====================================================
+     METRIC MODULE
+  ===================================================== */
+  .mw-metric-group {
+    display: flex;
+    gap: var(--gap-md);
+    margin: 2em 0;
+    flex-wrap: wrap;
+  }
+  
+  .mw-metric-box {
+    padding: 20px 28px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(
+      145deg,
+      rgba(186,230,62,.08),
+      rgba(0,0,0,.2)
+    );
+    border: 1px solid rgba(186,230,62,.2);
+    min-width: 160px;
+  }
+  
+  .mw-metric-number {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--green-accent);
+    display: block;
+  }
+  
+  .mw-metric-label {
+    font-size: var(--fs-small);
+    color: var(--ink-muted);
+  }
+  
+  
+  /* =====================================================
+     CLINICAL QUOTE MODULE
+  ===================================================== */
+  .clinical-quote {
+    margin: 2em 0;
+    padding: 24px 30px;
+    border-left: 3px solid var(--green-accent);
+    background: rgba(255,255,255,.03);
+    font-style: italic;
+  }
+  
+/* =====================================================
+   INDIVIDUELLES PROTOKOLL – PREMIUM CLOSE
+   Mobile First
+===================================================== */
+
+.section--individual-protocol {
+  background: linear-gradient(
+    180deg,
+    #0c2318,
+    #08150f
+  );
+  padding-block: clamp(120px, 14vh, 180px);
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+/* Wrapper */
+
+.protocol {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(50px, 8vw, 90px);
+  max-width: 900px;
+}
+
+/* Header */
+
+.protocol-header {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.protocol-eyebrow {
+  font-size: var(--fs-small);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green-accent);
+  opacity: .9;
+}
+
+.protocol-title {
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  line-height: 1.1;
+  max-width: 18ch;
+}
+
+/* Body */
+
+.protocol-body {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.protocol-body p {
+  max-width: 65ch;
+  line-height: 1.9;
+  font-size: clamp(1.05rem, 2.6vw, 1.12rem);
+  color: var(--ink-muted);
+}
+
+/* Slight emphasis on first paragraph */
+
+.protocol-body p:first-child {
+  color: var(--ink-main);
+}
+
+/* CTA */
+
+.protocol-cta {
+  margin-top: 20px;
+}
+
+.protocol-cta .btn {
+  padding: 18px 46px;
+  font-size: 1.05rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
+}
+
+/* =====================================================
+   DESKTOP ENHANCEMENT
+===================================================== */
+
+@media (min-width: 1000px) {
+
+  .protocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .protocol-header {
+    max-width: 320px;
+  }
+
+  .protocol-cta {
+    grid-column: 1 / -1;
+    margin-top: 40px;
+  }
+
+}
+
+/* =====================================================
+   FOOTER – EXACT HOMEPAGE VERSION
+===================================================== */
+
+.footer {
+    background: linear-gradient(
+      180deg,
+      #0d2318,
+      #08150f
+    );
+    padding-top: 100px;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 80px;
+    padding-bottom: 80px;
+  }
+  
+  /* Brand */
+  
+  .footer-brand h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: var(--ink-strong);
+  }
+  
+  .footer-brand p {
+    color: var(--ink-muted);
+    max-width: 420px;
+    line-height: 1.7;
+  }
+  
+  /* Columns */
+  
+  .footer-column h4 {
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--green-accent);
+  }
+  
+  .footer-column ul {
+    display: grid;
+    gap: 12px;
+  }
+  
+  .footer-column a {
+    color: rgba(255,255,255,.7);
+    transition: color .25s ease;
+  }
+  
+  .footer-column a:hover {
+    color: var(--ink-strong);
+  }
+  
+  /* Social */
+  
+  .footer-social .social-links {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .social-links a {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    transition: all .25s ease;
+  }
+  
+  .social-links a svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--ink-main);
+    transition: fill .25s ease;
+  }
+  
+  .social-links a:hover {
+    transform: translateY(-3px);
+    border-color: var(--green-accent);
+  }
+  
+  .social-links a:hover svg {
+    fill: var(--green-accent);
+  }
+  
+  /* Bottom */
+  
+  .footer-bottom {
+    text-align: center;
+    padding: 25px 0;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,.5);
+    border-top: 1px solid rgba(255,255,255,.05);
+  }
+  
+  /* Mobile */
+  
+  @media (max-width: 900px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+  
+    .footer-brand p {
+      max-width: 100%;
+    }
+  }
+  
+  /* =====================================================
+     RESPONSIVE MODULE
+  ===================================================== */
+  @media (max-width: 1100px) {
+    .framework-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .authority-layout,
+    .pillar-layout {
+      grid-template-columns: 1fr;
+    }
+  
+    .framework-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+  }
