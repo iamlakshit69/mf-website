@@ -1,575 +1,761 @@
+/* =====================================================
+   METABOLIC FREEDOM – main.js  (fixed)
+===================================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =====================================================
-     ENVIRONMENT
-  ===================================================== */
 
-  const navbar = document.querySelector(".navbar");
-  if (!navbar) return;
+  /* ===================================================
+     UTILITIES
+  =================================================== */
 
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const mobileQuery = window.matchMedia("(max-width: 768px)");
-
-  let cleanupCurrentMode = null;
-
-
-
-  /* =====================================================
-     INITIALIZE CONTROLLER
-  ===================================================== */
-
-  function init() {
-
-    if (cleanupCurrentMode) {
-      cleanupCurrentMode();
-      cleanupCurrentMode = null;
-    }
-
-    const isMobile = mobileQuery.matches;
-
-    if (!isMobile) {
-      cleanupCurrentMode = initDesktopNavbar();
-    } else if (!prefersReducedMotion.matches) {
-      cleanupCurrentMode = initMobileNavbar();
-    }
-  }
-
-  init();
-
-  mobileQuery.addEventListener("change", debounce(init, 120));
-  window.addEventListener("resize", debounce(init, 120));
-
-
-
-  /* =====================================================
-     DESKTOP NAVBAR (Threshold Based)
-  ===================================================== */
-
-  function initDesktopNavbar() {
-
-    let lastState = null;
-    let threshold = getThreshold();
-
-    function getThreshold() {
-      return Math.round(window.innerHeight * 0.06);
-    }
-
-    function update() {
-      const y = window.scrollY || document.documentElement.scrollTop;
-      const nextState = y > threshold ? "scrolled" : "top";
-
-      if (nextState === lastState) return;
-
-      navbar.classList.toggle("scrolled", nextState === "scrolled");
-      lastState = nextState;
-    }
-
-    function handleResize() {
-      threshold = getThreshold();
-      update();
-    }
-
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", handleResize);
-
-    update();
-
-    return function cleanup() {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", handleResize);
-      navbar.classList.remove("scrolled");
+  function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), delay);
     };
   }
 
-/* =====================================================
-   MOBILE NAVBAR (Distance Based – Smooth)
-===================================================== */
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
 
-function initMobileNavbar() {
 
-  let lastScrollY = window.scrollY;
-  let scrollStartY = window.scrollY;
-  let direction = null;
-  let navState = "visible";
-  let cooldown = false;
+  /* ===================================================
+     1. NAVBAR — desktop scroll darken + mobile hide/show
+  =================================================== */
 
-  const TOP_LOCK = 80;        // always visible near top
-  const DISTANCE = 60;        // px required before toggle
-  const COOLDOWN_TIME = 300;  // ms after toggle
+  const navbar = document.querySelector(".navbar");
 
-  function setNav(state) {
-    if (navState === state || cooldown) return;
+  if (navbar) {
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    let navCleanup = null;
 
-    navbar.dataset.state = state;
-    navState = state;
+    function initNavbar() {
+      if (navCleanup) { navCleanup(); navCleanup = null; }
+      navCleanup = mobileQuery.matches
+        ? initMobileNavbar()
+        : initDesktopNavbar();
+    }
 
-    cooldown = true;
-    setTimeout(() => cooldown = false, COOLDOWN_TIME);
+    function initDesktopNavbar() {
+      let lastState = null;
+      let threshold = Math.round(window.innerHeight * 0.06);
+
+      function update() {
+        const next = window.scrollY > threshold ? "scrolled" : "top";
+        if (next === lastState) return;
+        navbar.classList.toggle("scrolled", next === "scrolled");
+        lastState = next;
+      }
+
+      function onResize() {
+        threshold = Math.round(window.innerHeight * 0.06);
+        update();
+      }
+
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", onResize);
+      update();
+
+      return () => {
+        window.removeEventListener("scroll", update);
+        window.removeEventListener("resize", onResize);
+        navbar.classList.remove("scrolled");
+      };
+    }
+
+    function initMobileNavbar() {
+      let lastScrollY  = window.scrollY;
+      let scrollStartY = window.scrollY;
+      let direction    = null;
+      let navState     = "visible";
+      let cooldown     = false;
+
+      const TOP_LOCK    = 80;
+      const DISTANCE    = 60;
+      const COOLDOWN_MS = 300;
+
+      function setState(state) {
+        if (navState === state || cooldown) return;
+        navbar.dataset.state = state;
+        navState = state;
+        cooldown = true;
+        setTimeout(() => { cooldown = false; }, COOLDOWN_MS);
+      }
+
+      function onScroll() {
+        const y = window.scrollY;
+
+        if (y < TOP_LOCK) {
+          setState("visible");
+          lastScrollY = scrollStartY = y;
+          return;
+        }
+
+        const delta = y - lastScrollY;
+        if (delta > 0 && direction !== "down") {
+          direction = "down"; scrollStartY = y;
+        } else if (delta < 0 && direction !== "up") {
+          direction = "up"; scrollStartY = y;
+        }
+
+        if (Math.abs(y - scrollStartY) > DISTANCE) {
+          setState(direction === "down" ? "hidden" : "visible");
+          scrollStartY = y;
+        }
+
+        lastScrollY = y;
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      navbar.addEventListener("focusin", () => setState("visible"));
+
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        navbar.dataset.state = "visible";
+      };
+    }
+
+    initNavbar();
+    mobileQuery.addEventListener("change", debounce(initNavbar, 120));
   }
 
-  function onScroll() {
 
-    const currentY = window.scrollY;
+  /* ===================================================
+     2. REVEAL ON SCROLL
+  =================================================== */
 
-    // Always show near top
-    if (currentY < TOP_LOCK) {
-      setNav("visible");
-      lastScrollY = currentY;
-      scrollStartY = currentY;
-      return;
-    }
+  const revealEls = document.querySelectorAll(".reveal");
 
-    const delta = currentY - lastScrollY;
+  if (revealEls.length) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
 
-    // Determine direction
-    if (delta > 0) {
-      if (direction !== "down") {
-        direction = "down";
-        scrollStartY = currentY;
-      }
-    } else if (delta < 0) {
-      if (direction !== "up") {
-        direction = "up";
-        scrollStartY = currentY;
-      }
-    }
-
-    const distanceScrolled = Math.abs(currentY - scrollStartY);
-
-    if (distanceScrolled > DISTANCE) {
-
-      if (direction === "down") {
-        setNav("hidden");
-      }
-
-      if (direction === "up") {
-        setNav("visible");
-      }
-
-      scrollStartY = currentY;
-    }
-
-    lastScrollY = currentY;
+    revealEls.forEach((el) => revealObserver.observe(el));
   }
 
-  window.addEventListener("scroll", onScroll, { passive: true });
 
-  navbar.addEventListener("focusin", () => {
-    setNav("visible");
-  });
-
-  return function cleanup() {
-    window.removeEventListener("scroll", onScroll);
-    navbar.dataset.state = "visible";
-  };
-}
-
-
-
-
-
-  /* =====================================================
-     SECTION-AWARE NAV (Intersection Observer)
-  ===================================================== */
+  /* ===================================================
+     3. SECTION-AWARE NAV LINKS
+  =================================================== */
 
   (function initSectionObserver() {
-
     if (!("IntersectionObserver" in window)) return;
 
     const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
-    const sections = document.querySelectorAll("section[id]");
+    const sections = document.querySelectorAll("main section[id], main header[id]");
 
     if (!navLinks.length || !sections.length) return;
 
-    const observer = new IntersectionObserver(entries => {
-
-      entries.forEach(entry => {
-
-        if (!entry.isIntersecting) return;
-
-        const id = entry.target.id;
-
-        navLinks.forEach(link => {
-          const isActive = link.getAttribute("href") === `#${id}`;
-          link.classList.toggle("active", isActive);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          navLinks.forEach((link) => {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") === `#${id}`
+            );
+          });
         });
+      },
+      { rootMargin: "-30% 0px -50% 0px", threshold: 0 }
+    );
 
-      });
-
-    }, {
-      rootMargin: "-35% 0px -45% 0px",
-      threshold: 0
-    });
-
-    sections.forEach(section => observer.observe(section));
-
+    sections.forEach((s) => observer.observe(s));
   })();
 
 
+  /* ===================================================
+     4. SMOOTH ANCHOR SCROLL
+  =================================================== */
 
-  /* =====================================================
-     SMOOTH ANCHOR SCROLL (Refined Offset)
-  ===================================================== */
+  (function initSmoothScroll() {
+    document.querySelectorAll("a[href^='#']").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (!href || href.length <= 1) return;
 
-  (function enhanceAnchorScroll() {
-
-    const anchorLinks = document.querySelectorAll(".nav-links a[href^='#']");
-    if (!anchorLinks.length) return;
-
-    anchorLinks.forEach(link => {
-
-      link.addEventListener("click", e => {
-
-        const targetId = link.getAttribute("href");
-        if (!targetId || targetId.length <= 1) return;
-
-        const target = document.querySelector(targetId);
+        const target = document.querySelector(href);
         if (!target) return;
 
         e.preventDefault();
 
-        const offset = 110;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        const offset = (navbar ? navbar.offsetHeight : 64) + 20;
+        const y = target.getBoundingClientRect().top + window.scrollY - offset;
 
         window.scrollTo({
-          top,
-          behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+          top: y,
+          behavior: prefersReducedMotion.matches ? "auto" : "smooth",
         });
-
       });
-
     });
-
   })();
 
 
-
-  /* =====================================================
-     UTILITIES
-  ===================================================== */
-
-  function debounce(fn, delay) {
-    let timer;
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(fn, delay);
-    };
-  }
-
-});
-
-
-
-
-
-/* =====================================================
-   FOUNDER IMAGE FADE CAROUSEL
-===================================================== */
-
-(function initFounderCarousel() {
-
-  const portrait = document.querySelector(".founder-portrait");
-  if (!portrait) return;
-
-  const images = portrait.querySelectorAll("img");
-  if (images.length < 2) return;
-
-  let index = 0;
-
-  setInterval(() => {
-
-    images[index].classList.remove("active");
-    index = (index + 1) % images.length;
-    images[index].classList.add("active");
-
-  }, 4000);
-
-})();
-
-/* =====================================================
-   FAQ – PREMIUM SPLIT LOGIC
-===================================================== */
-
-(function initPremiumFAQ() {
-
-  const categories = document.querySelectorAll(".faq-cat");
-  const groups = document.querySelectorAll(".faq-group");
-
-  if (!categories.length || !groups.length) return;
-
-  /* ----------------------------
-     CATEGORY SWITCH
-  ---------------------------- */
-
-  categories.forEach(button => {
-    button.addEventListener("click", () => {
-
-      const target = button.dataset.cat;
-
-      // Activate category button
-      categories.forEach(btn => btn.classList.remove("active"));
-      button.classList.add("active");
-
-      // Show correct group
-      groups.forEach(group => {
-        group.classList.toggle("active", group.dataset.group === target);
-      });
-
-    });
-  });
-
-
-  /* ----------------------------
-     ACCORDION (Exclusive)
-  ---------------------------- */
-
-  document.querySelectorAll(".faq-question").forEach(question => {
-
-    question.addEventListener("click", () => {
-
-      const item = question.closest(".faq-item");
-      const group = question.closest(".faq-group");
-
-      // Close others inside same group
-      group.querySelectorAll(".faq-item").forEach(i => {
-        if (i !== item) i.classList.remove("active");
-      });
-
-      item.classList.toggle("active");
-
-    });
-
-  });
-
-})();
-
-/* =====================================================
-   DRAG SCROLL – MEDIA CAROUSEL
-===================================================== */
-
-document.querySelectorAll(".media-track").forEach(track => {
-
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  track.addEventListener("mousedown", (e) => {
-    isDown = true;
-    track.classList.add("dragging");
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-  });
-
-  track.addEventListener("mouseleave", () => {
-    isDown = false;
-  });
-
-  track.addEventListener("mouseup", () => {
-    isDown = false;
-  });
-
-  track.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    const walk = (x - startX) * 1.2;
-    track.scrollLeft = scrollLeft - walk;
-  });
-
-});
-
-document.querySelectorAll(".media-carousel").forEach(carousel => {
-
-  const track = carousel.querySelector(".media-track");
-  const prevBtn = carousel.querySelector(".prev");
-  const nextBtn = carousel.querySelector(".next");
-
-  if (!track || !prevBtn || !nextBtn) return;
-
-  const scrollAmount = () => {
-    const box = track.querySelector(".media-box");
-    return box ? box.offsetWidth + 30 : 300; // 30 = gap
-  };
-
-  function updateButtons() {
-    prevBtn.disabled = track.scrollLeft <= 5;
-    nextBtn.disabled =
-      track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
-  }
-
-  prevBtn.addEventListener("click", () => {
-    track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
-  });
-
-  nextBtn.addEventListener("click", () => {
-    track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
-  });
-
-  track.addEventListener("scroll", updateButtons);
-
-  updateButtons();
-});
-
-/* =====================================================
-   DECISION – PREMIUM INTERACTION
-===================================================== */
-
-(function initDecisionPremium() {
-
-  const panels = document.querySelectorAll(".decision-panel");
-  if (!panels.length) return;
-
-  panels.forEach(panel => {
-
-    panel.addEventListener("mouseenter", () => {
-
-      panels.forEach(p => {
-        if (p !== panel) {
-          p.style.transform = "scale(0.97)";
-          p.style.filter = "brightness(0.7)";
-        }
-      });
-
-      panel.style.transform = "scale(1.05)";
-      panel.style.zIndex = "3";
-
-    });
-
-    panel.addEventListener("mouseleave", () => {
-
-      panels.forEach(p => {
-        p.style.transform = "";
-        p.style.filter = "";
-        p.style.zIndex = "";
-      });
-
-    });
-
-  });
-
-})();
-
-
-
-/* =====================================================
-   HERO VIDEO CONTROLLER (Refined)
-===================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const video = document.querySelector(".hero-video");
-  if (!video) return;
-
-  // Enforce autoplay-safe attributes
-  video.muted = true;
-  video.playsInline = true;
-  video.setAttribute("muted", "");
-  video.setAttribute("playsinline", "");
-
-  function tryPlay() {
-    const promise = video.play();
-    if (promise !== undefined) {
-      promise.catch(() => {});
+  /* ===================================================
+     5. FOUNDER IMAGE CAROUSEL
+     — Pauses when section is off-screen
+     — Reads interval from data-interval attribute
+  =================================================== */
+
+  (function initFounderCarousel() {
+    const portrait = document.querySelector(".founder-portrait");
+    if (!portrait) return;
+
+    const images = portrait.querySelectorAll("img");
+    if (images.length < 2) return;
+
+    const interval = parseInt(portrait.dataset.interval, 10) || 6500;
+    let index  = 0;
+    let timer  = null;
+    let paused = false;
+
+    function next() {
+      if (paused) return;
+      images[index].classList.remove("active");
+      index = (index + 1) % images.length;
+      images[index].classList.add("active");
     }
-  }
 
-  // Play when ready
-  if (video.readyState >= 2) {
-    tryPlay();
-  } else {
-    video.addEventListener("loadeddata", tryPlay, { once: true });
-  }
+    function start() {
+      if (timer) return;
+      timer = setInterval(next, interval);
+    }
 
-  /* Pause when tab hidden */
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      video.pause();
+    function stop() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    if (prefersReducedMotion.matches) return; // don't run at all
+
+    const section = portrait.closest("section");
+    if (section && "IntersectionObserver" in window) {
+      const visibilityObserver = new IntersectionObserver(
+        ([entry]) => {
+          paused = !entry.isIntersecting;
+          paused ? stop() : start();
+        },
+        { threshold: 0.1 }
+      );
+      visibilityObserver.observe(section);
     } else {
-      tryPlay();
+      start();
     }
-  });
-
-  /* Respect reduced motion */
-  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (motionQuery.matches) {
-    video.pause();
-  }
-
-});
-
-/* =====================================================
-   TESTIMONIAL CAROUSEL + VIDEO CONTROLLER
-===================================================== */
-
-document.querySelectorAll(".media-carousel").forEach(carousel => {
-
-  const track = carousel.querySelector(".media-track");
-
-  /* ---------- Subtle Scroll Hint (per carousel) ---------- */
-
-  if (track) {
-    setTimeout(() => {
-      track.scrollBy({ left: 24, behavior: "smooth" });
-
-      setTimeout(() => {
-        track.scrollBy({ left: -24, behavior: "smooth" });
-      }, 400);
-
-    }, 800);
-  }
-
-});
+  })();
 
 
-/* =====================================================
-   TESTIMONIAL VIDEO – CLEAN STATE CONTROL
-===================================================== */
+  /* ===================================================
+     6. HERO VIDEO CONTROLLER
+  =================================================== */
 
-document.querySelectorAll(".testimonial-video").forEach(video => {
+  (function initHeroVideo() {
+    const video = document.querySelector(".hero-video");
+    if (!video) return;
 
-  const wrapper = video.closest(".video-wrapper");
-  const soundBtn = wrapper.querySelector(".video-sound-btn");
+    // CSS already has opacity:1 on the video so the poster shows
+    // immediately. JS just needs to make sure it plays.
+    video.muted      = true;
+    video.playsInline = true;
 
-  if (!wrapper || !soundBtn) return;
+    function tryPlay() {
+      const p = video.play();
+      if (p !== undefined) p.catch(() => {});
+    }
 
-  /* ---------- VIDEO CLICK (play / pause / first unmute) ---------- */
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener("loadeddata", tryPlay, { once: true });
+    }
 
-  wrapper.addEventListener("click", (e) => {
+    document.addEventListener("visibilitychange", () => {
+      document.hidden ? video.pause() : tryPlay();
+    });
 
-    if (e.target === soundBtn) return;
+    if (prefersReducedMotion.matches) video.pause();
+  })();
 
-    // Pause other videos ONLY when starting this one
-    if (video.paused) {
-      document.querySelectorAll(".testimonial-video").forEach(v => {
-        if (v !== video) {
-          v.pause();
-          v.closest(".video-wrapper")?.classList.remove("active");
+
+  /* ===================================================
+     7. TESTIMONIAL VIDEOS
+     FIX: after load(), attach canplay listener and call play()
+          so videos actually start without user interaction.
+     FIX: sound icon state driven by CSS via data-muted attribute
+          (CSS rules now handle show/hide of SVG icons).
+  =================================================== */
+
+  (function initTestimonialVideos() {
+    const wrappers = document.querySelectorAll(".video-wrapper");
+    if (!wrappers.length) return;
+
+    // ── Helper: attempt play, catching the NotAllowedError that
+    //    browsers throw if autoplay policy blocks it ──────────────
+    function safePlay(video) {
+      const p = video.play();
+      if (p !== undefined) {
+        p.catch((err) => {
+          // Autoplay blocked — video stays paused, poster shows.
+          // User can tap to start. No console error needed.
+          if (err.name !== "NotAllowedError") {
+            console.warn("Video play failed:", err);
+          }
+        });
+      }
+    }
+
+    // ── Lazy-load + autoplay when wrapper enters viewport ────────
+    if ("IntersectionObserver" in window) {
+      const loadObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const video = entry.target.querySelector(".testimonial-video");
+            if (!video) return;
+
+            if (video.preload === "none") {
+              // FIX: set preload then attach canplay so we play
+              //      as soon as enough data is buffered.
+              video.preload = "metadata";
+              video.load();
+
+              video.addEventListener("canplay", () => {
+                safePlay(video);
+              }, { once: true });
+            }
+
+            loadObserver.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "200px 0px" }
+      );
+
+      wrappers.forEach((w) => loadObserver.observe(w));
+    }
+
+    // ── Per-wrapper interactivity ────────────────────────────────
+    wrappers.forEach((wrapper) => {
+      const video    = wrapper.querySelector(".testimonial-video");
+      const soundBtn = wrapper.querySelector(".video-sound-btn");
+      if (!video || !soundBtn) return;
+
+      // Sync the data-muted attribute CSS uses to toggle icon visibility
+      function syncMuteUI() {
+        const muted = video.muted;
+        soundBtn.dataset.muted = muted ? "true" : "false";
+        soundBtn.setAttribute(
+          "aria-label",
+          muted ? "Ton einschalten" : "Ton ausschalten"
+        );
+      }
+
+      // Initial state — video starts muted per HTML attribute
+      syncMuteUI();
+
+      // ── Tap/click on video area: play/pause + first-tap unmute ──
+      wrapper.addEventListener("click", (e) => {
+        // Sound button has its own handler — don't double-fire
+        if (e.target === soundBtn || soundBtn.contains(e.target)) return;
+
+        // Pause all OTHER videos first
+        document.querySelectorAll(".testimonial-video").forEach((v) => {
+          if (v !== video && !v.paused) {
+            v.pause();
+            const w = v.closest(".video-wrapper");
+            if (w) {
+              w.classList.add("paused");
+              w.classList.remove("active");
+            }
+          }
+        });
+
+        wrapper.classList.add("active");
+
+        // First tap: unmute and ensure playing
+        if (video.muted) {
+          video.muted = false;
+          syncMuteUI();
+
+          if (video.readyState >= 2) {
+            safePlay(video);
+          } else {
+            // Video not loaded yet — force load then play
+            video.preload = "auto";
+            video.load();
+            video.addEventListener("canplay", () => safePlay(video), { once: true });
+          }
+          return;
         }
+
+        // Subsequent taps: toggle play/pause
+        if (video.paused) {
+          if (video.readyState >= 2) {
+            safePlay(video);
+          } else {
+            video.preload = "auto";
+            video.load();
+            video.addEventListener("canplay", () => safePlay(video), { once: true });
+          }
+          wrapper.classList.remove("paused");
+        } else {
+          video.pause();
+          wrapper.classList.add("paused");
+        }
+      });
+
+      // ── Sound button: mute toggle only, never pause ──────────
+      soundBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        syncMuteUI();
+
+        // If toggling unmute and video is paused, start playing
+        if (!video.muted && video.paused) {
+          if (video.readyState >= 2) {
+            safePlay(video);
+          } else {
+            video.preload = "auto";
+            video.load();
+            video.addEventListener("canplay", () => safePlay(video), { once: true });
+          }
+        }
+      });
+
+      // ── Keep paused class in sync with actual video state ────
+      video.addEventListener("pause", () => {
+        wrapper.classList.add("paused");
+      });
+      video.addEventListener("play", () => {
+        wrapper.classList.remove("paused");
+      });
+
+      // ── Pause when video scrolls out of view ─────────────────
+      if ("IntersectionObserver" in window) {
+        const pauseObserver = new IntersectionObserver(
+          ([entry]) => {
+            if (!entry.isIntersecting && !video.paused) {
+              video.pause();
+            }
+          },
+          { threshold: 0.2 }
+        );
+        pauseObserver.observe(wrapper);
+      }
+    });
+  })();
+
+
+  /* ===================================================
+     8. MEDIA CAROUSELS
+     — Arrow navigation
+     — Drag to scroll
+     — Dot indicators
+     FIX: scroll hint fires via IntersectionObserver (not
+          a fixed timeout) so it only runs when the carousel
+          is actually in the viewport.
+  =================================================== */
+
+  document.querySelectorAll(".media-carousel").forEach((carousel) => {
+    const track         = carousel.querySelector(".media-track");
+    const prevBtn       = carousel.querySelector(".carousel-arrow.prev");
+    const nextBtn       = carousel.querySelector(".carousel-arrow.next");
+    const dotsContainer = carousel.querySelector(".carousel-dots");
+
+    if (!track) return;
+
+    const boxes = track.querySelectorAll(".media-box");
+
+    // ── Build dot buttons ────────────────────────────────────────
+    if (dotsContainer && boxes.length) {
+      boxes.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.setAttribute("aria-label", `Element ${i + 1}`);
+        if (i === 0) dot.classList.add("active");
+        dotsContainer.appendChild(dot);
+
+        dot.addEventListener("click", () => {
+          boxes[i].scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        });
       });
     }
 
-    wrapper.classList.add("active");
+    const dots = dotsContainer
+      ? dotsContainer.querySelectorAll("button")
+      : [];
 
-    // First interaction → unmute but don't pause others
-    if (video.muted) {
-      video.muted = false;
-      soundBtn.textContent = "🔊";
-      video.play();
-      return;
+    // ── Arrow scroll amount = box width + gap ───────────────────
+    function getScrollAmount() {
+      const box = track.querySelector(".media-box");
+      return box ? box.offsetWidth + 24 : 300;
     }
 
-    video.paused ? video.play() : video.pause();
+    // ── Update arrow disabled state + active dot ─────────────────
+    function updateState() {
+      if (prevBtn) prevBtn.disabled = track.scrollLeft <= 4;
+      if (nextBtn) {
+        nextBtn.disabled =
+          track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      }
+
+      if (!dots.length) return;
+
+      // Find the box whose centre is closest to the track centre
+      const centre = track.scrollLeft + track.clientWidth / 2;
+      let closest     = 0;
+      let closestDist = Infinity;
+
+      boxes.forEach((box, i) => {
+        const boxCentre = box.offsetLeft + box.offsetWidth / 2;
+        const dist      = Math.abs(boxCentre - centre);
+        if (dist < closestDist) { closestDist = dist; closest = i; }
+      });
+
+      dots.forEach((dot, i) =>
+        dot.classList.toggle("active", i === closest)
+      );
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        track.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        track.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+      });
+    }
+
+    track.addEventListener("scroll", updateState, { passive: true });
+    updateState();
+
+    // ── Drag to scroll ────────────────────────────────────────────
+    let isDown  = false;
+    let startX  = 0;
+    let startSL = 0;
+    let didDrag = false;
+
+    track.addEventListener("mousedown", (e) => {
+      isDown  = true;
+      didDrag = false;
+      startX  = e.pageX - track.offsetLeft;
+      startSL = track.scrollLeft;
+      track.style.userSelect = "none";
+    });
+
+    track.addEventListener("mouseleave", () => {
+      isDown = false;
+      track.style.userSelect = "";
+    });
+
+    track.addEventListener("mouseup", () => {
+      isDown = false;
+      track.style.userSelect = "";
+    });
+
+    track.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      didDrag = true;
+      const x    = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.2;
+      track.scrollLeft = startSL - walk;
+    });
+
+    // Prevent click-through after drag (e.g. accidentally clicking a video)
+    track.addEventListener("click", (e) => {
+      if (didDrag) {
+        e.preventDefault();
+        e.stopPropagation();
+        didDrag = false;
+      }
+    }, true);
+
+    // ── FIX: Scroll hint via IntersectionObserver ─────────────────
+    // Only fires when the carousel is actually on screen, and only once.
+    if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
+      const hintObserver = new IntersectionObserver(
+        ([entry], obs) => {
+          if (!entry.isIntersecting) return;
+
+          // Small delay after becoming visible, then nudge and return
+          setTimeout(() => {
+            track.scrollBy({ left: 32, behavior: "smooth" });
+            setTimeout(() => {
+              track.scrollBy({ left: -32, behavior: "smooth" });
+            }, 420);
+          }, 700);
+
+          obs.disconnect(); // Only hint once
+        },
+        { threshold: 0.75 } // carousel must be mostly visible
+      );
+      hintObserver.observe(carousel);
+    }
   });
 
-  /* ---------- SOUND BUTTON (ONLY MUTE TOGGLE) ---------- */
 
-  soundBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
+  /* ===================================================
+     9. FAQ — Category switch + accordion
+     FIX: category scroll hint uses IntersectionObserver
+          so it only fires when FAQ is actually visible.
+     FIX: double rAF for reliable animation re-trigger.
+     FIX: smooth max-height with measured scrollHeight.
+  =================================================== */
 
-    video.muted = !video.muted;
-    soundBtn.textContent = video.muted ? "🔇" : "🔊";
+  (function initFAQ() {
+    const categories = document.querySelectorAll(".faq-cat");
+    const groups     = document.querySelectorAll(".faq-group");
 
-    // IMPORTANT: do NOT pause anything here
-  });
+    if (!categories.length || !groups.length) return;
 
-});
+    // ── Category switch ──────────────────────────────────────────
+    categories.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.cat;
+
+        categories.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        groups.forEach((g) => {
+          const isTarget = g.dataset.group === target;
+          g.classList.remove("active");
+
+          if (isTarget) {
+            // Double rAF lets browser register the removal before re-adding,
+            // ensuring the CSS fade animation re-triggers every time.
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                g.classList.add("active");
+              });
+            });
+          }
+        });
+      });
+    });
+
+    // ── FIX: Category scroll hint — only when FAQ is in view ────
+    const catWrapper = document.querySelector(".faq-categories");
+    if (catWrapper && !prefersReducedMotion.matches) {
+      const faqSection = document.querySelector(".section--faq");
+
+      if (faqSection && "IntersectionObserver" in window) {
+        const faqHintObserver = new IntersectionObserver(
+          ([entry], obs) => {
+            if (!entry.isIntersecting) return;
+
+            setTimeout(() => {
+              catWrapper.scrollBy({ left: 60, behavior: "smooth" });
+              setTimeout(() => {
+                catWrapper.scrollBy({ left: -60, behavior: "smooth" });
+              }, 500);
+            }, 400);
+
+            obs.disconnect();
+          },
+          { threshold: 0.3 }
+        );
+        faqHintObserver.observe(faqSection);
+      }
+    }
+
+    // ── Accordion ────────────────────────────────────────────────
+    document.querySelectorAll(".faq-question").forEach((question) => {
+      question.addEventListener("click", () => {
+        const item   = question.closest(".faq-item");
+        const answer = item.querySelector(".faq-answer");
+        const group  = question.closest(".faq-group");
+
+        // Close any already-open sibling
+        group.querySelectorAll(".faq-item.active").forEach((open) => {
+          if (open !== item) {
+            open.classList.remove("active");
+          }
+        });
+
+        const isOpening = !item.classList.contains("active");
+        item.classList.toggle("active");
+
+        // Set exact pixel height so CSS transition is smooth
+        if (isOpening && answer) {
+          answer.style.setProperty(
+            "--faq-answer-height",
+            answer.scrollHeight + "px"
+          );
+        }
+      });
+    });
+  })();
+
+
+  /* ===================================================
+     10. DECISION PANELS — touch device tap-toggle
+     CSS handles hover on pointer devices via @media (hover:hover).
+     JS adds tap-toggle for touch devices only.
+  =================================================== */
+
+  (function initDecisionTouch() {
+    if (window.matchMedia("(hover: hover)").matches) return;
+
+    const panels = document.querySelectorAll(".decision-panel");
+    if (!panels.length) return;
+
+    function resetAll() {
+      panels.forEach((p) => {
+        p.classList.remove("tap-active");
+        p.style.transform = "";
+        p.style.filter    = "";
+      });
+    }
+
+    panels.forEach((panel) => {
+      panel.setAttribute("tabindex", "0"); // keyboard accessible on touch devices
+
+      function activate() {
+        const isActive = panel.classList.contains("tap-active");
+        resetAll();
+
+        if (!isActive) {
+          panel.classList.add("tap-active");
+          panel.style.transform = "scale(1.02)";
+          panel.style.filter    = "brightness(1.06)";
+
+          panels.forEach((p) => {
+            if (p !== panel) {
+              p.style.transform = "scale(.98)";
+              p.style.filter    = "brightness(.72)";
+            }
+          });
+        }
+      }
+
+      panel.addEventListener("click",   activate);
+      panel.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          activate();
+        }
+      });
+    });
+  })();
+
+
+}); // end DOMContentLoaded

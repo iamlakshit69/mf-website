@@ -20,7 +20,6 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 
-
   <!-- Page Specific Styles -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
@@ -50,239 +49,424 @@
 
   <main>
 
-    <!-- ===================================================== -->
-<!-- AUTHORITY INTRO – CLIENT COPY EXACT -->
-<!-- ===================================================== -->
-<section class="section section--authority-intro">
+    <!-- ============================================================
+         SECTION 1 – AUTHORITY INTRO
+    ============================================================ -->
+    <section class="section section--authority-intro">
+      <div class="container authority">
 
-  <div class="container authority">
+        <!-- Eyebrow + Headline -->
+        <header class="authority-header reveal">
+          <span class="authority-eyebrow">Messbare Wahrheit</span>
+          <h1 class="authority-title">
+            Was zeigt dein Körper uns – und wie bauen wir darauf auf?
+          </h1>
+        </header>
 
-    <!-- Header -->
-    <header class="authority-header">
-      <span class="authority-eyebrow">Messbare Wahrheit</span>
+        <!-- Body Copy -->
+        <div class="authority-body reveal reveal--delay-1">
+          <div class="authority-argument">
+            <p class="authority-lead">
+              Viele Menschen probieren Diäten, Trends oder Nahrungsergänzungsmittel aus und bleiben trotzdem ohne echte Veränderung. Nicht, weil sie etwas falsch machen, sondern weil ihnen die Grundlage fehlt: objektive Daten über ihren eigenen Körper.
+            </p>
+            <p>
+              Gesundheit entsteht nicht durch Vermutungen, sondern durch Klarheit. Wenn du verstehst, wie dein Stoffwechsel wirklich arbeitet, kannst du Entscheidungen treffen, die zu dir passen – präzise, individuell und nachhaltig.
+            </p>
+            <p>
+              Die Frage lautet deshalb nicht: „Welche Diät ist die beste?" Sondern: „Was zeigt dein Körper uns – und wie können wir darauf aufbauen?"
+            </p>
+          </div>
+        </div>
 
-      <h1 class="authority-title">
-        Hör auf zu fragen, welche Diät die beste ist.
-      </h1>
-    </header>
+        <!-- Transition Bridge -->
+        <div class="authority-transition reveal reveal--delay-2">
+          <div class="authority-transition-inner">
+            <div class="authority-transition-text">
+              <h2>Warum Daten den Unterschied machen</h2>
+              <p>
+                Jeder Mensch reagiert anders. Lebensstil, Genetik, Stress, Ernährung und Umwelt formen ein einzigartiges biologisches Profil. Ohne Messwerte bleibt vieles unsichtbar – und Entscheidungen basieren auf Hoffnung statt auf Fakten.
+              </p>
+              <p>
+                Mit ausgewählten Trockenbluttests schaffen wir eine Grundlage, die dir Orientierung gibt. Nicht medizinisch, nicht diagnostisch, sondern als objektive Momentaufnahme deiner aktuellen Stoffwechsel-Situation. So entsteht ein klarer Ausgangspunkt für deine persönliche Strategie.
+              </p>
+            </div>
 
-    <!-- Body Copy -->
-    <div class="authority-body">
+            <!-- Pillar Preview Pills -->
+            <div class="pillar-preview-pills">
+              <a href="#balance-test" class="pillar-pill">
+                <span class="pillar-pill-num">01</span>
+                <span class="pillar-pill-label">Fettsäure-Profil</span>
+              </a>
+              <a href="#vitamin-d" class="pillar-pill">
+                <span class="pillar-pill-num">02</span>
+                <span class="pillar-pill-label">Vitamin-D</span>
+              </a>
+              <a href="#darmgesundheit" class="pillar-pill">
+                <span class="pillar-pill-num">03</span>
+                <span class="pillar-pill-label">Darm-Marker</span>
+              </a>
+              <a href="#langzeit-blutzucker" class="pillar-pill">
+                <span class="pillar-pill-num">04</span>
+                <span class="pillar-pill-label">HbA1c</span>
+              </a>
+            </div>
 
-      <div class="authority-argument">
-
-        <p>
-          Ich werde oft gefragt: „Welche Diät funktioniert am besten?“ Meiner Meinung nach ist das schlichtweg die falsche Frage. Ernährung ist weit mehr als der nächste Trend oder die Zahl auf deiner Waage – sie ist der wichtigste Hebel, den du für ein langes und vitales Leben selbst in der Hand hast.
-        </p>
-
-        <p>
-          Die entscheidende Frage, die wir uns stattdessen stellen müssen, lautet: „Wie führen wir präzise Daten, klinische Analysen, gezielte Ernährung und hochwertige Nahrungsergänzungsmittel so zusammen, dass dein Körper sein volles Potenzial entfaltet?“
-        </p>
-
-        <p>
-          Statt zu hoffen, nutzen wir skandinavische Präzision, um die biologischen Fakten deines Körpers zu lesen. Gewinne die nötige Klarheit, um fundierte Entscheidungen zu treffen – basierend auf deinen Daten, nicht auf Vermutungen.
-        </p>
+          </div>
+        </div>
 
       </div>
+    </section>
 
+
+    <!-- ============================================================
+         SECTION 2 – 4 SÄULEN
+    ============================================================ -->
+    <section class="section section--pillars" id="framework">
+
+      <!-- Sticky Progress Bar (JS-driven) -->
+      <div class="pillars-progress" aria-hidden="true">
+        <div class="pillars-progress-bar"></div>
+        <div class="pillars-progress-steps">
+          <button class="progress-step progress-step--active" data-target="balance-test">01</button>
+          <button class="progress-step" data-target="vitamin-d">02</button>
+          <button class="progress-step" data-target="darmgesundheit">03</button>
+          <button class="progress-step" data-target="langzeit-blutzucker">04</button>
+        </div>
+      </div>
+
+      <div class="container pillars">
+
+        <!-- ================================================= -->
+        <!-- SÄULE 1 – BALANCE TEST -->
+        <!-- ================================================= -->
+        <article class="pillar-dossier" id="balance-test" data-pillar="1">
+
+          <div class="pillar-badge-row reveal">
+            <span class="pillar-badge">01</span>
+            <span class="pillar-badge-label">Zelluläre Klarheit</span>
+          </div>
+
+          <header class="pillar-header reveal reveal--delay-1">
+            <h2 class="pillar-title">Balance Test – Fettsäure-Profil</h2>
+            <p class="pillar-subtitle">
+              Das Verhältnis von Omega-6 zu Omega-3 beeinflusst biologische Prozesse, die du täglich spürst – aber selten messen lässt.
+            </p>
+          </header>
+
+          <div class="pillar-content">
+
+            <!-- Block 1 -->
+            <div class="pillar-block reveal reveal--delay-2">
+              <h3 class="pillar-block-title">Was dieser Test zeigt</h3>
+              <p>
+                Viele Menschen liegen heute deutlich über dem empfohlenen Bereich, was bestimmte Stoffwechselvorgänge belasten kann. In der Forschung werden ungünstige Verhältnisse häufig mit folgenden Bereichen in Verbindung gebracht:
+              </p>
+              <ul class="pillar-list">
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Eigenschaften der Zellmembranen,</strong> die beeinflussen, wie gut Stoffwechselprodukte hinein- und hinausgelangen.
+                  </div>
+                </li>
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Regulatorische Prozesse,</strong> die an Entzündungsmechanismen beteiligt sind.
+                  </div>
+                </li>
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Regeneration und Belastbarkeit,</strong> da bestimmte Omega-3-Fettsäuren an Reparatur- und Schutzmechanismen beteiligt sind.
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Block 2 -->
+            <div class="pillar-block reveal reveal--delay-3">
+              <h3 class="pillar-block-title">Was du damit gewinnst</h3>
+              <p>
+                Der Test zeigt, wie dein aktuelles Verhältnis aussieht und ob deine Versorgung bestimmte Prozesse optimal unterstützt. Er ersetzt keine medizinische Diagnose, schafft aber Orientierung, wo Ernährung und Lebensstil ansetzen können.
+              </p>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- ================================================= -->
+        <!-- SÄULE 2 – VITAMIN D -->
+        <!-- ================================================= -->
+        <article class="pillar-dossier" id="vitamin-d" data-pillar="2">
+
+          <div class="pillar-badge-row reveal">
+            <span class="pillar-badge">02</span>
+            <span class="pillar-badge-label">Hormonelle Präzision</span>
+          </div>
+
+          <header class="pillar-header reveal reveal--delay-1">
+            <h2 class="pillar-title">Vitamin-D-Status</h2>
+            <p class="pillar-subtitle">
+              Vitamin D spielt eine Rolle in vielen biologischen Funktionen. Niedrige Werte sind in der Bevölkerung weit verbreitet – besonders in den Wintermonaten.
+            </p>
+          </header>
+
+          <div class="pillar-content">
+
+            <!-- Block 1 -->
+            <div class="pillar-block reveal reveal--delay-2">
+              <h3 class="pillar-block-title">Was die Forschung beschreibt</h3>
+              <p>
+                Studien beschreiben Zusammenhänge zwischen niedrigen Vitamin-D-Spiegeln und mehreren biologischen Bereichen:
+              </p>
+              <ul class="pillar-list">
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Immunfunktionen,</strong> die Vitamin D als unterstützenden Faktor nutzen.
+                  </div>
+                </li>
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Knochenstoffwechsel,</strong> da Vitamin D an der Calcium-Regulation beteiligt ist.
+                  </div>
+                </li>
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Energie und Stimmung,</strong> da niedrige Werte häufig mit Müdigkeit oder reduzierter Belastbarkeit einhergehen.
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Block 2 -->
+            <div class="pillar-block reveal reveal--delay-3">
+              <h3 class="pillar-block-title">Was du damit gewinnst</h3>
+              <p>
+                Der Test zeigt, wie dein aktueller Spiegel aussieht, sodass du deine Versorgung gezielt anpassen kannst – ohne zu raten.
+              </p>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- ================================================= -->
+        <!-- SÄULE 3 – DARMGESUNDHEIT -->
+        <!-- ================================================= -->
+        <article class="pillar-dossier" id="darmgesundheit" data-pillar="3">
+
+          <div class="pillar-badge-row reveal">
+            <span class="pillar-badge">03</span>
+            <span class="pillar-badge-label">Das Leck in deinem System</span>
+          </div>
+
+          <header class="pillar-header reveal reveal--delay-1">
+            <h2 class="pillar-title">Darmbezogene Marker</h2>
+            <p class="pillar-subtitle">
+              Der Darm beeinflusst Verdauung, Immunsystem und Stoffwechsel. Veränderungen in diesem System können sich auf viele Bereiche auswirken.
+            </p>
+          </header>
+
+          <div class="pillar-content">
+
+            <!-- Block 1 -->
+            <div class="pillar-block reveal reveal--delay-2">
+              <h3 class="pillar-block-title">Was die Forschung beschreibt</h3>
+              <ul class="pillar-list">
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Veränderte Barrierefunktion,</strong> die das Immunsystem stärker fordern kann.
+                  </div>
+                </li>
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Ungleichgewichte im Darm-Ökosystem,</strong> die Energielevel und Wohlbefinden beeinflussen können.
+                  </div>
+                </li>
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Stoffwechselprodukte wie IPA, TRP oder KYN,</strong> die Hinweise geben, wie stabil bestimmte Prozesse ablaufen.
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Block 2 -->
+            <div class="pillar-block reveal reveal--delay-3">
+              <h3 class="pillar-block-title">Was du damit gewinnst</h3>
+              <p>
+                Der Test liefert Hinweise auf dein aktuelles Darm-Profil, ohne medizinische Diagnosen zu stellen. Er zeigt, welche Ernährungs- oder Lebensstilfaktoren besonders relevant sein könnten.
+              </p>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- ================================================= -->
+        <!-- SÄULE 4 – LANGZEIT BLUTZUCKER -->
+        <!-- ================================================= -->
+        <article class="pillar-dossier" id="langzeit-blutzucker" data-pillar="4">
+
+          <div class="pillar-badge-row reveal">
+            <span class="pillar-badge">04</span>
+            <span class="pillar-badge-label">Die Stoffwechsel-Falle</span>
+          </div>
+
+          <header class="pillar-header reveal reveal--delay-1">
+            <h2 class="pillar-title">HbA1c – Langzeit-Glukosemarker</h2>
+            <p class="pillar-subtitle">
+              Der HbA1c-Wert zeigt, wie dein Körper über mehrere Wochen mit Glukose umgegangen ist – ein Fenster in deinen langfristigen Stoffwechseltrend.
+            </p>
+          </header>
+
+          <div class="pillar-content">
+
+            <!-- Block 1 -->
+            <div class="pillar-block reveal reveal--delay-2">
+              <h3 class="pillar-block-title">Was die Forschung beschreibt</h3>
+              <p>
+                In der Forschung werden erhöhte Werte häufig mit folgenden Bereichen in Verbindung gebracht:
+              </p>
+              <ul class="pillar-list">
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Insulinresistenz,</strong> bei der Zellen weniger empfindlich auf Insulin reagieren.
+                  </div>
+                </li>
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Energie-Schwankungen,</strong> die sich auf Konzentration und Leistungsfähigkeit auswirken können.
+                  </div>
+                </li>
+                <li>
+                  <span class="pillar-list-icon" aria-hidden="true">—</span>
+                  <div>
+                    <strong>Belastung von Gefäßen und Nerven,</strong> wenn Werte über längere Zeit erhöht bleiben.
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Clinical Note -->
+            <div class="pillar-block reveal reveal--delay-3">
+              <blockquote>
+                Wir messen nach dem aktuellen Standard in mmol/mol für maximale klinische Präzision.
+              </blockquote>
+            </div>
+
+            <!-- Block 2 -->
+            <div class="pillar-block reveal reveal--delay-3">
+              <h3 class="pillar-block-title">Was du damit gewinnst</h3>
+              <p>
+                Der Test zeigt dir, wie stabil dein Glukoseverlauf in den letzten Wochen war. Er ersetzt keine medizinische Diagnose, hilft aber, Ernährung und Lebensstil gezielt auszurichten.
+              </p>
+            </div>
+
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 3 – INDIVIDUELLES PROTOKOLL
+    ============================================================ -->
+    <section class="section section--individual-protocol" id="protocol">
+      <div class="container protocol">
+
+        <header class="protocol-header reveal">
+          <span class="protocol-eyebrow">Dein individuelles Protokoll</span>
+          <h2 class="protocol-title">Echte Klarheit. Volle Orientierung.</h2>
+        </header>
+
+        <div class="protocol-body reveal reveal--delay-1">
+          <p class="protocol-lead">
+            Jeder Mensch bringt eine eigene Geschichte mit. Deshalb gibt es bei Metabolic Freedom keine Standard-Programme. Wir nutzen die Tests dort, wo sie sinnvoll sind, und konzentrieren uns auf die Bereiche, die für dich den größten Unterschied machen.
+          </p>
+          <p>
+            Wenn deine Ergebnisse vorliegen, arbeiten wir Schritt für Schritt mit dem, was dein Körper uns zeigt. Das schafft Klarheit, Orientierung und Selbstvertrauen – und nimmt das Rätselraten aus deiner Gesundheit.
+          </p>
+          <p>
+            Ein Weg, der zu dir passt.
+          </p>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="protocol-steps reveal reveal--delay-2">
+          <div class="protocol-step">
+            <span class="protocol-step-num">1</span>
+            <div class="protocol-step-body">
+              <strong>Analyse</strong>
+              <p>Wir bestimmen gemeinsam, welche Tests für dich sinnvoll sind.</p>
+            </div>
+          </div>
+          <div class="protocol-step-connector" aria-hidden="true"></div>
+          <div class="protocol-step">
+            <span class="protocol-step-num">2</span>
+            <div class="protocol-step-body">
+              <strong>Auswertung</strong>
+              <p>Deine Werte werden mit deinem Alltag und deinen Zielen verbunden.</p>
+            </div>
+          </div>
+          <div class="protocol-step-connector" aria-hidden="true"></div>
+          <div class="protocol-step">
+            <span class="protocol-step-num">3</span>
+            <div class="protocol-step-body">
+              <strong>Strategie</strong>
+              <p>Du erhältst einen klaren, realistischen Plan – ohne Druck, ohne Dogmen.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="protocol-cta reveal reveal--delay-3">
+          <a href="../Bookings Page/index.html" class="btn btn-primary btn-lg">
+            Individuelle Analyse starten
+          </a>
+          <p class="protocol-cta-note">Kostenfreies Erstgespräch · Keine Verpflichtung</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         STICKY BOTTOM CTA BAR
+    ============================================================ -->
+    <div class="sticky-cta" aria-label="Jetzt starten" data-state="hidden">
+      <div class="sticky-cta-inner">
+        <div class="sticky-cta-text">
+          <span class="sticky-cta-headline">Bereit für deine Analyse?</span>
+        </div>
+        <a href="../Bookings Page/index.html" class="btn btn-primary sticky-cta-btn">
+          Jetzt Starten
+        </a>
+      </div>
     </div>
 
-    <!-- Section Transition -->
-    <div class="authority-transition">
-
-      <h2>
-        Die 4 Säulen deiner biometrischen Analyse
-      </h2>
-
-      <p>
-        Um dein volles Potenzial freizuschalten, überlassen wir nichts dem Zufall. Wir nutzen vier spezialisierte Analyse-Verfahren, um die tiefsten Ebenen deines Stoffwechsels zu entschlüsseln. Das ist kein Standard-Check – das ist das Fundament für deine maßgeschneiderte Strategie.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ===================================================== -->
-<!-- 4 SÄULEN – BIOMETRISCHE ANALYSE -->
-<!-- ===================================================== -->
-<section class="section section--pillars">
-
-  <div class="container pillars">
-
-    <!-- ================================================= -->
-    <!-- SÄULE 1 -->
-    <!-- ================================================= -->
-    <article class="pillar-dossier" id="balance-test">
-
-      <header class="pillar-header">
-        <span class="pillar-index">Säule 1</span>
-        <h2 class="pillar-title">
-          Der BalanceTest
-          <span class="pillar-sub">(Zelluläre Klarheit)</span>
-        </h2>
-      </header>
-
-      <div class="pillar-content">
-
-        <h3 class="pillar-section-title">
-          Die unsichtbare Hürde
-        </h3>
-
-        <p>
-          Die meisten Menschen investieren bereits in ihre Gesundheit, erzielen aber keine spürbare Wirkung. Die Statistik ist eindeutig: Bis zu 97 % der Menschen haben ein kritisches Ungleichgewicht zwischen Omega-6 und Omega-3. In Europa liegt der Durchschnitt bei einem Verhältnis von 15:1, während dein Körper für echte Vitalität ein Verhältnis von 3:1 benötigt.
-        </p>
-
-        <h3 class="pillar-section-title">
-          Warum das für dich entscheidend ist:
-        </h3>
-
-        <ul class="pillar-list">
-          <li><strong>Nährstoff-Blockade:</strong> Hochwertige Nahrung und Ergänzungsmittel kommen gar nicht erst in der Zelle an.</li>
-          <li><strong>Abfall-Stau:</strong> Stoffwechselendprodukte können die Zelle nicht effizient verlassen.</li>
-          <li><strong>Stille Entzündungen:</strong> Dein Immunsystem und deine Regeneration arbeiten permanent gegen einen unsichtbaren Widerstand.</li>
-        </ul>
-
-        <h3 class="pillar-section-title">
-          Die Lösung: Messen statt Vermuten
-        </h3>
-
-        <p>
-          Mit diesem wissenschaftlich fundierten Trockenbluttest, den du anonym und einfach von zu Hause aus durchführst, erhalten wir dein präzises Fettsäureprofil. Innerhalb von drei Wochen kennen wir die Wahrheit über deine Biologie:
-        </p>
-
-        <ul class="pillar-list">
-          <li><strong>Zellmembran-Fluidität:</strong> Wir sehen schwarz auf weiß, wie durchlässig deine Zellen wirklich sind.</li>
-          <li><strong>Omega-3-Index:</strong> Wir messen deinen tatsächlichen Schutzstatus für Herz und Gehirn.</li>
-          <li><strong>Mentale Stärke:</strong> Wir analysieren die Basis für deine kognitive Leistungsfähigkeit.</li>
-        </ul>
-
-      </div>
-
-    </article>
-
-
-    <!-- ================================================= -->
-    <!-- SÄULE 2 (STRUCTURE READY – COPY INSERT SAME WAY) -->
-    <!-- ================================================= -->
-    <article class="pillar-dossier" id="vitamin-d">
-
-      <header class="pillar-header">
-        <span class="pillar-index">Säule 2</span>
-        <h2 class="pillar-title">
-          Hormonelle Präzision
-          <span class="pillar-sub">(Der Vitamin-D Test)</span>
-        </h2>
-      </header>
-
-      <div class="pillar-content">
-        <!-- Exact client copy for Säule 2 goes here -->
-      </div>
-
-    </article>
-
-
-    <!-- ================================================= -->
-    <!-- SÄULE 3 -->
-    <!-- ================================================= -->
-    <article class="pillar-dossier" id="darmgesundheit">
-
-      <header class="pillar-header">
-        <span class="pillar-index">Säule 3</span>
-        <h2 class="pillar-title">
-          Das Leck in deinem System
-          <span class="pillar-sub">(Der Test zur Darmgesundheit)</span>
-        </h2>
-      </header>
-
-      <div class="pillar-content">
-        <!-- Exact client copy for Säule 3 goes here -->
-      </div>
-
-    </article>
-
-
-    <!-- ================================================= -->
-    <!-- SÄULE 4 -->
-    <!-- ================================================= -->
-    <article class="pillar-dossier" id="langzeit-blutzucker">
-
-      <header class="pillar-header">
-        <span class="pillar-index">Säule 4</span>
-        <h2 class="pillar-title">
-          Die Stoffwechsel-Falle
-          <span class="pillar-sub">(Der Langzeit-Blutzuckertest)</span>
-        </h2>
-      </header>
-
-      <div class="pillar-content">
-        <!-- Exact client copy for Säule 4 goes here -->
-      </div>
-
-    </article>
-
-  </div>
-
-</section>
-<!-- ===================================================== -->
-<!-- INDIVIDUELLES PROTOKOLL – PRECISION CLOSE -->
-<!-- ===================================================== -->
-<section class="section section--individual-protocol" id="protocol">
-
-  <div class="container protocol">
-
-    <header class="protocol-header">
-      <span class="protocol-eyebrow">
-        Dein individuelles Protokoll
-      </span>
-
-      <h2 class="protocol-title">
-        Präzision statt Prinzip Hoffnung
-      </h2>
-    </header>
-
-    <div class="protocol-body">
-
-      <p>
-        Jeder Körper schreibt seine eigene Geschichte. Die vier Säulen der biometrischen Analyse sind unser Werkzeugkasten – aber sie sind kein starres Gesetz.
-      </p>
-
-      <p>
-        Dein Lebensstil, deine Genetik und deine Ziele sind absolut einzigartig. Deshalb testen wir nur dort, wo es für dich gerade wirklich Sinn ergibt.
-      </p>
-
-      <p>
-        Anstatt wahllos Zeit und Geld in Nahrungsergänzungsmittel zu investieren oder deine Ernährung auf gut Glück umzustellen, identifizieren wir die echten Hebel – basierend auf deinen Daten.
-      </p>
-
-    </div>
-
-    <div class="protocol-cta">
-      <a href="../Bookings Page/index.html" class="btn btn-primary btn-lg">
-        Individuelle Analyse starten
-      </a>
-    </div>
-
-  </div>
-
-</section>
-
+  </main>
 
   <!-- ========================= FOOTER ========================== -->
-  <!-- ========================= FOOTER ========================== -->
-<!-- ========================= FOOTER ========================== -->
-<footer class="footer">
+  <footer class="footer">
 
     <div class="container footer-inner">
-  
+
       <!-- Brand -->
       <div class="footer-brand">
         <h3>Metabolic Freedom</h3>
         <p>Innere Ruhe</p>
       </div>
-  
+
       <!-- Navigation -->
       <div class="footer-column">
         <h4>Navigation</h4>
@@ -294,7 +478,7 @@
           <li><a href="../index.html#faq">FAQ</a></li>
         </ul>
       </div>
-  
+
       <!-- Legal -->
       <div class="footer-column">
         <h4>Rechtliches</h4>
@@ -304,51 +488,42 @@
           <li><a href="../AGB/AGB.html">AGB</a></li>
         </ul>
       </div>
-  
+
       <!-- Social -->
       <div class="footer-column footer-social">
         <h4>Social</h4>
         <div class="social-links">
-  
-          <!-- Instagram -->
+
           <a href="https://www.instagram.com/amirhajdarevic"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="Instagram">
+             target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3.2A4.8 4.8 0 0 0 7.2 12 4.8 4.8 0 0 0 12 16.8 4.8 4.8 0 0 0 16.8 12 4.8 4.8 0 0 0 12 7.2zm0 2A2.8 2.8 0 0 1 14.8 12 2.8 2.8 0 0 1 12 14.8 2.8 2.8 0 0 1 9.2 12 2.8 2.8 0 0 1 12 9.2zm4.8-.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/>
             </svg>
           </a>
-  
-          <!-- Facebook -->
+
           <a href="https://www.facebook.com/share/1Ab24PWCSh/?mibextid=wwXIfr&ref=2"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="Facebook">
+             target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M13.5 22v-8h2.7l.4-3h-3.1V9c0-.9.3-1.6 1.6-1.6h1.7V4.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7v3h3.1v8h3.4z"/>
             </svg>
           </a>
-  
-          <!-- TikTok -->
+
           <a href="https://www.tiktok.com/@fitmitamir"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="TikTok">
+             target="_blank" rel="noopener noreferrer" aria-label="TikTok">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M16.5 2c.3 2.4 1.7 4.2 4 4.6v3c-1.6 0-3.2-.5-4.5-1.4V15a6 6 0 1 1-6-6c.4 0 .8 0 1.2.1v3.1c-.4-.2-.8-.3-1.2-.3a3 3 0 1 0 3 3V2h3.5z"/>
             </svg>
           </a>
-  
+
         </div>
       </div>
-  
+
     </div>
-  
+
     <div class="footer-bottom">
       © 2026 Metabolic Freedom. Alle Rechte vorbehalten.
     </div>
-  
+
   </footer>
 
   <script src="js/script.js" defer></script>
