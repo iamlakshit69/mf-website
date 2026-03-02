@@ -278,97 +278,275 @@
 
         </div>
 
-        <div class="method-bridge reveal">
+        <!-- <div class="method-bridge reveal">
           <p class="method-bridge-text">
             Schritt 02 beginnt mit echten Daten über deinen Körper.
           </p>
           <a href="#messbare-wahrheit" class="btn btn-ghost btn-sm">
             Mehr über die Analyse erfahren &rarr;
           </a>
-        </div>
+        </div> -->
 
       </div>
     </section>
 
 
-    <!-- ========================= MESSBARE WAHRHEIT ========================== -->
-    <section class="section section--mw-bridge" id="messbare-wahrheit">
-      <div class="container mw-bridge">
+<section class="section section--mw" id="messbare-wahrheit" aria-labelledby="mw-heading">
 
-        <div class="mw-bridge-header reveal">
-          <span class="mw-eyebrow">Messbare Wahrheit</span>
-          <h2 class="mw-title">
-            Wie wir Klarheit über deinen Körper schaffen
-          </h2>
-          <p class="mw-intro">
-            Jeder Mensch reagiert anders. Ohne Messwerte basieren
-            Entscheidungen auf Hoffnung statt auf Fakten. Mit ausgewählten
-            Trockenbluttests schaffen wir eine objektive Momentaufnahme
-            deiner aktuellen Stoffwechsel-Situation – der Ausgangspunkt
-            für deine persönliche Strategie.
-          </p>
+  <!-- ░░ decorative lab-grid overlay — styled purely in CSS ░░ -->
+  <div class="mw-grid-overlay" aria-hidden="true"></div>
+
+  <div class="container">
+
+    <!-- ─────────────────────────────────────────────────────────────
+         ① INTRO SPLIT — sticky headline (left) + copy (right)
+    ───────────────────────────────────────────────────────────────── -->
+    <div class="mw-intro-split">
+
+      <div class="mw-intro-left reveal">
+        <span class="mw-eyebrow">Messbare Wahrheit</span>
+
+        <h2 class="mw-heading" id="mw-heading">
+          Gesundheit<br>
+          entsteht nicht<br>
+          durch Vermutungen,<br>
+          <em class="mw-heading-em">sondern durch<br>Klarheit.</em>
+        </h2>
+
+        <!-- decorative vertical rule — CSS animated -->
+        <div class="mw-vert-rule" aria-hidden="true">
+          <span class="mw-vert-rule-line"></span>
         </div>
-
-        <div class="mw-pillars reveal reveal--delay-1">
-
-          <div class="mw-pillar-card">
-            <span class="mw-pillar-num">01</span>
-            <div class="mw-pillar-body">
-              <strong class="mw-pillar-name">Balance Test</strong>
-              <p class="mw-pillar-desc">
-                Dein Fettsäure-Profil zeigt, wie gut deine Zellen Nährstoffe
-                aufnehmen und Stoffwechselprodukte abgeben können.
-              </p>
-            </div>
-          </div>
-
-          <div class="mw-pillar-card">
-            <span class="mw-pillar-num">02</span>
-            <div class="mw-pillar-body">
-              <strong class="mw-pillar-name">Vitamin-D-Status</strong>
-              <p class="mw-pillar-desc">
-                Niedrige Werte sind weit verbreitet und beeinflussen
-                Immunsystem, Knochen und Energielevel direkt.
-              </p>
-            </div>
-          </div>
-
-          <div class="mw-pillar-card">
-            <span class="mw-pillar-num">03</span>
-            <div class="mw-pillar-body">
-              <strong class="mw-pillar-name">Darmbezogene Marker</strong>
-              <p class="mw-pillar-desc">
-                Spezifische Stoffwechselprodukte zeigen, wie stabil dein
-                Darm-Ökosystem arbeitet und wo es Optimierungsbedarf gibt.
-              </p>
-            </div>
-          </div>
-
-          <div class="mw-pillar-card">
-            <span class="mw-pillar-num">04</span>
-            <div class="mw-pillar-body">
-              <strong class="mw-pillar-name">HbA1c</strong>
-              <p class="mw-pillar-desc">
-                Der Langzeit-Glukosemarker zeigt, wie dein Körper über
-                Wochen mit Zucker umgegangen ist – ein Fenster in deinen
-                Stoffwechseltrend.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="mw-bridge-cta reveal reveal--delay-2">
-          <a href="Messbare Wahrheit/index.html" class="btn btn-primary btn-lg">
-            Alle 4 Analyse-Module entdecken
-          </a>
-          <p class="mw-bridge-note">
-            Keine medizinische Diagnose &nbsp;·&nbsp; Objektive Momentaufnahme deiner Biologie
-          </p>
-        </div>
-
       </div>
-    </section>
+
+      <div class="mw-intro-right reveal reveal--delay-1">
+        <p class="mw-copy">
+          Jeder Körper reagiert anders, deshalb testen wir nur dort, wo wir einen
+          echten Mehrwert erwarten und wo Daten helfen, deinen Stoffwechsel besser
+          zu verstehen. Mit ausgewählten Trockenbluttests erfassen wir eine
+          präzise Momentaufnahme deiner biologischen Prozesse, diskret,
+          wissenschaftlich und klinisch ausgewertet. So entsteht die Grundlage für
+          Entscheidungen, die wirklich zu dir passen.
+        </p>
+        <!-- <p class="mw-copy">
+          So entsteht die Grundlage für Entscheidungen,
+          die wirklich zu dir passen.
+        </p> -->
+
+        <!-- meta stat row -->
+        <div class="mw-meta-row" aria-label="Auf einen Blick">
+          <div class="mw-meta-item">
+            <span class="mw-meta-num">4</span>
+            <span class="mw-meta-label">Tests</span>
+          </div>
+          <div class="mw-meta-sep" aria-hidden="true"></div>
+          <div class="mw-meta-item">
+            <span class="mw-meta-num">1</span>
+            <span class="mw-meta-label">Blutentnahme</span>
+          </div>
+          <div class="mw-meta-sep" aria-hidden="true"></div>
+          <div class="mw-meta-item">
+            <span class="mw-meta-num">100%</span>
+            <span class="mw-meta-label">Klinisch ausgewertet</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /mw-intro-split -->
+
+
+    <!-- ─────────────────────────────────────────────────────────────
+         ② DIVIDER BAR
+    ───────────────────────────────────────────────────────────────── -->
+    <div class="mw-divider-bar reveal" aria-hidden="true">
+      <span class="mw-divider-rule"></span>
+      <span class="mw-divider-text">Vier Tests. Ein Ziel: Orientierung.</span>
+      <span class="mw-divider-rule"></span>
+    </div>
+
+
+    <!-- ─────────────────────────────────────────────────────────────
+         ③ TEST CARDS — 2 × 2 grid
+    ───────────────────────────────────────────────────────────────── -->
+    <div class="mw-cards" role="list">
+
+
+      <!-- ══ CARD 01 — BalanceTest ══ -->
+      <article
+        class="mw-card reveal"
+        data-index="0"
+        role="listitem"
+        tabindex="0"
+        aria-label="Test 01: BalanceTest"
+      >
+        <!-- cursor-tracking glow (JS injects inline style) -->
+        <div class="mw-card-glow" aria-hidden="true"></div>
+
+        <!-- top animated scan line -->
+        <div class="mw-card-scan" aria-hidden="true"></div>
+
+        <!-- ghost ordinal -->
+        <span class="mw-card-ordinal" aria-hidden="true">01</span>
+
+        <div class="mw-card-inner">
+
+          <header class="mw-card-header">
+            <span class="mw-card-badge" aria-hidden="true">01</span>
+            <h3 class="mw-card-name">BalanceTest</h3>
+          </header>
+
+          <p class="mw-card-body">
+            Der BalanceTest zeigt, wie ausgewogen die Fettsäuren in deinem Blut
+            zusammenspielen. Das ist entscheidend dafür, wie gut dein Körper
+            Nährstoffe aufnehmen, Stoffwechselprodukte weiterverarbeiten und
+            Belastungen ausgleichen kann. Die sechs Marker machen sichtbar, ob
+            zentrale Prozesse stabil laufen oder ob Muster erkennbar sind, die auf
+            entzündungsbezogene Vorgänge im Körper hindeuten können.
+          </p>
+
+          <footer class="mw-card-markers" aria-label="Biomarker">
+            <span class="mw-card-marker">Fettsäureprofil</span>
+            <span class="mw-card-marker">6 Marker</span>
+            <span class="mw-card-marker">Entzündungsparameter</span>
+            <span class="mw-card-marker">Zellkommunikation</span>
+          </footer>
+
+        </div>
+      </article>
+
+
+      <!-- ══ CARD 02 — Gut Health Test ══ -->
+      <article
+        class="mw-card reveal reveal--delay-1"
+        data-index="1"
+        role="listitem"
+        tabindex="0"
+        aria-label="Test 02: Gut Health Test"
+      >
+        <div class="mw-card-glow" aria-hidden="true"></div>
+        <div class="mw-card-scan" aria-hidden="true"></div>
+        <span class="mw-card-ordinal" aria-hidden="true">02</span>
+
+        <div class="mw-card-inner">
+
+          <header class="mw-card-header">
+            <span class="mw-card-badge" aria-hidden="true">02</span>
+            <h3 class="mw-card-name">Gut Health Test</h3>
+          </header>
+
+          <p class="mw-card-body">
+            Der Gut Health Test zeigt, wie ausgeglichen dein mikrobielles Ökosystem
+            arbeitet und ob deine Darmbakterien eher für dich oder gegen dich
+            arbeiten. Über ausgewählte Stoffwechselprodukte aus dem
+            Trockenblutverfahren wird sichtbar, wie stabil die Kommunikation
+            zwischen Darm, Immunsystem und Stoffwechsel funktioniert und wie gut
+            zentrale Prozesse im Darm-Körper-Dialog unterstützt werden.
+          </p>
+
+          <footer class="mw-card-markers" aria-label="Biomarker">
+            <span class="mw-card-marker">Mikrobiom-Balance</span>
+            <span class="mw-card-marker">Darm-Immun-Achse</span>
+            <span class="mw-card-marker">Stoffwechselprodukte</span>
+            <span class="mw-card-marker">Trockenblutverfahren</span>
+          </footer>
+
+        </div>
+      </article>
+
+
+      <!-- ══ CARD 03 — Vitamin D Test ══ -->
+      <article
+        class="mw-card reveal reveal--delay-2"
+        data-index="2"
+        role="listitem"
+        tabindex="0"
+        aria-label="Test 03: Vitamin D Test"
+      >
+        <div class="mw-card-glow" aria-hidden="true"></div>
+        <div class="mw-card-scan" aria-hidden="true"></div>
+        <span class="mw-card-ordinal" aria-hidden="true">03</span>
+
+        <div class="mw-card-inner">
+
+          <header class="mw-card-header">
+            <span class="mw-card-badge" aria-hidden="true">03</span>
+            <h3 class="mw-card-name">Vitamin D Test</h3>
+          </header>
+
+          <p class="mw-card-body">
+            Der Vitamin D Test nutzt den 25-Hydroxy-Vitamin-D-Wert, um abzubilden,
+            wie effektiv dein Körper Vitamin D aus Sonne, Nahrung und Supplementen
+            verarbeitet. Die Analyse erfolgt mittels Flüssigkeitschromatographie
+            und Massenspektrometrie und zeigt, wie stabil deine aktuelle
+            Versorgung ist und wie gut grundlegende hormonelle
+            Steuerungsprozesse unterstützt werden.
+          </p>
+
+          <footer class="mw-card-markers" aria-label="Biomarker">
+            <span class="mw-card-marker">25-OH Vitamin D</span>
+            <span class="mw-card-marker">LC-MS/MS Methode</span>
+            <span class="mw-card-marker">Hormonelle Steuerung</span>
+            <span class="mw-card-marker">Immunstatus</span>
+          </footer>
+
+        </div>
+      </article>
+
+
+      <!-- ══ CARD 04 — HbA1c Test ══ -->
+      <article
+        class="mw-card reveal reveal--delay-3"
+        data-index="3"
+        role="listitem"
+        tabindex="0"
+        aria-label="Test 04: HbA1c Test"
+      >
+        <div class="mw-card-glow" aria-hidden="true"></div>
+        <div class="mw-card-scan" aria-hidden="true"></div>
+        <span class="mw-card-ordinal" aria-hidden="true">04</span>
+
+        <div class="mw-card-inner">
+
+          <header class="mw-card-header">
+            <span class="mw-card-badge" aria-hidden="true">04</span>
+            <h3 class="mw-card-name">HbA1c Test</h3>
+          </header>
+
+          <p class="mw-card-body">
+            Der HbA1c Test zeigt, wie dein Körper über mehrere Wochen mit Glukose
+            umgegangen ist und macht langfristige Muster im Stoffwechsel sichtbar.
+            Die Ergebnisse können Hinweise liefern, die in der frühzeitigen
+            Einschätzung von Stoffwechseltrends relevant werden, besonders in
+            Bereichen, die in der Prävention von Diabetes eine Rolle spielen. In
+            Kombination mit einem kurzen Lebensstil-Fragebogen entsteht ein Trend,
+            der zeigt, wie Ernährung, Bewegung, Schlaf und Alltagseinflüsse
+            zusammenwirken.
+          </p>
+
+          <footer class="mw-card-markers" aria-label="Biomarker">
+            <span class="mw-card-marker">Langzeit-Glukose</span>
+            <span class="mw-card-marker">8–12 Wochen Verlauf</span>
+            <span class="mw-card-marker">Diabetesprävention</span>
+            <span class="mw-card-marker">Lifestyle-Korrelation</span>
+          </footer>
+
+        </div>
+      </article>
+
+
+    </div><!-- /mw-cards -->
+
+
+    <!-- ─────────────────────────────────────────────────────────────
+         ④ FOOTNOTE
+    ───────────────────────────────────────────────────────────────── -->
+    <p class="mw-footnote reveal">
+      Keine medizinische Diagnose &nbsp;·&nbsp; Objektive Momentaufnahme deiner Biologie &nbsp;·&nbsp; Klinisch zertifiziertes Labor
+    </p>
+
+  </div><!-- /container -->
+
+</section><!-- /section--mw -->
 
 
     <!-- ========================= CTA ========================== -->

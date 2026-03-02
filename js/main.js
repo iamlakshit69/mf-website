@@ -756,6 +756,44 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   })();
+  /* ===================================================
+     11. MESSBARE WAHRHEIT — Cursor-tracking card glow
+     ─────────────────────────────────────────────────
+     For each .mw-card, tracks the mouse position
+     relative to the card and writes --mx / --my as
+     percentage values. The CSS radial-gradient on
+     .mw-card-glow reads those properties to follow
+     the cursor in real time.
+
+     Also handles touch devices gracefully — the glow
+     simply stays hidden (opacity:0) since CSS already
+     gates it behind :hover.
+  =================================================== */
+
+  (function initMWCardGlow() {
+    const cards = document.querySelectorAll(".mw-card");
+    if (!cards.length) return;
+
+    // Skip the effect entirely if the user prefers reduced motion
+    if (prefersReducedMotion.matches) return;
+
+    cards.forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width)  * 100;
+        const y = ((e.clientY - rect.top)  / rect.height) * 100;
+        card.style.setProperty("--mx", `${x}%`);
+        card.style.setProperty("--my", `${y}%`);
+      });
+
+      // Reset to centre when mouse leaves so the next
+      // hover always starts from a neutral position
+      card.addEventListener("mouseleave", () => {
+        card.style.setProperty("--mx", "50%");
+        card.style.setProperty("--my", "50%");
+      });
+    });
+  })();
 
 
 }); // end DOMContentLoaded

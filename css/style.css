@@ -1648,3 +1648,607 @@ p + p { margin-top: 1.6em; }
   }
   .footer-brand p { max-width: 100%; }
 }
+
+
+/* =====================================================
+   MESSBARE WAHRHEIT — SECTION STYLES
+   Paste at the bottom of css/style.css
+   Depends on design tokens already defined in :root {}
+===================================================== */
+
+
+/* =====================================================
+   SECTION SHELL + BACKGROUND
+===================================================== */
+
+.section--mw {
+  position: relative;
+  background: linear-gradient(
+    170deg,
+    #091a10 0%,
+    #0a1e14 30%,
+    #081610 65%,
+    #060f0a 100%
+  );
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Decorative lab-grid overlay */
+.mw-grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(186, 230, 62, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(186, 230, 62, 0.028) 1px, transparent 1px);
+  background-size: 52px 52px;
+  background-position: center center;
+  mask-image: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    black 40%,
+    transparent 100%
+  );
+}
+
+/* Ambient corner glows */
+.section--mw::before,
+.section--mw::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.18;
+}
+
+.section--mw::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(186, 230, 62, 0.5), transparent 70%);
+  top: -180px;
+  right: -180px;
+}
+
+.section--mw::after {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(186, 230, 62, 0.35), transparent 70%);
+  bottom: -140px;
+  left: -140px;
+}
+
+/* Ensure all children sit above bg effects */
+.section--mw > .container {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =====================================================
+   ① INTRO SPLIT — two-column header
+===================================================== */
+
+.mw-intro-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(60px, 8vw, 120px);
+  align-items: start;
+  padding-block: clamp(80px, 10vh, 130px);
+}
+
+/* LEFT — sticky headline column */
+.mw-intro-left {
+  position: sticky;
+  top: 120px;
+}
+
+.mw-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--green-accent);
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+
+/* Small dot before eyebrow */
+.mw-eyebrow::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(186, 230, 62, 0.15);
+}
+
+.mw-heading {
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  color: var(--ink-strong);
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.mw-heading-em {
+  color: var(--green-accent);
+  font-style: italic;
+}
+
+/* Animated vertical rule */
+.mw-vert-rule {
+  margin-top: 44px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.mw-vert-rule-line {
+  display: block;
+  width: 1px;
+  height: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--green-accent),
+    rgba(186, 230, 62, 0)
+  );
+  transition: height 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
+
+.mw-intro-left.is-visible .mw-vert-rule-line {
+  height: 80px;
+}
+
+/* RIGHT — copy + meta stats */
+.mw-intro-right {
+  padding-top: clamp(10px, 2vw, 20px);
+}
+
+.mw-copy {
+  font-size: clamp(1.05rem, 2vw, 1.12rem);
+  line-height: 1.85;
+  color: var(--ink-muted);
+  max-width: 54ch;
+  margin-bottom: 0;
+}
+
+.mw-copy + .mw-copy {
+  margin-top: 1.4em;
+}
+
+/* Meta stat row */
+.mw-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: clamp(40px, 5vw, 60px);
+  padding: 28px 32px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+}
+
+.mw-meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+}
+
+.mw-meta-num {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--green-accent);
+  line-height: 1;
+  font-weight: 500;
+}
+
+.mw-meta-label {
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+}
+
+.mw-meta-sep {
+  width: 1px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .mw-intro-split {
+    grid-template-columns: 1fr;
+    gap: var(--gap-md);
+    padding-block: clamp(60px, 8vh, 100px);
+  }
+
+  .mw-intro-left {
+    position: relative;
+    top: 0;
+  }
+
+  .mw-copy { max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .mw-meta-row {
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+    padding: 24px 20px;
+  }
+
+  .mw-meta-sep {
+    width: 100%;
+    height: 1px;
+  }
+
+  .mw-meta-item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+
+/* =====================================================
+   ② DIVIDER BAR
+===================================================== */
+
+.mw-divider-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: clamp(60px, 8vw, 90px);
+}
+
+.mw-divider-rule {
+  flex: 1;
+  height: 1px;
+  display: block;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(186, 230, 62, 0.3),
+    transparent
+  );
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.mw-divider-bar.is-visible .mw-divider-rule {
+  transform: scaleX(1);
+}
+
+.mw-divider-text {
+  font-size: 0.78rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(186, 230, 62, 0.55);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .mw-divider-text {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+  }
+}
+
+
+/* =====================================================
+   ③ CARDS GRID
+===================================================== */
+
+.mw-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: clamp(50px, 7vw, 80px);
+}
+
+@media (max-width: 840px) {
+  .mw-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+
+/* =====================================================
+   INDIVIDUAL CARD
+===================================================== */
+
+.mw-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.038),
+    rgba(0, 0, 0, 0.22)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  cursor: default;
+  transition:
+    border-color 0.35s ease,
+    box-shadow  0.35s ease,
+    transform   0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  outline: none; /* replaced by focus-visible below */
+}
+
+/* Keyboard focus ring */
+.mw-card:focus-visible {
+  outline: 2px solid var(--green-accent);
+  outline-offset: 3px;
+}
+
+/* Lift on hover */
+.mw-card:hover {
+  border-color: rgba(186, 230, 62, 0.22);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(186, 230, 62, 0.08) inset;
+  transform: translateY(-5px);
+}
+
+/* Stagger delays when cards come into view */
+.mw-card[data-index="1"] { transition-delay: 0.06s; }
+.mw-card[data-index="2"] { transition-delay: 0.12s; }
+.mw-card[data-index="3"] { transition-delay: 0.18s; }
+
+/* ── GLOW — cursor-tracking radial (JS sets --mx / --my) ── */
+.mw-card-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(
+    400px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(186, 230, 62, 0.07),
+    transparent 60%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.mw-card:hover .mw-card-glow {
+  opacity: 1;
+}
+
+/* ── SCAN LINE — draws across top on hover ── */
+.mw-card-scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--green-accent),
+    transparent
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mw-card:hover .mw-card-scan,
+.mw-card:focus-visible .mw-card-scan {
+  transform: scaleX(1);
+}
+
+/* ── GHOST ORDINAL — decorative background number ── */
+.mw-card-ordinal {
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  font-family: var(--font-heading);
+  font-size: clamp(6rem, 12vw, 9rem);
+  font-weight: 600;
+  color: var(--green-accent);
+  opacity: 0.04;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: opacity 0.35s ease;
+  letter-spacing: -4px;
+}
+
+.mw-card:hover .mw-card-ordinal {
+  opacity: 0.075;
+}
+
+/* ── INNER — sits above glow/ordinal layers ── */
+.mw-card-inner {
+  position: relative;
+  z-index: 1;
+  padding: clamp(28px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+/* ── CARD HEADER — badge + name row ── */
+.mw-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mw-card-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(186, 230, 62, 0.3);
+  background: rgba(186, 230, 62, 0.06);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--green-accent);
+  flex-shrink: 0;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.mw-card:hover .mw-card-badge {
+  background: rgba(186, 230, 62, 0.14);
+  border-color: rgba(186, 230, 62, 0.6);
+}
+
+.mw-card-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 500;
+  color: var(--ink-strong);
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  transition: color 0.25s ease;
+}
+
+.mw-card:hover .mw-card-name {
+  color: #ffffff;
+}
+
+/* ── BODY COPY ── */
+.mw-card-body {
+  font-size: clamp(0.9rem, 1.6vw, 0.97rem);
+  line-height: 1.8;
+  color: var(--ink-muted);
+  max-width: 100%;
+  margin: 0;
+  flex: 1;
+}
+
+/* ── BIOMARKER TAGS ── */
+.mw-card-markers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mw-card-marker {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  color: rgba(186, 230, 62, 0.7);
+  background: rgba(186, 230, 62, 0.055);
+  border: 1px solid rgba(186, 230, 62, 0.12);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+  white-space: nowrap;
+}
+
+.mw-card:hover .mw-card-marker {
+  background: rgba(186, 230, 62, 0.09);
+  border-color: rgba(186, 230, 62, 0.22);
+  color: rgba(186, 230, 62, 0.9);
+}
+
+
+/* =====================================================
+   CARD ENTRANCE ANIMATIONS
+   Cards get a custom reveal when they enter the viewport.
+   Uses the existing .reveal / .is-visible system, but
+   each card also has a slight Y-lift + scale pop.
+===================================================== */
+
+.mw-card.reveal {
+  transform: translateY(36px) scale(0.97);
+  opacity: 0;
+  transition:
+    opacity  0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mw-card.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Override the hover transform to stack on top of the revealed state */
+.mw-card.reveal.is-visible:hover {
+  transform: translateY(-5px) scale(1);
+}
+
+/* Stagger for reveal (these override the existing reveal--delay classes
+   when the card is also .mw-card, so they apply only inside this section) */
+.mw-card[data-index="0"].reveal { transition-delay: 0s;    }
+.mw-card[data-index="1"].reveal { transition-delay: 0.1s;  }
+.mw-card[data-index="2"].reveal { transition-delay: 0.2s;  }
+.mw-card[data-index="3"].reveal { transition-delay: 0.3s;  }
+
+
+/* =====================================================
+   ④ FOOTNOTE
+===================================================== */
+
+.mw-footnote {
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.28);
+  padding-bottom: clamp(60px, 8vh, 100px);
+  max-width: none;
+  margin: 0;
+}
+
+
+/* =====================================================
+   REDUCED MOTION — respect user preference
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .mw-vert-rule-line,
+  .mw-divider-rule,
+  .mw-card-scan,
+  .mw-card-glow,
+  .mw-card-ordinal,
+  .mw-card-badge,
+  .mw-card-marker,
+  .mw-card-name {
+    transition: none;
+  }
+
+  .mw-card:hover {
+    transform: none;
+  }
+
+  .mw-card.reveal.is-visible:hover {
+    transform: none;
+  }
+}
+
