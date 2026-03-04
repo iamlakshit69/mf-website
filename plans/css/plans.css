@@ -1,0 +1,1239 @@
+/* =====================================================
+   PLAN.CSS — Metabolic Freedom · Leistungen Page
+   Depends on css/style.css for design tokens + base
+===================================================== */
+
+
+/* =====================================================
+   PAGE HERO
+===================================================== */
+
+.plan-hero {
+    position: relative;
+    min-height: 52vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: clamp(130px, 18vh, 180px);
+    padding-bottom: clamp(60px, 8vh, 100px);
+  }
+  
+  /* ── Decorative background ── */
+  .plan-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .plan-hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(186, 230, 62, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(186, 230, 62, 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
+  }
+  
+  .plan-hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.22;
+    pointer-events: none;
+  }
+  
+  .plan-hero-glow--1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(186, 230, 62, 0.55), transparent 70%);
+    top: -160px;
+    right: -120px;
+    animation: glowDrift1 12s ease-in-out infinite alternate;
+  }
+  
+  .plan-hero-glow--2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(186, 230, 62, 0.35), transparent 70%);
+    bottom: -100px;
+    left: -100px;
+    animation: glowDrift2 15s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glowDrift1 {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(-40px, 30px) scale(1.1); }
+  }
+  
+  @keyframes glowDrift2 {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(30px, -20px) scale(1.08); }
+  }
+  
+  /* ── Hero content ── */
+  .plan-hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .plan-hero-text {
+    max-width: 600px;
+  }
+  
+  .plan-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-accent);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  
+  .plan-hero-eyebrow::before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-accent);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(186, 230, 62, 0.18);
+    animation: eyebrowPulse 2.5s ease-in-out infinite;
+  }
+  
+  @keyframes eyebrowPulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(186, 230, 62, 0.18); }
+    50%       { box-shadow: 0 0 0 6px rgba(186, 230, 62, 0.06); }
+  }
+  
+  .plan-hero-title {
+    font-size: clamp(2.8rem, 7vw, 4.8rem);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--ink-strong);
+    margin-bottom: 0.8em;
+  }
+  
+  .plan-hero-em {
+    color: var(--green-accent);
+    font-style: italic;
+  }
+  
+  .plan-hero-lead {
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    line-height: 1.8;
+    color: var(--ink-muted);
+    max-width: 52ch;
+  }
+  
+  /* Scroll indicator */
+  .plan-hero-scroll {
+    margin-top: clamp(40px, 6vh, 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    pointer-events: none;
+  }
+  
+  .plan-scroll-line {
+    display: block;
+    width: 1px;
+    height: 55px;
+    background: linear-gradient(to bottom, rgba(186,230,62,.7), rgba(186,230,62,0));
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; transform: scaleY(1) translateY(0); }
+    50%       { opacity: .4; transform: scaleY(.6) translateY(4px); }
+  }
+  
+  
+  /* =====================================================
+     SHARED SECTION WRAPPER
+  ===================================================== */
+  
+  .plan-section {
+    padding-block: clamp(60px, 8vh, 100px);
+  }
+  
+  .plan-section--premium {
+    background: linear-gradient(180deg, #091a10 0%, #0a1e14 100%);
+  }
+  
+  .plan-section--kompakt {
+    background: linear-gradient(180deg, #0a1e14 0%, #0c2318 100%);
+  }
+  
+  
+  /* =====================================================
+     PREMIUM BADGE STRIP
+  ===================================================== */
+  
+  .premium-badge-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  
+  .premium-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  .premium-badge--rec {
+    background: linear-gradient(135deg, rgba(186,230,62,0.18), rgba(186,230,62,0.08));
+    border: 1px solid rgba(186,230,62,0.35);
+    color: var(--green-accent);
+  }
+  
+  .premium-badge--dur {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+  }
+  
+  .premium-badge--val {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.45);
+    text-decoration: line-through;
+    text-decoration-color: rgba(186,230,62,0.5);
+  }
+  
+  
+  /* =====================================================
+     PREMIUM CARD
+  ===================================================== */
+  
+  .premium-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(
+      160deg,
+      rgba(255,255,255,0.045) 0%,
+      rgba(0,0,0,0.25) 100%
+    );
+    border: 1px solid rgba(186,230,62,0.18);
+    overflow: hidden;
+    box-shadow:
+      0 40px 100px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(186,230,62,0.06) inset;
+  }
+  
+  /* Animated scan line across top */
+  .premium-card-scan {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(186,230,62,0.8) 40%,
+      rgba(186,230,62,1) 50%,
+      rgba(186,230,62,0.8) 60%,
+      transparent 100%
+    );
+    animation: scanSlide 4s ease-in-out infinite;
+    z-index: 2;
+  }
+  
+  @keyframes scanSlide {
+    0%   { left: -100%; }
+    60%  { left: 100%; }
+    100% { left: 100%; }
+  }
+  
+  /* Ambient corner glow */
+  .premium-card-ambient {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(186,230,62,0.06), transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  
+  /* ── Card Header ── */
+  .premium-card-header {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: start;
+    padding: clamp(28px, 4vw, 48px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  
+  .premium-card-label {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: var(--green-accent);
+    opacity: 0.12;
+    line-height: 1;
+    display: block;
+    margin-bottom: 10px;
+    letter-spacing: -2px;
+    user-select: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .premium-card:hover .premium-card-label { opacity: 0.22; }
+  
+  .premium-card-title {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    line-height: 1.1;
+    color: var(--ink-strong);
+    margin-bottom: 0.5em;
+    letter-spacing: -0.3px;
+  }
+  
+  .premium-card-tagline {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: var(--ink-muted);
+    max-width: 38ch;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Pricing block — right side of header */
+  .premium-price-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  
+  .premium-price-main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .premium-price-num {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: var(--green-accent);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  
+  .premium-price-currency {
+    font-size: 0.7em;
+    opacity: 0.8;
+  }
+  
+  .premium-price-label {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+  }
+  
+  .premium-price-ref {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  
+  .premium-price-monthly {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+  }
+  
+  .premium-price-start {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+  }
+  
+  .premium-price-note {
+    font-size: 0.7rem;
+    color: rgba(186,230,62,0.55);
+    letter-spacing: 0.5px;
+    max-width: none;
+    margin: 0;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(186,230,62,0.15);
+    background: rgba(186,230,62,0.05);
+    white-space: nowrap;
+  }
+  
+  /* Mobile: stack header */
+  @media (max-width: 600px) {
+    .premium-card-header {
+      grid-template-columns: 1fr;
+    }
+  
+    .premium-price-block {
+      align-items: flex-start;
+      text-align: left;
+    }
+  
+    .premium-price-ref {
+      align-items: flex-start;
+      flex-direction: row;
+      gap: 14px;
+    }
+  }
+  
+  
+  /* =====================================================
+     PAYMENT SECTION
+  ===================================================== */
+  
+  .payment-section {
+    position: relative;
+    z-index: 1;
+    padding: clamp(24px, 3vw, 40px) clamp(28px, 4vw, 48px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(0,0,0,0.15);
+  }
+  
+  .payment-section-label {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 18px;
+    margin-top: 0;
+    max-width: none;
+  }
+  
+  /* ── Toggle tabs ── */
+  .payment-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  
+  .payment-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+  }
+  
+  .payment-tab:hover {
+    border-color: rgba(186,230,62,0.25);
+    background: rgba(186,230,62,0.04);
+  }
+  
+  .payment-tab.active {
+    border-color: rgba(186,230,62,0.45);
+    background: rgba(186,230,62,0.08);
+    box-shadow: 0 0 0 1px rgba(186,230,62,0.12) inset;
+  }
+  
+  .payment-tab-num {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  
+  .payment-tab.active .payment-tab-num {
+    color: rgba(186,230,62,0.6);
+  }
+  
+  .payment-tab-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    transition: color 0.2s ease;
+  }
+  
+  .payment-tab.active .payment-tab-title {
+    color: var(--green-accent);
+  }
+  
+  .payment-tab-saving {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+  }
+  
+  .payment-tab.active .payment-tab-saving {
+    color: rgba(186,230,62,0.7);
+  }
+  
+  /* ── Payment panels ── */
+  .payment-panel {
+    animation: panelFadeIn 0.3s ease;
+  }
+  
+  @keyframes panelFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  .payment-panel-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+    padding: 24px;
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  
+  /* Panel 1 – Einmalzahlung */
+  .payment-amount-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  
+  .payment-amount {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    color: var(--green-accent);
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  
+  .payment-saving-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: rgba(186,230,62,0.15);
+    border: 1px solid rgba(186,230,62,0.3);
+    color: var(--green-accent);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    animation: badgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+  }
+  
+  @keyframes badgePop {
+    from { transform: scale(0.7); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+  
+  .payment-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    margin: 0;
+    max-width: none;
+  }
+  
+  .payment-check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  
+  .payment-check-item:last-child { border-bottom: none; }
+  
+  .payment-check-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(186,230,62,0.12);
+    border: 1px solid rgba(186,230,62,0.3);
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .payment-check-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%) rotate(45deg);
+    width: 4px;
+    height: 7px;
+    border-right: 1.5px solid var(--green-accent);
+    border-bottom: 1.5px solid var(--green-accent);
+  }
+  
+  /* Panel 2 – 2 Raten */
+  .payment-installments {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .payment-installment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    min-width: 80px;
+    padding: 16px 12px;
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    text-align: center;
+  }
+  
+  .payment-installment--total {
+    border-color: rgba(186,230,62,0.25);
+    background: rgba(186,230,62,0.05);
+  }
+  
+  .payment-installment-label {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  
+  .payment-installment--total .payment-installment-label {
+    color: rgba(186,230,62,0.6);
+  }
+  
+  .payment-installment-amount {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+    color: var(--ink-strong);
+    line-height: 1;
+    letter-spacing: -0.3px;
+  }
+  
+  .payment-installment--total .payment-installment-amount {
+    color: var(--green-accent);
+  }
+  
+  .payment-installment-note {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    max-width: none;
+    margin: 0;
+  }
+  
+  .payment-installment-divider {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  
+  .payment-installment-divider--eq {
+    color: rgba(186,230,62,0.35);
+  }
+  
+  /* Mobile panel stacks */
+  @media (max-width: 600px) {
+    .payment-panel-inner {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .payment-installments {
+      gap: 8px;
+    }
+  
+    .payment-installment-divider {
+      transform: none;
+      flex: 0 0 auto;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
+  
+  /* =====================================================
+     PREMIUM PHASES — Accordion
+  ===================================================== */
+  
+  .premium-phases {
+    position: relative;
+    z-index: 1;
+    padding: clamp(24px, 3vw, 40px) clamp(28px, 4vw, 48px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  
+  .premium-phases-heading {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin: 0 0 20px 0;
+    max-width: none;
+  }
+  
+  /* ── Phase item ── */
+  .phase-item {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  
+  .phase-item:last-child { border-bottom: none; }
+  
+  .phase-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: opacity 0.2s ease;
+  }
+  
+  .phase-trigger:hover { opacity: 0.85; }
+  
+  .phase-trigger-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .phase-num {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--green-accent);
+    opacity: 0.2;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 36px;
+    letter-spacing: -1px;
+    transition: opacity 0.25s ease;
+    user-select: none;
+  }
+  
+  .phase-item.is-open .phase-num,
+  .phase-trigger:hover .phase-num {
+    opacity: 0.55;
+  }
+  
+  .phase-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: left;
+  }
+  
+  .phase-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink-strong);
+    transition: color 0.2s ease;
+  }
+  
+  .phase-item.is-open .phase-title {
+    color: var(--green-accent);
+  }
+  
+  .phase-subtitle {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.3px;
+  }
+  
+  /* Arrow chevron */
+  .phase-arrow {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid rgba(186,230,62,0.5);
+    border-bottom: 2px solid rgba(186,230,62,0.5);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease;
+    margin-right: 4px;
+  }
+  
+  .phase-item.is-open .phase-arrow {
+    transform: rotate(-135deg);
+    border-color: var(--green-accent);
+  }
+  
+  /* Phase body */
+  .phase-body {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition:
+      max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity    0.3s ease;
+  }
+  
+  .phase-body.is-open {
+    opacity: 1;
+  }
+  
+  .phase-list {
+    list-style: none;
+    padding: 0 0 24px 56px;
+    display: grid;
+    gap: 12px;
+  }
+  
+  .phase-list li {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 18px;
+  }
+  
+  .phase-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-accent);
+    opacity: 0.55;
+  }
+  
+  .phase-value-note {
+    font-size: 0.82rem;
+    color: rgba(186,230,62,0.6);
+    margin: 0 0 8px 0;
+    padding-left: 56px;
+    max-width: none;
+  }
+  
+  .phase-value-note strong {
+    color: var(--green-accent);
+  }
+  
+  
+  /* =====================================================
+     PREMIUM CARD CTA
+  ===================================================== */
+  
+  .premium-card-cta {
+    position: relative;
+    z-index: 1;
+    padding: clamp(28px, 4vw, 44px) clamp(28px, 4vw, 48px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  
+  .premium-cta-btn {
+    box-shadow:
+      0 20px 50px rgba(0,0,0,0.4),
+      0 0 40px rgba(186,230,62,0.12);
+    font-size: 1rem;
+    letter-spacing: 0.2px;
+    transition: all 0.3s ease;
+  }
+  
+  .premium-cta-btn:hover {
+    box-shadow:
+      0 28px 60px rgba(0,0,0,0.5),
+      0 0 60px rgba(186,230,62,0.2);
+  }
+  
+  .premium-cta-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.28);
+    margin: 0;
+    letter-spacing: 0.3px;
+    max-width: none;
+  }
+  
+  
+  /* =====================================================
+     OR DIVIDER
+  ===================================================== */
+  
+  .plan-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-inline: clamp(20px, 4vw, 32px);
+    max-width: var(--container);
+    margin: 0 auto;
+    padding-block: 10px;
+  }
+  
+  .plan-divider-rule {
+    flex: 1;
+    height: 1px;
+    display: block;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255,255,255,0.08),
+      transparent
+    );
+  }
+  
+  .plan-divider-text {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+    font-style: italic;
+  }
+  
+  
+  /* =====================================================
+     KOMPAKT CARD
+  ===================================================== */
+  
+  .kompakt-card {
+    max-width: 680px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(
+      150deg,
+      rgba(255,255,255,0.03) 0%,
+      rgba(0,0,0,0.2) 100%
+    );
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .kompakt-card:hover {
+    border-color: rgba(255,255,255,0.15);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    transform: translateY(-4px);
+  }
+  
+  .kompakt-card-inner {
+    padding: clamp(28px, 4vw, 44px);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  /* Header */
+  .kompakt-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .kompakt-label {
+    font-family: var(--font-heading);
+    font-size: clamp(2.8rem, 7vw, 4rem);
+    color: var(--ink-muted);
+    opacity: 0.12;
+    line-height: 1;
+    flex-shrink: 0;
+    letter-spacing: -2px;
+    user-select: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .kompakt-card:hover .kompakt-label { opacity: 0.22; }
+  
+  .kompakt-title {
+    font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+    line-height: 1.15;
+    color: var(--ink-strong);
+    margin-bottom: 0.4em;
+    letter-spacing: -0.2px;
+  }
+  
+  .kompakt-tagline {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    max-width: 36ch;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Body */
+  .kompakt-body {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+  
+  .kompakt-list {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+  
+  .kompakt-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+  
+  .kompakt-list-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(186,230,62,0.1);
+    border: 1px solid rgba(186,230,62,0.25);
+    flex-shrink: 0;
+    margin-top: 1px;
+    position: relative;
+  }
+  
+  .kompakt-list-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%) rotate(45deg);
+    width: 4px;
+    height: 7px;
+    border-right: 1.5px solid var(--green-accent);
+    border-bottom: 1.5px solid var(--green-accent);
+  }
+  
+  .kompakt-list-icon--alt {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
+  }
+  
+  .kompakt-list-icon--alt::after {
+    border-color: rgba(255,255,255,0.3);
+  }
+  
+  /* Price block */
+  .kompakt-price-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  
+  .kompakt-price-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+  
+  .kompakt-price {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    color: var(--ink-strong);
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  
+  .kompakt-price-sub {
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  
+  .kompakt-price-perunit {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.38);
+    text-align: right;
+  }
+  
+  @media (max-width: 520px) {
+    .kompakt-body {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .kompakt-price-block {
+      align-items: flex-start;
+      text-align: left;
+    }
+  
+    .kompakt-price-row { align-items: flex-start; }
+    .kompakt-price-perunit { text-align: left; }
+  }
+  
+  /* CTA */
+  .kompakt-cta {
+    padding-top: 4px;
+  }
+  
+  .kompakt-cta-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  
+  
+  /* =====================================================
+     TRUST STRIP
+  ===================================================== */
+  
+  .plan-trust {
+    padding-block: clamp(40px, 5vh, 60px);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    background: rgba(0,0,0,0.15);
+  }
+  
+  .plan-trust-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  
+  .plan-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    padding: 8px 24px;
+    letter-spacing: 0.3px;
+  }
+  
+  .plan-trust-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .plan-trust-sep {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.08);
+    flex-shrink: 0;
+  }
+  
+  @media (max-width: 560px) {
+    .plan-trust-inner {
+      flex-direction: column;
+      gap: 4px;
+    }
+  
+    .plan-trust-sep { display: none; }
+    .plan-trust-item { padding: 6px 0; }
+  }
+  
+  
+  /* =====================================================
+     FINAL CTA TWEAKS
+  ===================================================== */
+  
+  .plan-final-cta {
+    padding-block: clamp(100px, 14vh, 160px);
+  }
+  
+  .plan-final-cta h2 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    max-width: 18ch;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .plan-final-cta-sub {
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    color: var(--ink-muted);
+    max-width: 46ch;
+    margin-inline: auto;
+    margin-bottom: 2.4rem;
+    line-height: 1.7;
+  }
+  
+  
+  /* =====================================================
+     REVEAL ANIMATIONS (page-specific overrides)
+  ===================================================== */
+  
+  .premium-card.reveal {
+    opacity: 0;
+    transform: translateY(32px) scale(0.98);
+    transition:
+      opacity  0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .premium-card.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  .kompakt-card.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity  0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .kompakt-card.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .kompakt-card.reveal.is-visible:hover {
+    transform: translateY(-4px);
+  }
+  
+  
+  /* =====================================================
+     REDUCED MOTION
+  ===================================================== */
+  
+  @media (prefers-reduced-motion: reduce) {
+    .plan-hero-glow--1,
+    .plan-hero-glow--2,
+    .plan-scroll-line,
+    .plan-hero-eyebrow::before,
+    .premium-card-scan,
+    .payment-saving-badge {
+      animation: none;
+    }
+  
+    .premium-card.reveal,
+    .kompakt-card.reveal {
+      transition: opacity 0.3s ease;
+      transform: none;
+    }
+  
+    .kompakt-card:hover,
+    .kompakt-card.reveal.is-visible:hover {
+      transform: none;
+    }
+  }
