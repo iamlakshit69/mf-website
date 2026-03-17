@@ -711,3 +711,97 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
   }); // end DOMContentLoaded
+/* =====================================================
+   CTA STATE SYNC — single button, content swaps
+===================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+
+  const tabs = document.querySelectorAll(".payment-tab");
+  if (!tabs.length) return;
+
+  const btn          = document.getElementById("pcta-main");
+  const eyebrowText  = document.getElementById("pcta-eyebrow")?.querySelector(".pcta-eyebrow-text");
+  const label        = document.getElementById("pcta-label");
+  const meta         = document.getElementById("pcta-meta");
+  const footnoteText = document.getElementById("pcta-footnote-text");
+
+  if (!btn || !label || !meta) return;
+
+  const states = {
+    "1": {
+      eyebrow:   "Einmalzahlung · Sofort starten",
+      label:     "Freedom Journey buchen",
+      metaHTML: `<span class="pcta-price-wrap">
+                   <span class="pcta-price">2.249 <span class="pcta-currency">€</span></span>
+                   <span class="pcta-saving">–250 € gespart</span>
+                 </span>
+                 <span class="pcta-arrow" aria-hidden="true">
+                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                     <path class="pcta-arrow-shaft" d="M3 10h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                     <path class="pcta-arrow-head" d="M11 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>
+                 </span>`,
+      footnote:  "Kein Kauf im Erstgespräch &nbsp;·&nbsp; Unverbindlich &nbsp;·&nbsp; Sofortiger Programmstart",
+      btnClass:  "pcta-btn--einmal",
+      ariaLabel: "Freedom Journey jetzt für 2.249 € buchen – Einmalzahlung"
+    },
+    "2": {
+      eyebrow:   "2 Raten · Kein Aufpreis",
+      label:     "Heute mit Rate 1 starten",
+      metaHTML: `<span class="pcta-raten-preview" aria-label="Heute 1.500 Euro, in 30 Tagen 999 Euro">
+                   <span class="pcta-raten-item">
+                     <span class="pcta-raten-when">Heute</span>
+                     <span class="pcta-raten-amt">1.500 <span class="pcta-currency">€</span></span>
+                   </span>
+                   <span class="pcta-raten-sep" aria-hidden="true">+</span>
+                   <span class="pcta-raten-item">
+                     <span class="pcta-raten-when">30 Tage</span>
+                     <span class="pcta-raten-amt">999 <span class="pcta-currency">€</span></span>
+                   </span>
+                 </span>
+                 <span class="pcta-arrow" aria-hidden="true">
+                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                     <path class="pcta-arrow-shaft" d="M3 10h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                     <path class="pcta-arrow-head" d="M11 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>
+                 </span>`,
+      footnote:  "Rate 2 folgt automatisch in 30 Tagen &nbsp;·&nbsp; Gesamt 2.499 € &nbsp;·&nbsp; Unverbindliches Erstgespräch",
+      btnClass:  "pcta-btn--raten",
+      ariaLabel: "Freedom Journey mit 2 Raten buchen – heute 1.500 €, in 30 Tagen 999 €"
+    }
+  };
+
+  function syncCTA(tabIndex) {
+    const s = states[String(tabIndex)];
+    if (!s) return;
+
+    /* Swap button modifier class */
+    btn.classList.remove("pcta-btn--einmal", "pcta-btn--raten");
+    btn.classList.add(s.btnClass);
+    btn.setAttribute("aria-label", s.ariaLabel);
+
+    /* Swap text content */
+    if (eyebrowText) eyebrowText.innerHTML = s.eyebrow;
+    label.textContent = s.label;
+    meta.innerHTML    = s.metaHTML;
+    if (footnoteText) footnoteText.innerHTML = s.footnote;
+
+    /* Re-trigger entrance animation */
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!prefersReducedMotion.matches) {
+      btn.style.animation = "none";
+      void btn.offsetWidth;
+      btn.style.animation = "";
+    }
+  }
+
+  /* Listen to tab clicks */
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => syncCTA(tab.dataset.tab));
+  });
+
+  /* Init on load */
+  const activeTab = document.querySelector(".payment-tab.active");
+  if (activeTab) syncCTA(activeTab.dataset.tab);
+
+});

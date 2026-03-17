@@ -1237,3 +1237,820 @@
       transform: none;
     }
   }
+
+  /* =====================================================
+   PREMIUM CTA BUTTONS (pcta-*)
+   Plan 1 — Die Freedom Journey
+===================================================== */
+
+.premium-card-cta {
+  position: relative;
+  z-index: 1;
+  padding: clamp(28px, 4vw, 44px) clamp(28px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── State wrapper ── */
+.pcta-state {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+/* =====================================================
+   SHARED PCTA BUTTON BASE
+===================================================== */
+
+.pcta-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  isolation: isolate;
+  min-height: 88px;
+  transition:
+    transform  0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pcta-btn:hover {
+  transform: translateY(-3px) scale(1.005);
+}
+
+.pcta-btn:active {
+  transform: translateY(-1px) scale(1.002);
+  transition-duration: 0.1s;
+}
+
+
+/* =====================================================
+   EINMALZAHLUNG BUTTON
+===================================================== */
+
+.pcta-btn--einmal {
+  background: linear-gradient(
+    135deg,
+    #1a3a1a 0%,
+    #0f2b12 40%,
+    #0a1e0d 100%
+  );
+  border: 1px solid rgba(186, 230, 62, 0.35);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    0 2px 8px  rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(186, 230, 62, 0.06) inset,
+    0 0 60px rgba(186, 230, 62, 0.06);
+  padding: 22px 24px 22px 28px;
+}
+
+.pcta-btn--einmal:hover {
+  border-color: rgba(186, 230, 62, 0.6);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.55),
+    0 4px 16px  rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(186, 230, 62, 0.12) inset,
+    0 0 100px rgba(186, 230, 62, 0.12),
+    0 0 40px  rgba(186, 230, 62, 0.08);
+}
+
+/* Shimmer sweep */
+.pcta-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(186, 230, 62, 0.07) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  transition: background-position 0s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pcta-btn--einmal:hover .pcta-shimmer {
+  background-position: 200% 0;
+  transition: background-position 0.7s ease;
+}
+
+/* Glow blob */
+.pcta-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(186, 230, 62, 0.18), transparent 70%);
+  top: 50%;
+  right: 80px;
+  transform: translateY(-50%) scale(0.6);
+  opacity: 0;
+  transition:
+    opacity    0.5s ease,
+    transform  0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pcta-btn--einmal:hover .pcta-glow {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* Border ring pulse */
+.pcta-border-ring {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid rgba(186, 230, 62, 0);
+  transition: border-color 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pcta-btn:hover .pcta-border-ring {
+  border-color: rgba(186, 230, 62, 0.2);
+  animation: ringPulse 1.8s ease-in-out infinite 0.3s;
+}
+
+@keyframes ringPulse {
+  0%, 100% { box-shadow: 0 0 0 0px rgba(186, 230, 62, 0);   }
+  50%       { box-shadow: 0 0 0 6px rgba(186, 230, 62, 0.06); }
+}
+
+/* Particles */
+.pcta-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.pcta-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.pcta-particle--1 { top: 25%; left: 15%; }
+.pcta-particle--2 { top: 60%; left: 40%; }
+.pcta-particle--3 { top: 35%; left: 70%; }
+
+.pcta-btn--einmal:hover .pcta-particle--1 {
+  opacity: 0.6;
+  animation: particleDrift1 2s ease-in-out infinite 0.1s;
+}
+.pcta-btn--einmal:hover .pcta-particle--2 {
+  opacity: 0.4;
+  animation: particleDrift2 2.5s ease-in-out infinite 0.3s;
+}
+.pcta-btn--einmal:hover .pcta-particle--3 {
+  opacity: 0.5;
+  animation: particleDrift1 1.8s ease-in-out infinite 0.5s;
+}
+
+@keyframes particleDrift1 {
+  0%, 100% { transform: translate(0, 0)    scale(1);   }
+  50%       { transform: translate(6px, -8px) scale(1.4); }
+}
+@keyframes particleDrift2 {
+  0%, 100% { transform: translate(0, 0)     scale(1);   }
+  50%       { transform: translate(-5px, 6px) scale(1.3); }
+}
+
+
+/* =====================================================
+   BUTTON INNER CONTENT — shared
+===================================================== */
+
+/* Left body */
+.pcta-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pcta-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.68rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(186, 230, 62, 0.7);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.pcta-eyebrow--raten {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.pcta-eyebrow-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  flex-shrink: 0;
+  animation: eyebrowBlink 2.2s ease-in-out infinite;
+}
+
+.pcta-eyebrow--raten .pcta-eyebrow-dot {
+  background: rgba(255, 255, 255, 0.4);
+  animation: none;
+}
+
+@keyframes eyebrowBlink {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 2px rgba(186, 230, 62, 0.2); }
+  50%       { opacity: 0.5; box-shadow: 0 0 0 4px rgba(186, 230, 62, 0.05); }
+}
+
+.pcta-label {
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 2.8vw, 1.45rem);
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.2px;
+}
+
+/* Right meta */
+.pcta-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+/* Price block (einmal) */
+.pcta-price-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.pcta-price {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+  color: var(--green-accent);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.pcta-currency {
+  font-size: 0.72em;
+  opacity: 0.85;
+}
+
+.pcta-saving {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--green-accent);
+  opacity: 0.7;
+  background: rgba(186, 230, 62, 0.1);
+  border: 1px solid rgba(186, 230, 62, 0.2);
+  border-radius: 100px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+
+/* Arrow */
+.pcta-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(186, 230, 62, 0.1);
+  border: 1px solid rgba(186, 230, 62, 0.2);
+  color: var(--green-accent);
+  flex-shrink: 0;
+  transition:
+    background   0.3s ease,
+    border-color 0.3s ease,
+    transform    0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pcta-btn:hover .pcta-arrow {
+  background: rgba(186, 230, 62, 0.18);
+  border-color: rgba(186, 230, 62, 0.45);
+  transform: translateX(4px);
+}
+
+/* Arrow shaft retracts on hover, head advances */
+.pcta-arrow-shaft {
+  transition: stroke-dashoffset 0.3s ease, opacity 0.3s ease;
+  stroke-dasharray: 14;
+  stroke-dashoffset: 0;
+}
+
+.pcta-btn:hover .pcta-arrow-shaft {
+  stroke-dashoffset: 5;
+  opacity: 0.5;
+}
+
+.pcta-arrow-head {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
+.pcta-btn:hover .pcta-arrow-head {
+  transform: translateX(2px);
+}
+
+
+/* =====================================================
+   RATEN BUTTON
+===================================================== */
+
+.pcta-btn--raten {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 2px 8px  rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  padding: 22px 24px 22px 28px;
+}
+
+.pcta-btn--raten:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 4px 16px  rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+
+/* Raten shimmer — cooler white tone */
+.pcta-shimmer--raten {
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+}
+
+.pcta-btn--raten:hover .pcta-shimmer--raten {
+  background-position: 200% 0;
+  transition: background-position 0.7s ease;
+}
+
+.pcta-glow--raten {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 70%);
+}
+
+.pcta-btn--raten:hover .pcta-glow--raten {
+  opacity: 0.8;
+  transform: translateY(-50%) scale(1);
+}
+
+/* Raten arrow — white tint instead of green */
+.pcta-btn--raten .pcta-arrow {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.pcta-btn--raten:hover .pcta-arrow {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Raten meta — installment preview */
+.pcta-meta--raten {
+  gap: 14px;
+}
+
+.pcta-raten-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.pcta-raten-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.pcta-raten-when {
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1;
+}
+
+.pcta-raten-amt {
+  font-family: var(--font-heading);
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1;
+  letter-spacing: -0.3px;
+}
+
+.pcta-raten-sep {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+
+/* =====================================================
+   FOOTNOTE
+===================================================== */
+
+.pcta-footnote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.22);
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  padding-left: 4px;
+}
+
+.pcta-footnote-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.22);
+  margin-top: 1px;
+}
+
+/* ── State transition animation ── */
+.pcta-state {
+  animation: ctaStateIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ctaStateIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =====================================================
+   MOBILE — PCTA
+===================================================== */
+
+@media (max-width: 640px) {
+  .pcta-btn--einmal,
+  .pcta-btn--raten {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    min-height: unset;
+    padding: 20px;
+  }
+
+  .pcta-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .pcta-meta--raten {
+    justify-content: space-between;
+  }
+
+  .pcta-raten-preview {
+    flex: 1;
+  }
+
+  .pcta-price-wrap {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 400px) {
+  .pcta-raten-preview {
+    gap: 8px;
+    padding: 8px 10px;
+  }
+
+  .pcta-raten-amt {
+    font-size: 0.95rem;
+  }
+}
+
+
+/* =====================================================
+   KOMPAKT CTA BUTTON (kcta-*)
+   Plan 2 — Die Beratung
+===================================================== */
+
+.kompakt-cta {
+  padding-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kcta-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 72px;
+  padding: 16px 16px 16px 24px;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  isolation: isolate;
+  background: rgba(255, 255, 255, 0.0);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 1px 4px  rgba(0, 0, 0, 0.2);
+  transition:
+    transform    0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow   0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    background   0.35s ease;
+}
+
+.kcta-btn:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.4),
+    0 2px 8px   rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.kcta-btn:active {
+  transform: translateY(0);
+  transition-duration: 0.1s;
+}
+
+/* Fill sweep — slides in from left on hover */
+.kcta-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.kcta-btn:hover .kcta-fill {
+  transform: scaleX(1);
+}
+
+/* Shine glint — diagonal sweep */
+.kcta-shine {
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 80%
+  );
+  transform: skewX(-15deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.kcta-btn:hover .kcta-shine {
+  left: 140%;
+}
+
+/* Border highlight */
+.kcta-border {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0);
+  transition: border-color 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.kcta-btn:hover .kcta-border {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Left body */
+.kcta-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.kcta-label {
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.1;
+  letter-spacing: -0.1px;
+}
+
+.kcta-sub {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Right side */
+.kcta-right {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Price chip */
+.kcta-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    background    0.3s ease,
+    border-color  0.3s ease,
+    transform     0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.kcta-btn:hover .kcta-chip {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: scale(1.04);
+}
+
+.kcta-chip-price {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+/* Arrow */
+.kcta-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  transition:
+    background    0.3s ease,
+    border-color  0.3s ease,
+    color         0.3s ease,
+    transform     0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.kcta-btn:hover .kcta-arrow {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateX(3px);
+}
+
+/* Note line below button */
+.kcta-note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.3px;
+  margin: 0;
+  padding-left: 4px;
+  max-width: none;
+}
+
+.kcta-note svg {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.2);
+  margin-top: 1px;
+}
+
+
+/* =====================================================
+   MOBILE — KCTA
+===================================================== */
+
+@media (max-width: 400px) {
+  .kcta-sub {
+    display: none;
+  }
+
+  .kcta-btn {
+    padding: 14px 14px 14px 18px;
+  }
+}
+
+
+/* =====================================================
+   REDUCED MOTION — CTA overrides
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .pcta-btn,
+  .kcta-btn {
+    transition: opacity 0.2s ease;
+  }
+
+  .pcta-btn:hover,
+  .kcta-btn:hover {
+    transform: none;
+  }
+
+  .pcta-shimmer,
+  .pcta-shimmer--raten,
+  .pcta-glow,
+  .pcta-glow--raten,
+  .pcta-border-ring,
+  .pcta-particle,
+  .pcta-eyebrow-dot,
+  .kcta-fill,
+  .kcta-shine {
+    animation: none;
+    transition: none;
+  }
+
+  .pcta-arrow,
+  .kcta-arrow,
+  .kcta-chip {
+    transition: none;
+  }
+
+  .pcta-state {
+    animation: none;
+  }
+}
